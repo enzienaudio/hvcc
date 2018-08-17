@@ -1,0 +1,9 @@
+{
+  "samplerate": 48000.0,
+  "blocksize": 512,
+  "numIterations": 2000000,
+  "usPerBlock": {
+    "HV_SIMD_SSE": 31.765863,
+    "HV_SIMD_AVX": 33.890763
+  }
+}

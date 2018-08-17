@@ -1,0 +1,8 @@
+#N canvas 212 173 255 123 10;
+#X obj 13 11 sig~ 1;
+#X obj 13 34 vd~ name;
+#X obj 13 58 dac~;
+#X obj 71 34 table del-name 1024;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 2 1;

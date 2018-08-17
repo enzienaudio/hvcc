@@ -1,0 +1,8 @@
+#N canvas 54 274 254 151 10;
+#X obj 29 25 noise~;
+#X obj 29 108 dac~;
+#X obj 29 53 delwrite~ table 58.6435;
+#X obj 29 79 delread~ table 58.6435;
+#X connect 0 0 2 0;
+#X connect 3 0 1 0;
+#X connect 3 0 1 1;

@@ -1,0 +1,12 @@
+#N canvas 672 125 396 190 10;
+#X obj 14 102 outlet~;
+#X obj 14 57 exp~;
+#X obj 14 11 inlet~;
+#X obj 14 34 *~ 0.057762265046662;
+#X obj 14 79 *~ 8.175798915643707;
+#X text 12 126 NOTE(mhroth): heavy uses an approximation of exp~ which
+may lead to slight inaccuracies at high midi notes;
+#X connect 1 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 4 0 0 0;

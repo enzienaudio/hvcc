@@ -1,0 +1,7 @@
+#N canvas 202 244 210 108 10;
+#X obj 17 9 inlet;
+#X obj 17 55 outlet;
+#X text 15 76 @hv_arg \$1 k float 0 false;
+#X obj 17 32 f \$1;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;

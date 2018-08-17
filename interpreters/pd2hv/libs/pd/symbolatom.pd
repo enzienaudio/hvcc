@@ -1,0 +1,7 @@
+#N canvas 172 200 211 99 10;
+#X obj 16 9 inlet;
+#X obj 16 55 outlet;
+#X obj 16 32 symbol \$1;
+#X text 14 74 @hv_arg \$1 k string "" false;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;

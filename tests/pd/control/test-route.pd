@@ -1,0 +1,23 @@
+#N canvas 532 114 464 271 10;
+#X declare -path abs;
+#X msg 64 126 pitch 30;
+#X obj 64 41 loadbang;
+#X obj 65 193 r \$0-pitch;
+#X obj 65 221 print;
+#X obj 149 41 declare -path abs;
+#X obj 64 156 route_test \$0 pitch;
+#X msg 81 94 single;
+#X msg 130 94 other;
+#X obj 64 70 t a a a a;
+#X obj 123 41 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 0 0 5 0;
+#X connect 1 0 8 0;
+#X connect 2 0 3 0;
+#X connect 6 0 5 0;
+#X connect 7 0 5 0;
+#X connect 8 0 0 0;
+#X connect 8 1 6 0;
+#X connect 8 2 5 0;
+#X connect 8 3 7 0;
+#X connect 9 0 8 0;

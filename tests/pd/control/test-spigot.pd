@@ -1,0 +1,16 @@
+#N canvas 231 101 213 283 10;
+#X msg 40 103 0.5 1000;
+#X obj 40 229 print;
+#X msg 109 153 bang;
+#X obj 40 196 spigot 0;
+#X obj 40 68 t b b b;
+#X msg 79 134 1;
+#X obj 40 41 loadbang;
+#X connect 0 0 3 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 4 0 0 0;
+#X connect 4 1 5 0;
+#X connect 4 2 2 0;
+#X connect 5 0 3 1;
+#X connect 6 0 4 0;

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MainViewController">
+            <connections>
+                <outlet property="cpuIndicator" destination="WTs-Ko-Wwr" id="gPL-sG-1QA"/>
+                <outlet property="paramFourSlider" destination="02p-89-YKe" id="C4q-LO-bcb"/>
+                <outlet property="paramFourValue" destination="CGv-7T-6zN" id="vjd-eD-gVx"/>
+                <outlet property="paramOneSlider" destination="lDI-ir-Hfr" id="gnI-3g-aJn"/>
+                <outlet property="paramOneValue" destination="Afv-fd-32n" id="uiJ-3S-sSz"/>
+                <outlet property="paramThreeSlider" destination="I6H-3j-IG3" id="HNL-8w-A8d"/>
+                <outlet property="paramThreeValue" destination="H51-gh-a66" id="KnW-bl-BgL"/>
+                <outlet property="paramTwoSlider" destination="Lci-SA-HFx" id="c6N-7S-fD9"/>
+                <outlet property="paramTwoValue" destination="PFA-8H-vX3" id="XAX-fP-5Lw"/>
+                <outlet property="recordAudioButton" destination="iBf-a5-jla" id="Qh4-Pr-2LQ"/>
+                <outlet property="startAudioButton" destination="gQa-Lu-zg2" id="Sxf-CX-KGC"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView canDrawConcurrently="YES" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="296"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNz-OU-vFw">
+                    <rect key="frame" x="18" y="187" width="13" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A" id="KPr-ps-2gf">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bG4-ko-AnO">
+                    <rect key="frame" x="18" y="149" width="55" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="B" id="zH9-MI-6rf">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FSD-8L-Teo">
+                    <rect key="frame" x="18" y="112" width="14" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C" id="I8P-7d-qCv">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="631-95-5rz">
+                    <rect key="frame" x="18" y="74" width="55" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="D" id="vlJ-uI-R6A">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDI-ir-Hfr">
+                    <rect key="frame" x="61" y="185" width="212" height="20"/>
+                    <animations/>
+                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.29999999999999999" tickMarkPosition="above" sliderType="linear" id="ZpR-vO-uVS"/>
+                    <connections>
+                        <action selector="onSliderDidChange:" target="-2" id="BMW-ol-d57"/>
+                    </connections>
+                </slider>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lci-SA-HFx">
+                    <rect key="frame" x="61" y="147" width="212" height="20"/>
+                    <animations/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="c3f-Bx-WDV"/>
+                    <connections>
+                        <action selector="onSliderDidChange:" target="-2" id="jNg-1e-6vY"/>
+                    </connections>
+                </slider>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I6H-3j-IG3">
+                    <rect key="frame" x="61" y="110" width="212" height="20"/>
+                    <animations/>
+                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.29999999999999999" tickMarkPosition="above" sliderType="linear" id="Cug-Ch-bd7"/>
+                    <connections>
+                        <action selector="onSliderDidChange:" target="-2" id="xI8-D6-syg"/>
+                    </connections>
+                </slider>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02p-89-YKe">
+                    <rect key="frame" x="61" y="72" width="212" height="20"/>
+                    <animations/>
+                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.59999999999999998" tickMarkPosition="above" sliderType="linear" id="Js8-ZS-Hif"/>
+                    <connections>
+                        <action selector="onSliderDidChange:" target="-2" id="7U7-dR-9a2"/>
+                    </connections>
+                </slider>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Afv-fd-32n" userLabel="Param One Value">
+                    <rect key="frame" x="298" y="189" width="48" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="kIa-0S-4EL">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PFA-8H-vX3" userLabel="Param Two Value">
+                    <rect key="frame" x="298" y="149" width="48" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="7cC-qW-bj1">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H51-gh-a66" userLabel="Param Three Value">
+                    <rect key="frame" x="298" y="114" width="48" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="WND-Cg-5al">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGv-7T-6zN" userLabel="Param Four Value">
+                    <rect key="frame" x="298" y="74" width="48" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="Z44-wD-Gob">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQa-Lu-zg2">
+                    <rect key="frame" x="13" y="236" width="128" height="52"/>
+                    <animations/>
+                    <buttonCell key="cell" type="check" title="Start/Stop Audio" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Pax-oO-brF">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onStartAudio:" target="-2" id="pe5-Td-PAc"/>
+                    </connections>
+                </button>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBf-a5-jla">
+                    <rect key="frame" x="223" y="253" width="104" height="18"/>
+                    <animations/>
+                    <buttonCell key="cell" type="check" title="Record Audio" bezelStyle="regularSquare" imagePosition="left" inset="2" id="r5N-40-0Ar">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onRecordAudio:" target="-2" id="vph-No-7Uz"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2fG-ls-JMU">
+                    <rect key="frame" x="150" y="230" width="21" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1%" id="YFY-Sj-YWe">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRQ-5M-BQA">
+                    <rect key="frame" x="75" y="230" width="32" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.1%" id="lz2-R4-9tE">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l7J-9u-z5S">
+                    <rect key="frame" x="225" y="230" width="29" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="10%" id="19g-wX-3pi">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A1l-jS-OzR">
+                    <rect key="frame" x="280" y="230" width="42" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="%CPU" id="QOR-IH-1Vu">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WTs-Ko-Wwr">
+                    <rect key="frame" x="15" y="214" width="300" height="16"/>
+                    <animations/>
+                    <levelIndicatorCell key="cell" alignment="left" maxValue="40" warningValue="30" criticalValue="37" levelIndicatorStyle="continuousCapacity" id="WEK-o3-ZXa"/>
+                </levelIndicator>
+            </subviews>
+            <animations/>
+            <point key="canvasLocation" x="405.5" y="153"/>
+        </customView>
+    </objects>
+</document>

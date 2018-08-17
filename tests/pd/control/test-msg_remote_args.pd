@@ -1,0 +1,9 @@
+#N canvas 0 44 298 220 10;
+#X obj 37 67 loadbang;
+#X obj 37 130 print;
+#X msg 37 89 hi hello \; param 1;
+#X msg 124 95 message 1 \, message 2 \;;
+#X connect 0 0 2 0;
+#X connect 0 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;

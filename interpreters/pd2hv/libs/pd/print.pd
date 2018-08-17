@@ -1,0 +1,7 @@
+#N canvas 801 225 258 123 10;
+#N canvas 0 22 450 300 @hv_obj 0;
+#X obj 46 72 inlet;
+#X restore 21 51 pd @hv_obj print \$1;
+#X obj 21 21 inlet;
+#X text 19 83 @hv_arg \$1 label string print false;
+#X connect 1 0 0 0;

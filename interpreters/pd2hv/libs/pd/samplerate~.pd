@@ -1,0 +1,11 @@
+#N canvas 698 370 281 258 10;
+#X obj 19 11 inlet;
+#X obj 19 84 outlet;
+#X msg 19 35 samplerate;
+#N canvas 0 22 450 300 @hv_obj 0;
+#X obj 119 57 inlet;
+#X obj 119 97 outlet;
+#X restore 19 59 pd @hv_obj system;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;

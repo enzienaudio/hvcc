@@ -1,0 +1,14 @@
+#N canvas 450 250 412 101 10;
+#X obj 15 61 outlet;
+#N canvas 0 22 450 300 @hv_obj 0;
+#X obj 186 56 inlet~;
+#X obj 194 120 outlet;
+#X obj 260 62 inlet;
+#X restore 15 36 pd @hv_obj __sample~f;
+#X text 65 59 NOTE(mhroth): there is supposed to be a control;
+#X text 64 72 connection from the inlet to the right __sample~f inlet
+;
+#X obj 15 11 inlet~ -~>;
+#X connect 1 0 0 0;
+#X connect 4 0 1 0;
+#X connect 4 0 1 1;

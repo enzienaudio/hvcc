@@ -1,0 +1,12 @@
+#N canvas 439 480 161 128 10;
+#X obj 13 19 inlet;
+#X obj 13 80 outlet;
+#N canvas 0 22 183 125 @hv_obj 0;
+#X obj 76 24 inlet;
+#X obj 19 66 outlet;
+#X obj 19 24 inlet;
+#X restore 13 50 pd @hv_obj __atan2;
+#X obj 118 18 inlet;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;

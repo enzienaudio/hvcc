@@ -1,0 +1,6 @@
+#N canvas 848 391 243 165 10;
+#X declare -path ./abs;
+#X declare;
+#X obj 49 34 declare -path ./abs;
+#X obj 49 84 declared_abs;
+#X obj 48 13 declare;

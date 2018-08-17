@@ -1,0 +1,1 @@
+WWISE_SDK_PATH = "/Applications/Audiokinetic/Wwise {{wwise_version}}/SDK/include"

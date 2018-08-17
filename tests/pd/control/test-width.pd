@@ -1,0 +1,6 @@
+#N canvas 447 194 167 93 10;
+#X obj 15 10 loadbang, f 13;
+#X obj 15 56 print, f 10;
+#X msg 15 33 hello, f 9;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;

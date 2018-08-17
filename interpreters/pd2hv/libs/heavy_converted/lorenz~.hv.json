@@ -1,0 +1,356 @@
+{
+  "args": [],
+  "connections": [
+    {
+      "from": {
+        "id": "__lorenz~f_7dUFW",
+        "outlet": 0
+      },
+      "to": {
+        "id": "outlet~_Lf24h",
+        "inlet": 0
+      },
+      "type": "~f>"
+    },
+    {
+      "from": {
+        "id": "__lorenz~f_7dUFW",
+        "outlet": 1
+      },
+      "to": {
+        "id": "outlet~_aCD1q",
+        "inlet": 0
+      },
+      "type": "~f>"
+    },
+    {
+      "from": {
+        "id": "__lorenz~f_7dUFW",
+        "outlet": 2
+      },
+      "to": {
+        "id": "outlet~_pOs6O",
+        "inlet": 0
+      },
+      "type": "~f>"
+    },
+    {
+      "from": {
+        "id": "inlet~_l0vgT",
+        "outlet": 0
+      },
+      "to": {
+        "id": "__lorenz~f_7dUFW",
+        "inlet": 0
+      },
+      "type": "~f>"
+    },
+    {
+      "from": {
+        "id": "inlet~_fGKSc",
+        "outlet": 0
+      },
+      "to": {
+        "id": "__lorenz~f_7dUFW",
+        "inlet": 1
+      },
+      "type": "~f>"
+    },
+    {
+      "from": {
+        "id": "inlet~_IdP6v",
+        "outlet": 0
+      },
+      "to": {
+        "id": "__lorenz~f_7dUFW",
+        "inlet": 2
+      },
+      "type": "~f>"
+    },
+    {
+      "from": {
+        "id": "inlet~_jm5dl",
+        "outlet": 0
+      },
+      "to": {
+        "id": "__lorenz~f_7dUFW",
+        "inlet": 3
+      },
+      "type": "~f>"
+    },
+    {
+      "from": {
+        "id": "inlet~_l0vgT",
+        "outlet": 0
+      },
+      "to": {
+        "id": "route_Ymaxs",
+        "inlet": 0
+      },
+      "type": "-->"
+    },
+    {
+      "from": {
+        "id": "route_Ymaxs",
+        "outlet": 0
+      },
+      "to": {
+        "id": "__lorenz~f_7dUFW",
+        "inlet": 4
+      },
+      "type": "-->"
+    }
+  ],
+  "imports": [],
+  "objects": {
+    "__lorenz~f_7dUFW": {
+      "annotations": {},
+      "args": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "properties": {
+        "x": 30,
+        "y": 140
+      },
+      "type": "__lorenz~f"
+    },
+    "comment_2QlQ0": {
+      "annotations": {},
+      "args": {
+        "mime": "text/plain",
+        "text": "connection from the first [inlet~] to the [route]"
+      },
+      "properties": {
+        "x": "174",
+        "y": "99"
+      },
+      "type": "comment"
+    },
+    "comment_JloHn": {
+      "annotations": {},
+      "args": {
+        "mime": "text/plain",
+        "text": "NOTE(joe): there is supposed to be a control"
+      },
+      "properties": {
+        "x": "175",
+        "y": "86"
+      },
+      "type": "comment"
+    },
+    "inlet~_IdP6v": {
+      "annotations": {},
+      "args": {
+        "index": 2,
+        "name": "",
+        "type": "~f>"
+      },
+      "properties": {
+        "x": 91,
+        "y": 70
+      },
+      "type": "inlet"
+    },
+    "inlet~_fGKSc": {
+      "annotations": {},
+      "args": {
+        "index": 1,
+        "name": "",
+        "type": "~f>"
+      },
+      "properties": {
+        "x": 60,
+        "y": 50
+      },
+      "type": "inlet"
+    },
+    "inlet~_jm5dl": {
+      "annotations": {},
+      "args": {
+        "index": 3,
+        "name": "",
+        "type": "~f>"
+      },
+      "properties": {
+        "x": 122,
+        "y": 90
+      },
+      "type": "inlet"
+    },
+    "inlet~_l0vgT": {
+      "annotations": {},
+      "args": {
+        "index": 0,
+        "name": "",
+        "type": "~f>"
+      },
+      "properties": {
+        "x": 30,
+        "y": 29
+      },
+      "type": "inlet"
+    },
+    "outlet~_Lf24h": {
+      "annotations": {},
+      "args": {
+        "index": 0,
+        "name": "x",
+        "type": "~f>"
+      },
+      "properties": {
+        "x": 30,
+        "y": 170
+      },
+      "type": "outlet"
+    },
+    "outlet~_aCD1q": {
+      "annotations": {},
+      "args": {
+        "index": 1,
+        "name": "y",
+        "type": "~f>"
+      },
+      "properties": {
+        "x": 91,
+        "y": 170
+      },
+      "type": "outlet"
+    },
+    "outlet~_pOs6O": {
+      "annotations": {},
+      "args": {
+        "index": 2,
+        "name": "z",
+        "type": "~f>"
+      },
+      "properties": {
+        "x": 153,
+        "y": 170
+      },
+      "type": "outlet"
+    },
+    "route_Ymaxs": {
+      "args": {},
+      "connections": [
+        {
+          "from": {
+            "id": "inlet_ofY1a",
+            "outlet": 0
+          },
+          "to": {
+            "id": "__switchcase_PyIvC",
+            "inlet": 0
+          },
+          "type": "-->"
+        },
+        {
+          "from": {
+            "id": "__switchcase_PyIvC",
+            "outlet": 0
+          },
+          "to": {
+            "id": "__slice_1AcsG",
+            "inlet": 0
+          },
+          "type": "-->"
+        },
+        {
+          "from": {
+            "id": "__slice_1AcsG",
+            "outlet": 0
+          },
+          "to": {
+            "id": "outlet_EWlrg",
+            "inlet": 0
+          },
+          "type": "-->"
+        },
+        {
+          "from": {
+            "id": "__switchcase_PyIvC",
+            "outlet": 1
+          },
+          "to": {
+            "id": "outlet_zxBnk",
+            "inlet": 0
+          },
+          "type": "-->"
+        }
+      ],
+      "objects": {
+        "__slice_1AcsG": {
+          "annotations": {},
+          "args": {
+            "index": 1,
+            "length": -1
+          },
+          "properties": {
+            "x": 10,
+            "y": 50
+          },
+          "type": "__slice"
+        },
+        "__switchcase_PyIvC": {
+          "annotations": {},
+          "args": {
+            "cases": [
+              "xyz"
+            ]
+          },
+          "properties": {
+            "x": 10,
+            "y": 50
+          },
+          "type": "__switchcase"
+        },
+        "inlet_ofY1a": {
+          "annotations": {},
+          "args": {
+            "index": 0,
+            "name": "",
+            "type": "-->"
+          },
+          "properties": {
+            "x": 10,
+            "y": 10
+          },
+          "type": "inlet"
+        },
+        "outlet_EWlrg": {
+          "annotations": {},
+          "args": {
+            "index": 0,
+            "name": "xyz",
+            "type": "-->"
+          },
+          "properties": {
+            "x": 10,
+            "y": 10
+          },
+          "type": "outlet"
+        },
+        "outlet_zxBnk": {
+          "annotations": {},
+          "args": {
+            "index": 1,
+            "name": "",
+            "type": "-->"
+          },
+          "properties": {
+            "x": 10,
+            "y": 10
+          },
+          "type": "outlet"
+        }
+      },
+      "type": "graph"
+    }
+  },
+  "properties": {
+    "x": 0,
+    "y": 0
+  },
+  "type": "graph"
+}

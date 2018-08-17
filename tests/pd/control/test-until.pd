@@ -1,0 +1,18 @@
+#N canvas 447 194 182 226 10;
+#X obj 35 121 f;
+#X obj 87 81 + 1;
+#X obj 87 122 sel 0;
+#X obj 87 102 mod 10;
+#X msg 35 63 100;
+#X obj 35 93 until;
+#X obj 35 33 loadbang;
+#X obj 35 155 print;
+#X connect 0 0 1 0;
+#X connect 0 0 7 0;
+#X connect 1 0 3 0;
+#X connect 2 0 5 1;
+#X connect 3 0 0 1;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X connect 6 0 4 0;

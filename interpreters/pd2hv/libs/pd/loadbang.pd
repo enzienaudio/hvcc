@@ -1,0 +1,5 @@
+#N canvas 880 53 226 80 10;
+#X obj 12 11 r __hv_init \$1;
+#X obj 12 34 outlet;
+#X text 12 58 @hv_arg \$1 priority int 0 false;
+#X connect 0 0 1 0;

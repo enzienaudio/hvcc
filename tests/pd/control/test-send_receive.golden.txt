@@ -1,0 +1,4 @@
+[@ 0.000] noname: bang
+[@ 0.000] hello: bang
+[@ 0.000] hello: bang
+[@ 0.000] world: bang

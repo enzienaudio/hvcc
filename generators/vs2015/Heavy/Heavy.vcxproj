@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B1085EE2-C54E-4892-A24D-06B80001DB68}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Heavy</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>python  $(SolutionDir)\..\..\..\hvcc.py C:\Users\Joe\Downloads\woosh.iX2jC.pd\_main.pd -o $(SolutionDir)\generated -n heavy </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <CompileAs>Default</CompileAs>
+      <ExceptionHandling>false</ExceptionHandling>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>python  $(SolutionDir)..\..\..\hvcc.py C:\Users\enzien\Desktop\test_osc.pd -o $(SolutionDir)\generated -n heavy </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>python  $(SolutionDir)\..\..\..\hvcc.py C:\Users\Joe\Downloads\woosh.iX2jC.pd\_main.pd -o $(SolutionDir)\generated -n heavy </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;HV_SIMD_SSE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>python  $(SolutionDir)..\..\..\hvcc.py C:\Users\enzien\Desktop\test_osc.pd -o $(SolutionDir)\generated -n heavy </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\ir2c\static\HvControlBinop.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlCast.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlDelay.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlIf.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlPack.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlPrint.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlRandom.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlSlice.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlSystem.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlTabhead.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlTabread.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlTabwrite.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlUnop.h" />
+    <ClInclude Include="..\..\ir2c\static\HvControlVar.h" />
+    <ClInclude Include="..\..\ir2c\static\HvBase.h" />
+    <ClInclude Include="..\..\ir2c\static\HvLightPipe.h" />
+    <ClInclude Include="..\..\ir2c\static\HvMath.h" />
+    <ClInclude Include="..\..\ir2c\static\HvMessage.h" />
+    <ClInclude Include="..\..\ir2c\static\HvTable.h" />
+    <ClInclude Include="..\..\ir2c\static\HvUtils.h" />
+    <ClInclude Include="..\..\ir2c\static\HvMessagePool.h" />
+    <ClInclude Include="..\..\ir2c\static\HvMessageQueue.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalBiquad.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalConvolution.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalCPole.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalDel1.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalEnvelope.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalLine.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalLorenz.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalPhasor.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalRPole.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalSamphold.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalSample.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalTabread.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalTabwrite.h" />
+    <ClInclude Include="..\..\ir2c\static\HvSignalVar.h" />
+    <ClInclude Include="generated\c\Heavy_heavy.h" />
+    <ClInclude Include="generated\c\HvContext_heavy.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\ir2c\static\HvControlBinop.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlCast.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlDelay.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlIf.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlPack.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlPrint.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlRandom.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlSlice.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlSystem.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlTabhead.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlTabread.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlTabwrite.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlUnop.c" />
+    <ClCompile Include="..\..\ir2c\static\HvControlVar.c" />
+    <ClCompile Include="..\..\ir2c\static\Heavy.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Default</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\..\ir2c\static\HvBase.c" />
+    <ClCompile Include="..\..\ir2c\static\HvLightPipe.c" />
+    <ClCompile Include="..\..\ir2c\static\HvMessage.c" />
+    <ClCompile Include="..\..\ir2c\static\HvTable.c" />
+    <ClCompile Include="..\..\ir2c\static\HvMessagePool.c" />
+    <ClCompile Include="..\..\ir2c\static\HvMessageQueue.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalBiquad.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalConvolution.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalCPole.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalDel1.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalEnvelope.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalLine.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalLorenz.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalPhasor.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalRPole.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalSamphold.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalSample.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalTabread.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalTabwrite.c" />
+    <ClCompile Include="..\..\ir2c\static\HvSignalVar.c" />
+    <ClCompile Include="generated\c\HvContext_heavy.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

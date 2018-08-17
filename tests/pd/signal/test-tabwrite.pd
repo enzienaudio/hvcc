@@ -1,0 +1,7 @@
+#N canvas 190 91 185 84 10;
+#X obj 55 7 table hello 1024;
+#X obj 17 28 loadbang;
+#X obj 9 52 tabwrite~ hello;
+#X obj 9 7 sig~ 1;
+#X connect 1 0 2 0;
+#X connect 3 0 2 0;

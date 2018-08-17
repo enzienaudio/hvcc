@@ -1,0 +1,23 @@
+#N canvas 0 44 446 338 10;
+#X obj 26 25 loadbang;
+#X obj 26 286 print;
+#X msg 26 165 FMmodIndex 622.047 \, FMmodFreq 2535.43 \, phraseLength
+330.709 \, noteDecay 1968.5 \, noteAttack 21 \, ringModRange 118.11
+\, pitchSlewRange 30 \, pitchBase 21 \, pitchRange 86 \, pitchSlew
+92 \, rhythmSpeed 4 \, rhythmSpeedWidth 5 \,;
+#X msg 52 256 rhythmSpeedWidth \$1;
+#X msg 45 116 10;
+#X obj 52 233 r rhythmSpeedWidth;
+#X obj 45 138 s rhythmSpeedWidth;
+#X obj 26 47 t b b b;
+#X msg 65 72 b bang;
+#X obj 65 94 print;
+#X connect 0 0 7 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 6 0;
+#X connect 5 0 3 0;
+#X connect 7 0 2 0;
+#X connect 7 1 4 0;
+#X connect 7 2 8 0;
+#X connect 8 0 9 0;

@@ -1,0 +1,14 @@
+#N canvas 659 496 326 179 10;
+#X obj 61 14 inlet;
+#X obj 104 14 inlet;
+#X text 14 118 @hv_arg \$1 lower_threshold float 0 false;
+#X text 14 133 @hv_arg \$2 upper_threshold float 1 false;
+#X obj 14 39 min \$2;
+#X obj 14 66 max \$1;
+#X obj 14 92 outlet;
+#X obj 14 14 inlet;
+#X connect 0 0 5 1;
+#X connect 1 0 4 1;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 7 0 4 0;

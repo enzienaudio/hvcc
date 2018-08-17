@@ -1,0 +1,4 @@
+[@ 0.000] print: other
+[@ 0.000] print: bang
+[@ 0.000] print: bang
+[@ 0.000] print: 30

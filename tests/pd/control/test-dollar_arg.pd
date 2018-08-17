@@ -1,0 +1,15 @@
+#N canvas 581 167 204 220 10;
+#X declare -path abs;
+#X obj 31 30 declare -path abs;
+#X obj 70 116 dollar_test;
+#X obj 33 116 f \$0;
+#X obj 33 64 loadbang;
+#X obj 33 86 t b b;
+#X obj 33 146 !=;
+#X obj 33 168 print;
+#X connect 1 0 5 1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
+#X connect 4 1 1 0;
+#X connect 5 0 6 0;

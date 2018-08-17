@@ -1,0 +1,2 @@
+#N canvas 759 437 234 68 10;
+#X obj 34 22 table hello 256;

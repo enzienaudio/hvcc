@@ -1,0 +1,3 @@
+[@ 0.000] print: hi hello
+[@ 0.000] print: message 1
+[@ 0.000] print: message 2

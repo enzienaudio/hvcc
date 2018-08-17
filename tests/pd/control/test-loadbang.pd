@@ -1,0 +1,9 @@
+#N canvas 261 422 361 90 10;
+#X declare -path abs;
+#X obj 10 17 loadbang;
+#X obj 71 17 declare -path abs;
+#X obj 10 39 print main;
+#X obj 77 39 abs_loadbang;
+#X text 9 60 ensure that loadbangs in deeper abstractions fire first
+;
+#X connect 0 0 2 0;

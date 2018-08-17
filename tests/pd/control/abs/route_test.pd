@@ -1,0 +1,9 @@
+#N canvas 90 341 362 254 10;
+#X obj 41 40 inlet;
+#X obj 41 111 s \$1-\$2;
+#X obj 41 72 route \$2 single bang;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 1 1 0;
+#X connect 2 2 1 0;
+#X connect 2 3 1 0;

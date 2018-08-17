@@ -1,0 +1,2 @@
+#N canvas 761 150 450 300 10;
+#X obj 20 35 declared_abs;

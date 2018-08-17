@@ -1,0 +1,3327 @@
+{
+  "__^": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__^_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__abs": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__neg~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 0.5,
+      "sse": 0.5
+    },
+    "args": [
+
+    ]
+  },
+  "__abs~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 0.5,
+      "sse": 0.5
+    },
+    "args": [
+
+    ]
+  },
+  "__abs~i": {
+    "inlets": [
+      "~i>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~i>"
+    ]
+  },
+  "__acos": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__acosh": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__acosh~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__acos~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__add": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__add_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__add~f": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 3,
+      "sse": 3
+    },
+    "args": [
+
+    ]
+  },
+  "__add~i": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+      "~i>",
+      "~i>"
+    ],
+    "outlets": [
+      "~i>"
+    ],
+    "perf": {
+      "avx": 2,
+      "sse": 0.5
+    },
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__and": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "int",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__and_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "int",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__and~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 0.5,
+      "sse": 0.5
+    }
+  },
+  "__andnot~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 0.5,
+      "sse": 0.5
+    }
+  },
+  "__asin": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__asinh": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__atan": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__atan2": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 1,
+      "value_type": "float",
+      "name": "y",
+      "description": "",
+      "required": false
+    }]
+  },
+  "__atan2_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "y",
+      "description": "",
+      "required": false
+    }]
+  },
+  "__atan2~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__atanh": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__bimod": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__bimod_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__biquad_k~f": {
+    "inlets": [
+      "~f>",
+      "-->",
+      "-->",
+      "-->",
+      "-->",
+      "-->"
+    ],
+    "args": [{
+      "name": "ff0",
+      "value_type": "float",
+      "description": "",
+      "default": 1,
+      "required": false
+    }, {
+      "name": "ff1",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }, {
+      "name": "ff2",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }, {
+      "name": "fb1",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }, {
+      "name": "fb2",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 30,
+      "sse": 15
+    }
+  },
+  "__biquad~f": {
+    "inlets": [
+      "~f>",
+      "~f>",
+      "~f>",
+      "~f>",
+      "~f>",
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+
+    }
+  },
+  "__cast_b": {
+    "inlets": [
+      "-->"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__cast_f": {
+    "inlets": [
+      "-->"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__cast_s": {
+    "inlets": [
+      "-->"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__cast~fi": {
+    "args": [
+
+    ],
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~i>"
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__cast~if": {
+    "args": [
+
+    ],
+    "inlets": [
+      "~i>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__ceil": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__ceil~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__conv~f": {
+    "inlets": [
+      "~f>",
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [{
+      "name": "table",
+      "value_type": "string",
+      "description": "",
+      "default": "",
+      "required": true
+    }, {
+      "name": "size",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": true
+    }],
+    "perf": {
+      "avx": 0,
+      "sse": 0
+    }
+  },
+  "__cos": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__cosh": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__cosh~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__cos~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__cpole~f": {
+    "inlets": [
+      "~f>",
+      "~f>",
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>",
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 143,
+      "sse": 53
+    }
+  },
+  "__del1~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 5,
+      "sse": 2
+    }
+  },
+  "__delay": {
+    "inlets": [
+      "-->",
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "delay",
+      "description": "The message delay in milliseconds.",
+      "required": false
+    }]
+  },
+  "__div": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__div_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__div~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }],
+    "perf": {
+      "avx": 25,
+      "sse": 25
+    }
+  },
+  "__div~i": {
+    "inlets": [
+      "~i>",
+      "~i>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~i>"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__env~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": true,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "windowSize",
+      "value_type": "float",
+      "description": "",
+      "default": 1024,
+      "required": false
+    }, {
+      "name": "period",
+      "value_type": "float",
+      "description": "",
+      "default": 512,
+      "required": false
+    }],
+    "perf": {
+      "avx": 9,
+      "sse": 9
+    }
+  },
+  "__eq": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__eq_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__exp": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__floor": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__floor~f": {
+    "args": [
+
+    ],
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 5,
+      "sse": 5
+    }
+  },
+  "__fma~f": {
+    "inlets": [
+      "~f>",
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 5,
+      "sse": 5
+    },
+    "args": [
+
+    ]
+  },
+  "__fms~f": {
+    "inlets": [
+      "~f>",
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 5,
+      "sse": 5
+    },
+    "args": [
+
+    ]
+  },
+  "__gt": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__gt_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__gte": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__gte_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__gte~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__gt~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__if": {
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "constant",
+      "default": 0,
+      "required": false
+    }],
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->",
+      "-->"
+    ]
+  },
+  "__inlet": {
+    "inlets": [
+
+    ],
+    "ir": {
+      "control": false,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__intdiv": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 1,
+      "required": false
+    }]
+  },
+  "__intdiv_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 1,
+      "required": false
+    }]
+  },
+  "__line~f": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 5.5,
+      "sse": 3.5
+    }
+  },
+  "__log": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__log10": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__log2": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__log2~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ]
+  },
+  "__logand": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__logand_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__logor": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__logor_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__lorenz~f": {
+    "inlets": [
+      "~f>",
+      "~f>",
+      "~f>",
+      "~f>",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>",
+      "~f>",
+      "~f>"
+    ],
+    "args": [{
+      "name": "x",
+      "value_type": "float",
+      "description": "Initial x output value",
+      "default": 0,
+      "required": false
+    }, {
+      "name": "y",
+      "value_type": "float",
+      "description": "Initial y output value",
+      "default": 0,
+      "required": false
+    }, {
+      "name": "z",
+      "value_type": "float",
+      "description": "Initial z output value",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__lt": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__lt_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__lte": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__lte_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__lt~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__lte~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__max": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__max_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__max~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 3,
+      "sse": 3
+    }
+  },
+  "__max~i": {
+    "inlets": [
+      "~i>",
+      "~i>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~i>"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "int",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__message": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__min": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__min_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__min~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 3,
+      "sse": 3
+    },
+    "args": [
+
+    ]
+  },
+  "__min~i": {
+    "inlets": [
+      "~i>",
+      "~i>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~i>"
+    ],
+    "perf": {
+      "sse": 0.5
+    },
+    "args": [{
+      "name": "k",
+      "value_type": "int",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__mul": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__mul_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__mul~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 5,
+      "sse": 5
+    },
+    "args": [
+
+    ]
+  },
+  "__mul~i": {
+    "inlets": [
+      "~i>",
+      "~i>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~i>"
+    ],
+    "perf": {
+      "avx": 3,
+      "sse": 1
+    },
+    "args": [{
+      "name": "k",
+      "value_type": "int",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__neq": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__neq_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__neq~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 3,
+      "sse": 3
+    }
+  },
+  "__or": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__or_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "int",
+      "name": "k",
+      "description": "constant",
+      "required": false
+    }]
+  },
+  "__or~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__outlet": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+
+    ]
+  },
+  "__pack": {
+    "inlets": [
+
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "values",
+      "value_type": "floatarray",
+      "description": "The preset values to this pack object.",
+      "default": [0.0, 0.0],
+      "required": false
+    }]
+  },
+  "__phasor_k~f": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [{
+      "default": 440,
+      "value_type": "float",
+      "name": "frequency",
+      "description": "",
+      "required": false
+    }, {
+      "default": 0,
+      "value_type": "float",
+      "name": "phase",
+      "description": "",
+      "required": false
+    }],
+    "perf": {
+      "avx": 13,
+      "sse": 10
+    }
+  },
+  "__phasor~f": {
+    "inlets": [
+      "~f>",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 38,
+      "sse": 26
+    }
+  },
+  "__pow": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__pow_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__pow~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__print": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+
+    ]
+  },
+  "__random": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "range",
+      "value_type": "float",
+      "description": "",
+      "default": 2,
+      "required": false
+    }, {
+      "name": "seed",
+      "value_type": "float",
+      "description": "",
+      "default": 1,
+      "required": false
+    }]
+  },
+  "__receive": {
+    "inlets": [
+
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__rpole~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 143,
+      "sse": 53
+    }
+  },
+  "__rsqrt~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__samphold~f": {
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 0,
+      "sse": 3
+    }
+  },
+  "__sample~f": {
+    "inlets": [
+      "~f>",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__send": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+
+    ],
+    "args": [{
+      "name": "name",
+      "value_type": "string",
+      "description": "",
+      "default": null,
+      "required": true
+    }, {
+      "name": "hash",
+      "value_type": "string",
+      "description": "The 32-bit hash of the \"name\" argument in \"0x00000000\" format.",
+      "default": null,
+      "required": true
+    }]
+  },
+  "__shiftleft": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "int",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__shiftleft_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "int",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__shiftright": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "int",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__shiftright_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "int",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__sin": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__sinh": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__sin~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__slice": {
+    "description": "",
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "inlets": [
+      "-->",
+      "-->",
+      "-->"
+    ],
+    "outlets": [
+      "-->",
+      "-->"
+    ],
+    "args": [{
+      "name": "index",
+      "value_type": "float",
+      "description": "The start index of the slice.",
+      "default": 0,
+      "required": false
+    }, {
+      "name": "length",
+      "value_type": "float",
+      "description": "The number of elements to include in the slice.",
+      "default": 1,
+      "required": false
+    }],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "__sqrt": {
+    "inlets": [
+      "-->"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__sqrt~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ]
+  },
+  "__sub": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__sub_k": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__sub~f": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+      "~f>",
+      "~f>"
+    ],
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 3,
+      "sse": 3
+    }
+  },
+  "__sub~i": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+      "~i>",
+      "~i>"
+    ],
+    "outlets": [
+      "~i>"
+    ],
+    "perf": {
+      "avx": 3,
+      "sse": 1
+    },
+    "args": [{
+      "name": "k",
+      "value_type": "float",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__switchcase": {
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "inlets": [
+      "-->"
+    ],
+    "outlets": [
+
+    ],
+    "args": [{
+      "default": [
+
+      ],
+      "value_type": "mixedarray",
+      "name": "cases",
+      "description": "",
+      "required": false
+    }]
+  },
+  "__system": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__tabhead": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "table",
+      "description": "The name of the table to reference.",
+      "required": true
+    }]
+  },
+  "__tabhead~f": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "table",
+      "description": "The name of the table to reference.",
+      "required": true
+    }],
+    "perf": {
+      "avx": 0.5,
+      "sse": 0.5
+    }
+  },
+  "__table": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "name",
+      "value_type": "string",
+      "description": "",
+      "default": null,
+      "required": true
+    }, {
+      "name": "size",
+      "value_type": "int",
+      "description": "The number of samples in this table.",
+      "default": 0,
+      "required": false
+    }, {
+      "name": "values",
+      "value_type": "floatarray",
+      "description": "The preset values in this table. The length of this list overrides the \"size\" argument.",
+      "default": [
+
+      ],
+      "required": false
+    }]
+  },
+  "__tabread": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "table",
+      "value_type": "string",
+      "description": "",
+      "default": null,
+      "required": true
+    }]
+  },
+  "__tabreadu~f": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>",
+      "-->"
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "table",
+      "description": "The name of the table to reference.",
+      "required": true
+    }],
+    "perf": {
+      "avx": 2,
+      "sse": 2
+    }
+  },
+  "__tabread~f": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>",
+      "-->"
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "table",
+      "description": "The name of the table to reference.",
+      "required": true
+    }],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__tabread~if": {
+    "inlets": [
+      "~i>",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "table",
+      "description": "The name of the table to reference.",
+      "required": true
+    }],
+    "perf": {
+      "avx": 4,
+      "sse": 2
+    }
+  },
+  "__tabwrite": {
+    "inlets": [
+      "-->",
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "table",
+      "value_type": "string",
+      "description": "",
+      "default": null,
+      "required": true
+    }]
+  },
+  "__tabwrite_stoppable~f": {
+    "inlets": [
+      "~f>",
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "table",
+      "description": "The name of the table to reference.",
+      "required": true
+    }],
+    "perf": {
+      "avx": 2,
+      "sse": 2
+    }
+  },
+  "__tabwrite~f": {
+    "inlets": [
+      "~f>",
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": true
+    },
+    "outlets": [
+
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "table",
+      "description": "The name of the table to reference.",
+      "required": true
+    }],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__tan": {
+    "inlets": [
+      "-->"
+    ],
+    "args": [
+
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ]
+  },
+  "__tanh": {
+    "inlets": [
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__unimod": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__unimod_k": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": false
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [
+
+    ]
+  },
+  "__var": {
+    "inlets": [
+      "-->",
+      "-->"
+    ],
+    "ir": {
+      "control": true,
+      "signal": false,
+      "init": true
+    },
+    "outlets": [
+      "-->"
+    ],
+    "args": [{
+      "name": "k",
+      "value_type": "auto",
+      "description": "",
+      "default": 0,
+      "required": false
+    }]
+  },
+  "__var_k~f": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "The value of this variable.",
+      "required": false
+    }, {
+      "default": 0,
+      "value_type": "float",
+      "name": "step",
+      "description": "The value step increment.",
+      "required": false
+    }, {
+      "default": false,
+      "value_type": "boolean",
+      "name": "reverse",
+      "description": "True if the value and step increments should be reversed.",
+      "required": false
+    }],
+    "outlets": [
+      "~f>"
+    ],
+    "keywords": [
+
+    ],
+    "perf": {
+      "avx": 0.5,
+      "sse": 0.5
+    }
+  },
+  "__var_k~i": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "int",
+      "name": "k",
+      "description": "The value of this variable.",
+      "required": false
+    }, {
+      "default": 0,
+      "value_type": "int",
+      "name": "step",
+      "description": "The value step increment.",
+      "required": false
+    }, {
+      "default": false,
+      "value_type": "boolean",
+      "name": "reverse",
+      "description": "True if the value and step increments should be reversed.",
+      "required": false
+    }],
+    "outlets": [
+      "~i>"
+    ],
+    "keywords": [
+
+    ],
+    "perf": {
+      "avx": 0.5,
+      "sse": 0.5
+    }
+  },
+  "__varread~f": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "var_id",
+      "description": "The id the of the var object to read from.",
+      "required": true
+    }],
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__varread~i": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "var_id",
+      "description": "The id the of the var object to read from.",
+      "required": true
+    }],
+    "outlets": [
+      "~i>"
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__varwrite~f": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+      "~f>"
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "var_id",
+      "description": "The id the of the var object to write to.",
+      "required": true
+    }],
+    "outlets": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__varwrite~i": {
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "inlets": [
+      "~i>"
+    ],
+    "args": [{
+      "default": null,
+      "value_type": "string",
+      "name": "var_id",
+      "description": "The id the of the var object to write to.",
+      "required": true
+    }],
+    "outlets": [
+
+    ],
+    "perf": {
+      "avx": 1,
+      "sse": 1
+    }
+  },
+  "__var~f": {
+    "ir": {
+      "control": false,
+      "signal": false,
+      "init": true
+    },
+    "inlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "float",
+      "name": "k",
+      "description": "The value of this variable.",
+      "required": false
+    }, {
+      "default": 0,
+      "value_type": "float",
+      "name": "step",
+      "description": "The value step increment.",
+      "required": false
+    }, {
+      "default": false,
+      "value_type": "boolean",
+      "name": "reverse",
+      "description": "True if the value and step increments should be reversed.",
+      "required": false
+    }],
+    "outlets": [
+      "~f>"
+    ],
+    "keywords": [
+      "static"
+    ],
+    "perf": {
+      "avx": 0,
+      "sse": 0,
+      "neon": 0
+    }
+  },
+  "__var~i": {
+    "ir": {
+      "control": false,
+      "signal": false,
+      "init": true
+    },
+    "inlets": [
+      "-->"
+    ],
+    "args": [{
+      "default": 0,
+      "value_type": "int",
+      "name": "k",
+      "description": "The value of this variable.",
+      "required": false
+    }, {
+      "default": 0,
+      "value_type": "int",
+      "name": "step",
+      "description": "The value step increment.",
+      "required": false
+    }, {
+      "default": false,
+      "value_type": "boolean",
+      "name": "reverse",
+      "description": "True if the value and step increments should be reversed.",
+      "required": false
+    }],
+    "outlets": [
+      "~i>"
+    ],
+    "perf": {
+      "avx": 0,
+      "sse": 0,
+      "neon": 0
+    }
+  },
+  "asinh~": {
+    "inlets": [
+      "signal"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "signal"
+    ],
+    "args": [
+
+    ]
+  },
+  "asin~": {
+    "inlets": [
+      "signal"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "signal"
+    ]
+  },
+  "atanh~": {
+    "inlets": [
+      "signal"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "signal"
+    ]
+  },
+  "atan~": {
+    "inlets": [
+      "signal"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "signal"
+    ]
+  },
+  "__exp~f": {
+    "inlets": [
+      "~f>"
+    ],
+    "args": [],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "~f>"
+    ],
+    "perf": {
+      "avx": 0,
+      "sse": 0,
+      "neon": 0
+    }
+  },
+  "sinh~": {
+    "inlets": [
+      "signal"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "signal"
+    ],
+    "args": [
+
+    ]
+  },
+  "tanh~": {
+    "inlets": [
+      "signal"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "signal"
+    ]
+  },
+  "tan~": {
+    "inlets": [
+      "signal"
+    ],
+    "ir": {
+      "control": false,
+      "signal": true,
+      "init": false
+    },
+    "outlets": [
+      "signal"
+    ]
+  }
+}

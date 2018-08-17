@@ -1,0 +1,2435 @@
+{
+  "!=": {
+    "description": "Output = (bool) (Input != k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "ne"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  "%": {
+    "description": "Output = Input % k",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 1,
+        "required": false
+      }
+    ],
+    "alias": [
+      "mod"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  "&": {
+    "description": "Binary AND operation.",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "int",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "binaryand"
+    ],
+    "tags": [
+      "math",
+      "bitwise"
+    ]
+  },
+  "&&": {
+    "description": "Logical AND operation.",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "logicaland"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  "*": {
+    "description": "Output = Input * k",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "divide"
+    ],
+    "tags": [
+      "math",
+      "arithmetic"
+    ]
+  },
+  "+": {
+    "description": "Output = Input + k",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "sub"
+    ],
+    "tags": [
+      "math",
+      "arithmetic"
+    ]
+  },
+  "-": {
+    "description": "Output = Input - k",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "mult"
+    ],
+    "tags": [
+      "math",
+      "arithmetic"
+    ]
+  },
+  "/": {
+    "description": "Output = Input / k",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 1,
+        "required": false
+      }
+    ],
+    "alias": [
+      "add"
+    ],
+    "tags": [
+      "math",
+      "arithmetic"
+    ]
+  },
+  "<": {
+    "description": "Output = (bool) (Input < k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "lt"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  "<<": {
+    "description": "Output = (Input << k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "int",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "leftshift"
+    ],
+    "tags": [
+      "math",
+      "bitwise"
+    ]
+  },
+  "<=": {
+    "description": "Output = (bool) (Input <= k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "lte"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  "==": {
+    "description": "Output = (bool) (Input == k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "eq"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  ">": {
+    "description": "Output = (bool) (Input > k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "gt"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  ">=": {
+    "description": "Output = (bool) (Input >= k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "gte"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  },
+  ">>": {
+    "description": "Output = (Input >> k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "int",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "rightshift"
+    ],
+    "tags": [
+      "math",
+      "bitwise"
+    ]
+  },
+  "^": {
+    "description": "Output = (Input ^ k)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "xor"
+    ],
+    "tags": [
+      "math",
+      "bitwise"
+    ]
+  },
+  "abs": {
+    "description": "Output = abs(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "acos": {
+    "description": "Output = acos(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "acosh": {
+    "description": "Output = acosh(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "adc": {
+    "description": "",
+    "inlets": [
+
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "~f>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "channels",
+        "value_type": "intarray",
+        "description": "Channels from input.",
+        "default": [
+          1,
+          2
+        ],
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "asin": {
+    "description": "Output = asin(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "asinh": {
+    "description": "Output = asinh(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "atan": {
+    "description": "Output = atan(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "atan2": {
+    "description": "Output = atan2(x, y)",
+    "inlets": [
+      {
+        "name": "x",
+        "connectionType": "-~>",
+        "description": "Set x"
+      },
+      {
+        "name": "y",
+        "connectionType": "-~>",
+        "description": "Set y"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "y",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "atanh": {
+    "description": "Output = atanh(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "biquad": {
+    "description": "out = in[0]*x0 + in[-1]*x1 + in[-2]*x2 - out[-1]*y1 - out[-2]*y2",
+    "inlets": [
+      {
+        "name": "input",
+        "connectionType": "~f>",
+        "description": "Filter input."
+      },
+      {
+        "name": "x0",
+        "connectionType": "-~>",
+        "description": ""
+      },
+      {
+        "name": "x1",
+        "connectionType": "-~>",
+        "description": ""
+      },
+      {
+        "name": "x2",
+        "connectionType": "-~>",
+        "description": ""
+      },
+      {
+        "name": "y1",
+        "connectionType": "-~>",
+        "description": ""
+      },
+      {
+        "name": "y2",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "output",
+        "connectionType": "~f>",
+        "description": "Filter output."
+      }
+    ],
+    "args": [
+      {
+        "name": "ff0",
+        "value_type": "float",
+        "description": "",
+        "default": 1,
+        "required": false
+      },
+      {
+        "name": "ff1",
+        "value_type": "float",
+        "description": "",
+        "default": 0,
+        "required": false
+      },
+      {
+        "name": "ff2",
+        "value_type": "float",
+        "description": "",
+        "default": 0,
+        "required": false
+      },
+      {
+        "name": "fb1",
+        "value_type": "float",
+        "description": "",
+        "default": 0,
+        "required": false
+      },
+      {
+        "name": "fb2",
+        "value_type": "float",
+        "description": "",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "filters"
+    ]
+  },
+  "ceil": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": "ceil(k)"
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "comment": {
+    "description": "A text comment.",
+    "inlets": [
+
+    ],
+    "outlets": [
+
+    ],
+    "args": [
+      {
+        "name": "text",
+        "value_type": "string",
+        "description": "The comment string.",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "mime",
+        "value_type": "string",
+        "description": "The MIME type of this comment.",
+        "default": "text/plain",
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "cos": {
+    "description": "Output = cos(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "dac": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "~f>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+
+    ],
+    "args": [
+      {
+        "name": "channels",
+        "value_type": "intarray",
+        "description": "Channels to output.",
+        "default": [
+          1,
+          2
+        ],
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "delay": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "message",
+        "connectionType": "-->",
+        "description": "The message to delay."
+      },
+      {
+        "name": "delay",
+        "connectionType": "-->",
+        "description": "The delay is milliseconds."
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-->",
+        "description": "The delayed message."
+      }
+    ],
+    "args": [
+      {
+        "name": "delay",
+        "value_type": "float",
+        "description": "The message delay in milliseconds.",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "env~": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "~f>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "windowSize",
+        "value_type": "float",
+        "description": "",
+        "default": 1024,
+        "required": false
+      },
+      {
+        "name": "period",
+        "value_type": "float",
+        "description": "",
+        "default": 512,
+        "required": false
+      }
+    ],
+    "alias": [
+      "envelope"
+    ],
+    "tags": [
+
+    ]
+  },
+  "exp": {
+    "description": "Output = exp(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "floor": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": "floor(k)"
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "graph": {
+    "description": "",
+    "inlets": [
+
+    ],
+    "outlets": [
+
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "if": {
+    "description": "Input to the first inlet is routed to the first outlet if k == 0, else it's routed to the second outlet.",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "k is False",
+        "connectionType": "-~>",
+        "description": "Output."
+      },
+      {
+        "name": "k is True",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "sequencing"
+    ]
+  },
+  "inlet": {
+    "description": "",
+    "inlets": [
+
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "name",
+        "value_type": "string",
+        "description": "inlet name",
+        "default": "",
+        "required": false
+      },
+      {
+        "name": "index",
+        "value_type": "int",
+        "description": "Determines the inlet position within an abstraction/sub-graph",
+        "default": 0,
+        "required": true
+      },
+      {
+        "name": "type",
+        "value_type": "string",
+        "description": "Specifies the inlet connection type",
+        "default": null,
+        "required": true
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "line": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      },
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "loadbang": {
+    "description": "Triggers an event once the patch is initialised",
+    "inlets": [
+
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-->",
+        "description": "Bang output."
+      }
+    ],
+    "args": [
+      {
+        "name": "priority",
+        "value_type": "int",
+        "description": "Relative priority for when this loadbang should fire. Higher executes sooner.",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "sequencing"
+    ]
+  },
+  "log": {
+    "description": "Output = round(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "log10": {
+    "description": "Output = log10(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "log2": {
+    "description": "Output = log2(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "max": {
+    "description": "Finds the maximum of the two inputs.",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      },
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "message": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "local",
+        "value_type": null,
+        "description": "A list of message lists to send.",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "remote",
+        "value_type": null,
+        "description": "A list of message lists to send.",
+        "default": [
+
+        ],
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "min": {
+    "description": "Finds the minimum of the two inputs.",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      },
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "mod": {
+    "description": "Output = Input % k, (always positive)",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 1,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "arithmetic"
+    ]
+  },
+  "noise": {
+    "description": "White noise signal generator.",
+    "inlets": [
+      {
+        "name": "seed",
+        "connectionType": "-->",
+        "description": "Currently unused."
+      }
+    ],
+    "outlets": [
+      {
+        "name": "Output",
+        "connectionType": "~f>",
+        "description": "White noise."
+      }
+    ],
+    "args": [
+      {
+        "name": "noise",
+        "value_type": "string",
+        "description": "The type of noise to produce. Currently only `uniform` is supported.",
+        "default": "uniform",
+        "required": false
+      },
+      {
+        "name": "seed",
+        "value_type": "float",
+        "description": "The seed for the random number generator (RNG).",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "~f>",
+      "generators"
+    ]
+  },
+  "outlet": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+
+    ],
+    "args": [
+      {
+        "name": "name",
+        "value_type": "string",
+        "description": "outlet name",
+        "default": "",
+        "required": false
+      },
+      {
+        "name": "index",
+        "value_type": "int",
+        "description": "Determines the outlet position within an abstraction/sub-graph",
+        "default": 0,
+        "required": true
+      },
+      {
+        "name": "type",
+        "value_type": "string",
+        "description": "specifies the outlet connection type",
+        "default": null,
+        "required": true
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "phasor": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "frequency",
+        "connectionType": "-~>",
+        "description": ""
+      },
+      {
+        "name": "phase",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "~f>",
+        "connectionType": "~f>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "frequency",
+        "value_type": "float",
+        "description": "",
+        "default": 0,
+        "required": false
+      },
+      {
+        "name": "phase",
+        "value_type": "float",
+        "description": "",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "pow": {
+    "description": "Output = pow(Input, k)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      },
+      {
+        "name": "constant",
+        "connectionType": "-~>",
+        "description": "set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "print": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+
+    ],
+    "args": [
+      {
+        "name": "label",
+        "value_type": "string",
+        "description": "",
+        "default": "print",
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "debugging"
+    ]
+  },
+  "random": {
+    "description": "Random number generator",
+    "inlets": [
+      {
+        "name": "trigger",
+        "connectionType": "-->",
+        "description": "Outputs random number when triggered."
+      },
+      {
+        "name": "range",
+        "connectionType": "-->",
+        "description": "Generated number will be in the range [0.0, 1.0)."
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-->",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "seed",
+        "value_type": "int",
+        "description": "seed",
+        "default": -1,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "receive": {
+    "description": "",
+    "inlets": [
+
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "name",
+        "value_type": "string",
+        "description": "The name of this receiver.",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "priority",
+        "value_type": "int",
+        "description": "Higher priority receivers will be executed first.",
+        "default": 0,
+        "required": false
+      },
+      {
+        "name": "extern",
+        "value_type": "string",
+        "description": "If the receiver should be exposed to external (user) interfaces, 'param' or 'event'.",
+        "default": null,
+        "required": false
+      },
+      {
+        "name": "attributes",
+        "value_type": "dict",
+        "description": "Variable argument information depending on the extern type.",
+        "default": {},
+        "required": false
+      }
+    ],
+    "alias": [
+      "r"
+    ],
+    "tags": [
+
+    ]
+  },
+  "send": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+
+    ],
+    "args": [
+      {
+        "name": "name",
+        "value_type": "string",
+        "description": "",
+        "default": null,
+        "required": true
+      }
+    ],
+    "alias": [
+      "s"
+    ],
+    "tags": [
+
+    ]
+  },
+  "sequence": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "value",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "casts",
+        "value_type": "stringarray",
+        "description": "Sequence and cast types.",
+        "default": null,
+        "required": true
+      }
+    ],
+    "alias": [
+      "seq"
+    ],
+    "tags": [
+      "sequencing"
+    ]
+  },
+  "sin": {
+    "description": "Output = sin(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "sinh": {
+    "description": "Output = sinh(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "slice": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      },
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      },
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": "The sliced output."
+      },
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": "If no slice is possible, a bang is emitted."
+      }
+    ],
+    "args": [
+      {
+        "name": "index",
+        "value_type": "int",
+        "description": "The start index of the slice.",
+        "default": 0,
+        "required": false
+      },
+      {
+        "name": "length",
+        "value_type": "int",
+        "description": "The number of elements to include in the slice.",
+        "default": 1,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "sqrt": {
+    "description": "Output = sqrt(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math"
+    ]
+  },
+  "system": {
+    "description": "Returns system properties such as samplerate or block size.",
+    "inlets": [
+      {
+        "name": "parameter",
+        "connectionType": "-->",
+        "description": "The requested system parameter."
+      }
+    ],
+    "outlets": [
+      {
+        "name": "value",
+        "connectionType": "-->",
+        "description": "The system parameter value."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "table": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "name",
+        "value_type": "string",
+        "description": "",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "size",
+        "value_type": "int",
+        "description": "The number of samples in this table.",
+        "default": 256,
+        "required": false
+      },
+      {
+        "name": "values",
+        "value_type": "floatarray",
+        "description": "The preset values in this table. The length of this list overrides the \"size\" argument.",
+        "default": [],
+        "required": false
+      },
+      {
+        "name": "extern",
+        "value_type": "bool",
+        "description": "Determines if the should table should be publicly exposed in a framework.",
+        "default": false,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "tabread": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": "output = table[input]"
+      },
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": "output = table[input+1]"
+      }
+    ],
+    "args": [
+      {
+        "name": "table",
+        "value_type": "string",
+        "description": "The name of the table to read from.",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "delay",
+        "value_type": "float",
+        "description": "",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "tabwrite": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-->",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "~f>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "name": "name",
+        "value_type": "string",
+        "description": "The name of the table to read from.",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "loop",
+        "value_type": "bool",
+        "description": "If the object should continue writing to the table when the end is reached.",
+        "default": true,
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "tan": {
+    "description": "Output = tan(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "tanh": {
+    "description": "Output = tanh(Input)",
+    "inlets": [
+      {
+        "name": "inlet",
+        "connectionType": "-~>",
+        "description": "Input"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+      "math",
+      "trigonometric"
+    ]
+  },
+  "var": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "default": 0,
+        "value_type": "float",
+        "name": "k",
+        "description": "The value of this variable.",
+        "required": false
+      },
+      {
+        "default": 0,
+        "value_type": "float",
+        "name": "step",
+        "description": "The value step increment.",
+        "required": false
+      },
+      {
+        "default": false,
+        "value_type": "boolean",
+        "name": "reverse",
+        "description": "True if the value and step increments should be reversed.",
+        "required": false
+      },
+      {
+        "default": null,
+        "value_type": "string",
+        "name": "name",
+        "description": "The variable may be named, which is especially useful when used in conjunction with the __varset~f object.",
+        "required": false
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "vario": {
+    "description": "",
+    "inlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "outlets": [
+      {
+        "name": "",
+        "connectionType": "-~>",
+        "description": ""
+      }
+    ],
+    "args": [
+      {
+        "default": null,
+        "value_type": "string",
+        "name": "name",
+        "description": "The named variable which will be manipulated.",
+        "required": true
+      }
+    ],
+    "alias": [
+
+    ],
+    "tags": [
+
+    ]
+  },
+  "|": {
+    "description": "Binary OR operation.",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "int",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "binaryor"
+    ],
+    "tags": [
+      "math",
+      "bitwise"
+    ]
+  },
+  "||": {
+    "description": "Logical OR operation.",
+    "inlets": [
+      {
+        "name": "Input",
+        "connectionType": "-~>",
+        "description": "Set input"
+      },
+      {
+        "name": "k",
+        "connectionType": "-~>",
+        "description": "Set k"
+      }
+    ],
+    "outlets": [
+      {
+        "name": "outlet",
+        "connectionType": "-~>",
+        "description": "Output."
+      }
+    ],
+    "args": [
+      {
+        "name": "k",
+        "value_type": "float",
+        "description": "constant",
+        "default": 0,
+        "required": false
+      }
+    ],
+    "alias": [
+      "logicalor"
+    ],
+    "tags": [
+      "math",
+      "logical"
+    ]
+  }
+}

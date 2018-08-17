@@ -1,0 +1,23 @@
+#N canvas 675 197 324 282 10;
+#X obj 40 44 loadbang;
+#X obj 40 210 print;
+#X obj 109 44 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 116 126 -2 3 5;
+#X msg 40 126 3.7;
+#X msg 75 126 0;
+#X obj 40 82 t b b b;
+#N canvas 0 22 450 300 @hv_obj 0;
+#X obj 64 53 inlet;
+#X obj 64 75 outlet;
+#X connect 0 0 1 0;
+#X restore 40 171 pd @hv_obj log10;
+#X connect 0 0 6 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 4 0 7 0;
+#X connect 5 0 7 0;
+#X connect 6 0 4 0;
+#X connect 6 1 5 0;
+#X connect 6 2 3 0;
+#X connect 7 0 1 0;

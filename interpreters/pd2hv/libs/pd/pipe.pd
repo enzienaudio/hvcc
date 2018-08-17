@@ -1,0 +1,13 @@
+#N canvas 715 492 262 117 10;
+#X obj 14 16 inlet;
+#X obj 137 16 inlet;
+#X obj 14 62 outlet;
+#X text 12 87 @hv_arg \$1 delay float 0 false;
+#N canvas 377 209 450 300 @hv_obj 0;
+#X obj 152 38 inlet;
+#X obj 261 44 inlet;
+#X obj 199 177 outlet;
+#X restore 14 39 pd @hv_obj __delay \$1;
+#X connect 0 0 4 0;
+#X connect 1 0 4 1;
+#X connect 4 0 2 0;

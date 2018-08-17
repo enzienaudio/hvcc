@@ -1,0 +1,12 @@
+#N canvas 750 181 363 362 10;
+#X obj 24 31 loadbang;
+#X obj 24 326 print;
+#X obj 24 200 pack s f;
+#X obj 44 230 pack a;
+#X obj 64 260 pack l;
+#X connect 0 0 2 0;
+#X connect 0 0 3 0;
+#X connect 0 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;

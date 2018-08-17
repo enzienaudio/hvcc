@@ -1,0 +1,10 @@
+#N canvas 0 23 399 253 10;
+#X obj 29 96 r 1_test @hv_param;
+#X obj 44 122 r 1_Test @hv_param;
+#X text 16 34 // Test to ensure extern capitalisation process doesn't
+create duplicate extern names;
+#X obj 29 155 +;
+#X obj 29 186 print;
+#X connect 0 0 3 0;
+#X connect 1 0 3 1;
+#X connect 3 0 4 0;

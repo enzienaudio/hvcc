@@ -1,0 +1,33 @@
+### Generated ###
+*.pyc
+
+### Finder ###
+.DS_Store
+
+### Xcode ###
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+DerivedData
+.idea/
+
+### Binaries ###
+*.mp3
+*.key
+
+### Generators ###
+generators/c2vst2/VST3_SDK
+generators/c2vst2/VST_SDK
+generators/vs2015/Heavy/generated
+generators/c2js/emsdk_portable/
+generators/c2js/emsdk/

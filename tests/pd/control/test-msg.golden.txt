@@ -1,0 +1,14 @@
+[@ 0.000] print: b bang
+[@ 0.000] print: rhythmSpeedWidth 10
+[@ 0.000] print: FMmodIndex 622.047
+[@ 0.000] print: FMmodFreq 2535.43
+[@ 0.000] print: phraseLength 330.709
+[@ 0.000] print: noteDecay 1968.5
+[@ 0.000] print: noteAttack 21
+[@ 0.000] print: ringModRange 118.11
+[@ 0.000] print: pitchSlewRange 30
+[@ 0.000] print: pitchBase 21
+[@ 0.000] print: pitchRange 86
+[@ 0.000] print: pitchSlew 92
+[@ 0.000] print: rhythmSpeed 4
+[@ 0.000] print: rhythmSpeedWidth 5

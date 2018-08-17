@@ -1,0 +1,9 @@
+#N canvas 638 45 161 94 10;
+#X obj 9 10 inlet -->;
+#N canvas 0 22 450 300 @hv_obj 0;
+#X obj 143 44 inlet;
+#X obj 146 94 outlet;
+#X restore 9 33 pd @hv_obj __cast_b;
+#X obj 9 57 outlet -->;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;

@@ -1,0 +1,17 @@
+#N canvas 686 568 220 136 10;
+#X obj 12 13 inlet -->;
+#X obj 82 13 inlet -->;
+#X obj 12 84 outlet -->;
+#N canvas 0 22 450 300 @hv_obj 0;
+#X obj 142 59 inlet;
+#X obj 157 109 outlet;
+#X obj 257 62 inlet;
+#X obj 206 59 inlet;
+#X restore 12 62 pd @hv_obj __tabwrite \$1;
+#X obj 12 35 route set;
+#X text 12 105 @hv_arg \$1 table string "" true;
+#X connect 0 0 4 0;
+#X connect 1 0 3 1;
+#X connect 3 0 2 0;
+#X connect 4 0 3 2;
+#X connect 4 1 3 0;

@@ -1,0 +1,9 @@
+#N canvas 66 332 226 143 10;
+#X obj 13 16 inlet;
+#X obj 58 16 inlet;
+#X obj 13 67 outlet;
+#X text 12 94 @hv_arg \$1 delay float 0 false;
+#X obj 13 42 delay \$1;
+#X connect 0 0 4 0;
+#X connect 1 0 4 1;
+#X connect 4 0 2 0;

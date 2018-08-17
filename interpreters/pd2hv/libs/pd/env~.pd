@@ -1,0 +1,11 @@
+#N canvas 241 322 302 155 10;
+#X obj 20 19 inlet~;
+#X obj 20 65 outlet;
+#N canvas 0 22 450 300 @hv_obj 0;
+#X obj 156 85 inlet~;
+#X obj 162 188 outlet;
+#X restore 20 42 pd @hv_obj __env~f \$1 \$2;
+#X text 19 91 @hv_arg \$1 windowSize float 1024 false;
+#X text 19 109 @hv_arg \$2 period float 512 false;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
