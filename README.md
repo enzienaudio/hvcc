@@ -20,7 +20,9 @@ It has since then been expanded to provide further support for many different pl
 ## Installation
 
 `$ git clone https://github.com/enzienaudio/hvcc.git`
+
 `$ cd hvcc/`
+
 `$ pip2.7 install -r requirements.txt`
 
 ## Usage
