@@ -10,16 +10,14 @@ The goal was to leverage Pure Data as a design interface and statically interpre
 
 It has since then been expanded to provide further support for many different platforms and frameworks, especially targeting game audio production tools.
 
-## Quick Start
-
-### Requirements
+## Requirements
 
 * python 2.7
     - `enum`
     - `jinja2`
     - `nose2`
 
-### Usage
+## Usage
 
 `hvcc` requires at least one argument that determines the top-level patch file to be loaded.
 
@@ -33,7 +31,7 @@ This command will generate the following directories:
 * `~/myProject/ir` heavyir representation of the heavylang patch
 * `~/myProject/c` final generated C/C++ source files (this is what you would use in your project)
 
-#### `-o` Select output directory
+### `-o` Select output directory
 
 As seen in the above command, typical output of `hvcc` is split into several directories that contain the intermediate files used by the compiler itself, the final generated source files, and any additional framework specific files and projects.
 
@@ -44,13 +42,13 @@ For example:
 
 Will place all the generated files in `~/Desktop/somewhere/else/`.
 
-#### `-n` Specify Patch Name
+### `-n` Specify Patch Name
 
 The `-n` or `--name` parameter can be used to easily namespace the generated code so that there are no conflicts when integrating multiple patches into the same project.
 
 `$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth`
 
-#### `--help`
+### `--help`
 `hvcc` has a number of commandline paramters. You can see them all here:
 ```
 $ python2.7 hvcc.py --help
