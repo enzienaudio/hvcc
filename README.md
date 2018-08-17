@@ -13,9 +13,15 @@ It has since then been expanded to provide further support for many different pl
 ## Requirements
 
 * python 2.7
-    - `enum`
-    - `jinja2`
-    - `nose2`
+    - `enum` for error reporting
+    - `jinja2` for templating
+    - `nose2` for tests
+
+## Installation
+
+`$ git clone https://github.com/enzienaudio/hvcc.git`
+`$ cd hvcc/`
+`$ pip2.7 install -r requirements.txt`
 
 ## Usage
 
