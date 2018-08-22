@@ -15,7 +15,7 @@ It has since then been expanded to provide further support for many different pl
 * python 2.7
     - `enum` (for error reporting)
     - `jinja2` (for generator templating)
-    - `nose2` (for tests)
+    - `nose2` (for tests, optional)
 
 ## Installation
 
@@ -59,7 +59,36 @@ The `-n` or `--name` parameter can be used to easily namespace the generated cod
 
 ### `-g` Generators
 
-TODO
+Once `hvcc` has generated internal information about the patch the `-g` or `--gen` parameter can be used to specify the output files it should generate. By default it will always include `c` for the C/C++ source files and additional generators can specified for certain framework targets.
+
+For example:
+
+`$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth -g unity`
+
+Will also generate a `unity` section in the output directory contain all the build projects and source files to compile a Unity plugin.
+
+It is also possible to pass a list of generators:
+
+`$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth -g unity wwise js`
+
+Available generator options:
+
+* `c`
+
+* `bela`
+
+* `fabric`
+
+* `js`
+
+* `pdext`
+
+* `unity`
+
+* `vst2`
+
+* `wwise`
+
 
 ### `-p` Search Paths
 
