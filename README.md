@@ -74,19 +74,12 @@ It is also possible to pass a list of generators:
 Available generator options:
 
 * `c`
-
 * `bela`
-
 * `fabric`
-
 * `js`
-
 * `pdext`
-
 * `unity`
-
 * `vst2`
-
 * `wwise`
 
 
