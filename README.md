@@ -16,9 +16,17 @@ It has since then been expanded to provide further support for many different pl
 ## Requirements
 
 * python 2.7
-    - `enum`
-    - `jinja2`
-    - `nose2`
+    - `enum` (for error reporting)
+    - `jinja2` (for generator templating)
+    - `nose2` (for tests, optional)
+
+## Installation
+
+`$ git clone https://github.com/enzienaudio/hvcc.git`
+
+`$ cd hvcc/`
+
+`$ pip2.7 install -r requirements.txt`
 
 ## Usage
 
@@ -41,6 +49,7 @@ As seen in the above command, typical output of `hvcc` is split into several dir
 The `-o` or `--out_dir` parameter will specify where the output files are placed after a successful compile.
 
 For example:
+
 `$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/`
 
 Will place all the generated files in `~/Desktop/somewhere/else/`.
@@ -51,40 +60,53 @@ The `-n` or `--name` parameter can be used to easily namespace the generated cod
 
 `$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth`
 
+### `-g` Generators
+
+Once `hvcc` has generated internal information about the patch the `-g` or `--gen` parameter can be used to specify the output files it should generate. By default it will always include `c` for the C/C++ source files and additional generators can specified for certain framework targets.
+
+For example:
+
+`$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth -g unity`
+
+Will also generate a `unity` section in the output directory contain all the build projects and source files to compile a Unity plugin.
+
+It is also possible to pass a list of generators:
+
+`$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth -g unity wwise js`
+
+Available generator options:
+
+* `c`
+* `bela`
+* `fabric`
+* `js`
+* `pdext`
+* `unity`
+* `vst2`
+* `wwise`
+
+
+### `-p` Search Paths
+
+`hvcc` will iterate through various directories when resolving patch objects and abstractions. The `-p` or `--search_paths` argument can be used to add additional folders for `hvcc` to look in.
+
+This can be handy when using a third-party patch library for example https://github.com/enzienaudio/heavylib.
+
+`$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth -p "[~/Workspace/Projects/Enzien/heavylib/, ~/Desktop/myLib/]"`
+
+### `--copyright` User Copyright
+
+By default all the generated source files via `hvcc` will have the following copyright text applied to the top of the file:
+
+`Copyright (c) 2018 Enzien Audio, Ltd.`
+
+This can be changed with `--copyright` parameter
+
+`$ python2.7 hvcc.py ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth --copyright "Copyright (c) Los Pollos Hermanos 2019"`
+
 ### `--help`
-`hvcc` has a number of commandline paramters. You can see them all here:
-```
-$ python2.7 hvcc.py --help
 
-usage: hvcc.py [-h] [-o OUT_DIR] [-p SEARCH_PATHS [SEARCH_PATHS ...]]
-               [-n NAME] [-g GEN [GEN ...]] [--results_path RESULTS_PATH] [-v]
-               [--copyright COPYRIGHT]
-               in_path
-
-This is the Enzien Audio Heavy compiler. It compiles supported dataflow
-languages into C, and other supported frameworks.
-
-positional arguments:
-  in_path               The input dataflow file.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -o OUT_DIR, --out_dir OUT_DIR
-                        Build output path.
-  -p SEARCH_PATHS [SEARCH_PATHS ...], --search_paths SEARCH_PATHS [SEARCH_PATHS ...]
-                        Add a list of directories to search through for
-                        abstractions.
-  -n NAME, --name NAME  Provides a name for the generated Heavy context.
-  -g GEN [GEN ...], --gen GEN [GEN ...]
-                        List of generator outputs: unity, wwise, js, vst2, fabric
-  --results_path RESULTS_PATH
-                        Write results dictionary to the given path as a JSON-
-                        formatted string. Target directory will be created if
-                        it does not exist.
-  -v, --verbose         Show debugging information.
-  --copyright COPYRIGHT
-                        A string indicating the owner of the copyright.
-```
+Displays all the available parameters and options for hvcc.
 
 ## Documentation
 
