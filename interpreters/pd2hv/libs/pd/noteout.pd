@@ -1,4 +1,4 @@
-#N canvas 1122 327 278 331 10;
+#N canvas 1002 327 278 331 10;
 #X obj 59 217 pack f f f;
 #X obj 59 249 s __hv_noteout @hv_param;
 #X obj 59 46 inlet note;
@@ -6,7 +6,7 @@
 #X obj 126 133 loadbang;
 #X obj 116 163 f \$1;
 #X obj 116 106 inlet channel;
-#X obj 116 185 clip 0 16;
+#X obj 116 185 - 1;
 #X connect 0 0 1 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 1;
