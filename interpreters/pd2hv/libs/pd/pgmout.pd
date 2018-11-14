@@ -1,5 +1,5 @@
 #N canvas 1122 327 232 295 10;
-#X obj 52 233 s __hv_pgmout;
+#X obj 52 233 s __hv_pgmout @hv_param;
 #X obj 52 201 pack f f;
 #X obj 97 74 inlet channel;
 #X obj 97 146 f \$1;

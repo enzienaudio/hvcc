@@ -1,6 +1,6 @@
 #N canvas 1122 327 278 331 10;
 #X obj 59 217 pack f f f;
-#X obj 59 249 s __hv_noteout;
+#X obj 59 249 s __hv_noteout @hv_param;
 #X obj 59 46 inlet note;
 #X obj 87 76 inlet vel;
 #X obj 126 133 loadbang;
