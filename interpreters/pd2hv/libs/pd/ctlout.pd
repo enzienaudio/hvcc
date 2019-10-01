@@ -2,7 +2,7 @@
 #X obj 59 267 pack f f f;
 #X obj 155 76 loadbang;
 #X obj 116 156 inlet channel;
-#X obj 59 299 s __hv_ctlout;
+#X obj 59 299 s __hv_ctlout @hv_param;
 #X obj 59 46 inlet value;
 #X obj 116 203 f \$2;
 #X obj 87 76 inlet cc;
