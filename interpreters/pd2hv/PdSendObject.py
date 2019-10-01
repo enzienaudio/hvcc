@@ -38,6 +38,10 @@ class PdSendObject(PdObject):
         except:
             pass
 
+        if '@owl_channel' in self.obj_args:
+            i = self.obj_args.index('@owl_channel')
+            self.__attributes["owl_channel"] = self.obj_args[i+1]
+
     def validate_configuration(self):
         if len(self.obj_args) == 0:
             self.add_warning(
