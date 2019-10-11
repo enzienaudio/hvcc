@@ -65,6 +65,7 @@ class PdReceiveObject(PdObject):
             except:
                 pass
 
+
             if not (self.__attributes["min"] <= self.__attributes["default"]):
                 self.add_error("Default parameter value is less than the minimum. Receiver will not be exported: {0:g} < {1:g}".format(
                     self.__attributes["default"],
@@ -75,6 +76,10 @@ class PdReceiveObject(PdObject):
                     self.__attributes["default"],
                     self.__attributes["max"]))
                 self.__extern_type = None
+
+        if '@owl_channel' in self.obj_args:
+            i = self.obj_args.index('@owl_channel')
+            self.__attributes["owl_channel"] = self.obj_args[i+1]
 
     def validate_configuration(self):
         if self.obj_type in ["r~", "receive~"]:
