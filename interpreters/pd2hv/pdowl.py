@@ -18,7 +18,7 @@ class PdOwlException(Exception):
 
 OWL_PARAMS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
               'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH',
-              'BA', 'BB', 'BC', 'BD']
+              'BA', 'BB', 'BC', 'BD', 'BE', 'BF', 'BH']
 
 def parse_pd_owl_args(args):
     """Parses a list of puredata send or receive objects looking for @owl*
@@ -32,7 +32,7 @@ def parse_pd_owl_args(args):
     # define default values
     attrdict["@owl_min"] = 0.0
     attrdict["@owl_max"] = 1.0
-    attrdict["@owl_default"] = 0.5
+    attrdict["@owl_default"] = None
 
     for owl_param in ['@owl', '@owl_min', '@owl_max', '@owl_default']:
         if owl_param not in args:
@@ -69,6 +69,9 @@ def parse_pd_owl_args(args):
                                        (owl_param, args[i+1]))
             except IndexError:
                 raise PdOwlException, "%s annotation is missing its value"
+
+    if attrdict["@owl_default"] is None:
+        attrdict["@owl_default"] = (attrdict["@owl_max"] - attrdict["@owl_min"]) / 2.0
 
     return attrdict
 
