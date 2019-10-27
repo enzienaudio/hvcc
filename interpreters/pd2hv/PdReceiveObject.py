@@ -14,6 +14,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PdObject import PdObject
+from pdowl import parse_pd_owl_args, PdOwlException
 
 class PdReceiveObject(PdObject):
 
@@ -77,15 +78,12 @@ class PdReceiveObject(PdObject):
                     self.__attributes["max"]))
                 self.__extern_type = None
 
-        if '@owl' in self.obj_args:
-            i = self.obj_args.index('@owl')
-            if len(self.obj_args) > i+1:
-                self.__attributes["owl_param"] = self.obj_args[i+1]
-            else:
-                self.add_error("@owl annotation missing parameter designator")
-            self.__attributes["owl_min"] = float(self.obj_args[i+2]) if len(self.obj_args) > i+2 else 0
-            self.__attributes["owl_max"] = float(self.obj_args[i+3]) if len(self.obj_args) > i+3 else 1
-            self.__attributes["owl_default"] = float(self.obj_args[i+4]) if len(self.obj_args) > i+4 else 0.5
+
+        try:
+            pd_owl_args = parse_pd_owl_args(self.obj_args)
+            self.__attributes.update(pd_owl_args)
+        except PdOwlException, e:
+            self.add_error(e)
 
     def validate_configuration(self):
         if self.obj_type in ["r~", "receive~"]:
