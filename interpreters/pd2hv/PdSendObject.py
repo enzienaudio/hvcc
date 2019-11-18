@@ -39,11 +39,13 @@ class PdSendObject(PdObject):
         except:
             pass
 
-        try:
-            pd_owl_args = parse_pd_owl_args(self.obj_args)
-            self.__attributes.update(pd_owl_args)
-        except PdOwlException, e:
-            self.add_error(e)
+        if '@owl' in self.obj_args:
+            try:
+                pd_owl_args = parse_pd_owl_args(self.obj_args)
+                self.__attributes.update(pd_owl_args)
+                self.__extern_type = "param" # make sure output code is generated
+            except PdOwlException, e:
+                self.add_error(e)
 
 
     def validate_configuration(self):

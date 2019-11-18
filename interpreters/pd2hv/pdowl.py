@@ -30,9 +30,9 @@ def parse_pd_owl_args(args):
         return attrdict
 
     # define default values
-    attrdict["@owl_min"] = 0.0
-    attrdict["@owl_max"] = 1.0
-    attrdict["@owl_default"] = None
+    attrdict["min"] = 0.0
+    attrdict["max"] = 1.0
+    attrdict["default"] = None
 
     for owl_param in ['@owl', '@owl_min', '@owl_max', '@owl_default']:
         if owl_param not in args:
@@ -49,13 +49,13 @@ def parse_pd_owl_args(args):
             if p not in OWL_PARAMS:
                 raise PdOwlException, "%s annotation parameter must be one of %s" % (owl_param, OWL_PARAMS)
 
-            attrdict[owl_param] = args[i+1]
+            attrdict["owl"] = args[i+1]
             try:
                 # require the presence of 3 parameters which can be converted to float
                 _min, _max, _def = [float(x) for x in args[i+2:i+2+4]]
-                attrdict["@owl_min"] = _min
-                attrdict["@owl_max"] = _max
-                attrdict["@owl_default"] = _def
+                attrdict["min"] = _min
+                attrdict["max"] = _max
+                attrdict["default"] = _def
             except (IndexError, ValueError) as e:
                 # otherwise keep default
                 pass
@@ -63,15 +63,15 @@ def parse_pd_owl_args(args):
         elif owl_param in ['@owl_min', '@owl_max', '@owl_default']:
             # make sure that it is a float value
             try:
-                attrdict[owl_param] = float(args[i+1])
+                attrdict[owl_param.split('@owl_')[1]] = float(args[i+1])
             except ValueError:
                 raise PdOwlException, ("%s annotation value '%s' is not numeric" %
                                        (owl_param, args[i+1]))
             except IndexError:
                 raise PdOwlException, "%s annotation is missing its value"
 
-    if attrdict["@owl_default"] is None:
-        attrdict["@owl_default"] = (attrdict["@owl_max"] - attrdict["@owl_min"]) / 2.0
+    if attrdict["default"] is None:
+        attrdict["default"] = (attrdict["max"] - attrdict["min"]) / 2.0
 
     return attrdict
 

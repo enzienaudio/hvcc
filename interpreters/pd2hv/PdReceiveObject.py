@@ -66,7 +66,6 @@ class PdReceiveObject(PdObject):
             except:
                 pass
 
-
             if not (self.__attributes["min"] <= self.__attributes["default"]):
                 self.add_error("Default parameter value is less than the minimum. Receiver will not be exported: {0:g} < {1:g}".format(
                     self.__attributes["default"],
@@ -78,12 +77,14 @@ class PdReceiveObject(PdObject):
                     self.__attributes["max"]))
                 self.__extern_type = None
 
+        if '@owl' in self.obj_args:
+            try:
+                pd_owl_args = parse_pd_owl_args(self.obj_args)
+                self.__attributes.update(pd_owl_args)
+                self.__extern_type = "param" # make sure output code is generated
+            except PdOwlException, e:
+                self.add_error(e)
 
-        try:
-            pd_owl_args = parse_pd_owl_args(self.obj_args)
-            self.__attributes.update(pd_owl_args)
-        except PdOwlException, e:
-            self.add_error(e)
 
     def validate_configuration(self):
         if self.obj_type in ["r~", "receive~"]:
