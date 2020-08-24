@@ -337,7 +337,7 @@ def main():
     parser.add_argument(
         "-p",
         "--search_paths",
-        nargs="+",
+        action="append",
         help="Add a list of directories to search through for abstractions.")
     parser.add_argument(
         "-n",
