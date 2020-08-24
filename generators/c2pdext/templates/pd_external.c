@@ -28,29 +28,17 @@ static void printHook(HeavyContextInterface *c, const char *receiverName, const 
 }
 
 static void sendHook(HeavyContextInterface *c, const char *receiverName, unsigned int receiverHash, const HvMessage * m) {
-  if (!strcmp(receiverName, "#HV_TO_PD")) {
-    t_outlet *const outlet = ((t_{{struct_name}} *) hv_getUserData(c))->msgOutlet;
-    if (hv_msg_getNumElements(m) == 1) {
-      if (hv_msg_isFloat(m, 0)) {
-        outlet_float(outlet, hv_msg_getFloat(m, 0));
-      } else if (hv_msg_isBang(m, 0)) {
-        outlet_bang(outlet);
-      } else if (hv_msg_isSymbol(m, 0)) {
-        outlet_symbol(outlet, gensym(hv_msg_getSymbol(m, 0)));
-      } else return;
-    } else {
-      const int argc = (int) hv_msg_getNumElements(m);
-      t_atom *argv = (t_atom *) alloca(argc*sizeof(t_atom));
-      for (int i = 0; i < argc; i++) {
-        if (hv_msg_isFloat(m, i)) {
-          SETFLOAT(argv+i, hv_msg_getFloat(m, i));
-        } else if (hv_msg_isSymbol(m, i)) {
-          SETSYMBOL(argv+i, gensym(hv_msg_getSymbol(m, i)));
-        } else return;
-      }
-      outlet_list(outlet, NULL, argc, argv);
-    }
+  t_outlet *const outlet = ((t_clicker_tilde *) hv_getUserData(c))->msgOutlet;
+  const int argc = (int) hv_msg_getNumElements(m);
+  t_atom *argv = (t_atom *) alloca(argc*sizeof(t_atom));
+  for (int i = 0; i < argc; i++) {
+    if (hv_msg_isFloat(m, i)) {
+      SETFLOAT(argv+i, hv_msg_getFloat(m, i));
+    } else if (hv_msg_isSymbol(m, i)) {
+      SETSYMBOL(argv+i, gensym(hv_msg_getSymbol(m, i)));
+    } else return;
   }
+  outlet_anything(outlet, gensym(receiverName), argc, argv);
 }
 
 static void *{{struct_name}}_new(t_symbol *s, int argc, t_atom *argv) {

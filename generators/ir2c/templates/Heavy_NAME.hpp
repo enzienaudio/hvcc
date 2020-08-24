@@ -29,7 +29,7 @@ class Heavy_{{name}} : public HeavyContext {
   struct Parameter {
     {% if externs.parameters.in|length > 0 -%}
     struct In {
-      enum ParameterIn : hv_uint32_t {
+      enum ParameterIn {
         {%- for k,v in externs.parameters.in %}
         {{k|upper}} = {{v.hash}}, // {{v.display}}
         {%- endfor %}
@@ -39,7 +39,7 @@ class Heavy_{{name}} : public HeavyContext {
 
     {%- if externs.parameters.out|length > 0 %}
     struct Out {
-      enum ParameterOut : hv_uint32_t {
+      enum ParameterOut {
         {%- for k,v in externs.parameters.out %}
         {{k|upper}} = {{v.hash}}, // {{v.display}}
         {%- endfor %}
@@ -53,7 +53,7 @@ class Heavy_{{name}} : public HeavyContext {
   struct Event {
     {%- if externs.events.in|length > 0 %}
     struct In {
-      enum EventIn : hv_uint32_t {
+      enum EventIn {
         {%- for k,v in externs.events.in %}
         {{k|upper}} = {{v.hash}}, // {{v.display}}
         {%- endfor %}
@@ -63,7 +63,7 @@ class Heavy_{{name}} : public HeavyContext {
 
     {%- if externs.events.out|length > 0 %}
     struct Out {
-      enum EventOut : hv_uint32_t {
+      enum EventOut {
         {%- for k,v in externs.events.out %}
         {{k|upper}} = {{v.hash}}, // {{v.display}}
         {%- endfor %}
@@ -74,7 +74,7 @@ class Heavy_{{name}} : public HeavyContext {
   {%- endif %}
 
   {%- if externs.tables|length > 0 %}
-  enum Table : hv_uint32_t {
+  enum Table {
     {%- for k,v in externs.tables %}
     {{k|upper}} = {{v.hash}}, // {{v.display}}
     {%- endfor %}

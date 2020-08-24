@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.7
+
 # Copyright (C) 2014-2018 Enzien Audio, Ltd.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -335,7 +337,7 @@ def main():
     parser.add_argument(
         "-p",
         "--search_paths",
-        nargs="+",
+        action="append",
         help="Add a list of directories to search through for abstractions.")
     parser.add_argument(
         "-n",
