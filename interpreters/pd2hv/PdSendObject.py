@@ -39,7 +39,7 @@ class PdSendObject(PdObject):
         except:
             pass
 
-        if '@owl' in self.obj_args:
+        if '@owl' in self.obj_args or '@owl_param' in self.obj_args:
             try:
                 pd_owl_args = parse_pd_owl_args(self.obj_args)
                 self.__attributes.update(pd_owl_args)

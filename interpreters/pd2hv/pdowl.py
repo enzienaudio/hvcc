@@ -16,50 +16,38 @@
 class PdOwlException(Exception):
     pass
 
-OWL_PARAMS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-              'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH',
-              'BA', 'BB', 'BC', 'BD', 'BE', 'BF', 'BH']
-
 def parse_pd_owl_args(args):
     """Parses a list of puredata send or receive objects looking for @owl*
     annotations, parsing everything and throwing errors when syntax is not
     correct or values are of incorrect type"""
 
     attrdict = {}
-    if '@owl' not in args:
-        return attrdict
 
     # define default values
     attrdict["min"] = 0.0
     attrdict["max"] = 1.0
     attrdict["default"] = None
 
-    for owl_param in ['@owl', '@owl_min', '@owl_max', '@owl_default']:
+    for owl_param in ['@owl', '@owl_min', '@owl_max', '@owl_default', '@owl_param']:
         if owl_param not in args:
             continue
 
         i = args.index(owl_param)
 
-        if owl_param == '@owl':
+        if owl_param in ['@owl', '@owl_param']:
             try:
-                p = args[i+1]
+                attrdict["owl"] = args[i+1]
             except IndexError:
-                raise PdOwlException, "%s annotation missing owl parameter value" % owl_param
-
-            if p not in OWL_PARAMS:
-                raise PdOwlException, "%s annotation parameter must be one of %s" % (owl_param, OWL_PARAMS)
-
-            attrdict["owl"] = args[i+1]
-            try:
-                # require the presence of 3 parameters which can be converted to float
-                _min, _max, _def = [float(x) for x in args[i+2:i+2+4]]
-                attrdict["min"] = _min
-                attrdict["max"] = _max
-                attrdict["default"] = _def
-            except (IndexError, ValueError) as e:
-                # otherwise keep default
-                pass
-
+                raise PdOwlException, "%s annotation missing assigned parameter" % owl_param
+            if owl_param == '@owl':
+                try:
+                    # expect the presence of up to 3 parameters which can be converted to float
+                    attrdict["min"] = float(args[i+2])
+                    attrdict["max"] = float(args[i+3])
+                    attrdict["default"] = float(args[i+4])
+                except (IndexError, ValueError):
+                    # otherwise keep default
+                    pass
         elif owl_param in ['@owl_min', '@owl_max', '@owl_default']:
             # make sure that it is a float value
             try:
