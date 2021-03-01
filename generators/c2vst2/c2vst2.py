@@ -30,19 +30,24 @@ class c2vst2:
     def filter_uniqueid(clazz, s):
         """ Return a unique id (in hexadcemial) for the VST interface.
         """
-        return "0x"+hashlib.md5(s).hexdigest().upper()[0:8]
+        s = hashlib.md5(s.encode('utf-8'))
+        s = s.hexdigest().upper()[0:8]
+        s = f"0x{s}"
+        return s
 
     @classmethod
     def filter_xcode_build(clazz, s):
         """ Return a build hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_build").hexdigest().upper()[0:24]
+        s = hashlib.md5(f"{s}_build".encode('utf-8'))
+        return s.hexdigest().upper()[0:24]
 
     @classmethod
     def filter_xcode_fileref(clazz, s):
         """ Return a fileref hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_fileref").hexdigest().upper()[0:24]
+        s = hashlib.md5(f"{s}_fileref".encode('utf-8'))
+        return s.hexdigest().upper()[0:24]
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,

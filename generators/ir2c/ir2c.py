@@ -22,45 +22,45 @@ import os
 import shutil
 import time
 
-from PrettyfyC import PrettyfyC
+from .PrettyfyC import PrettyfyC
 from ..copyright import copyright_manager
 
-from ControlBinop import ControlBinop
-from ControlCast import ControlCast
-from ControlDelay import ControlDelay
-from ControlIf import ControlIf
-from ControlMessage import ControlMessage
-from ControlPack import ControlPack
-from ControlPrint import ControlPrint
-from ControlReceive import ControlReceive
-from ControlRandom import ControlRandom
-from ControlSend import ControlSend
-from ControlSlice import ControlSlice
-from ControlSwitchcase import ControlSwitchcase
-from ControlSystem import ControlSystem
-from ControlTabhead import ControlTabhead
-from ControlTabread import ControlTabread
-from ControlTabwrite import ControlTabwrite
-from ControlUnop import ControlUnop
-from ControlVar import ControlVar
-from HeavyObject import HeavyObject
-from HeavyTable import HeavyTable
-from SignalConvolution import SignalConvolution
-from SignalBiquad import SignalBiquad
-from SignalCPole import SignalCPole
-from SignalDel1 import SignalDel1
-from SignalEnvelope import SignalEnvelope
-from SignalLine import SignalLine
-from SignalLorenz import SignalLorenz
-from SignalMath import SignalMath
-from SignalPhasor import SignalPhasor
-from SignalRPole import SignalRPole
-from SignalSample import SignalSample
-from SignalSamphold import SignalSamphold
-from SignalTabhead import SignalTabhead
-from SignalTabread import SignalTabread
-from SignalTabwrite import SignalTabwrite
-from SignalVar import SignalVar
+from .ControlBinop import ControlBinop
+from .ControlCast import ControlCast
+from .ControlDelay import ControlDelay
+from .ControlIf import ControlIf
+from .ControlMessage import ControlMessage
+from .ControlPack import ControlPack
+from .ControlPrint import ControlPrint
+from .ControlReceive import ControlReceive
+from .ControlRandom import ControlRandom
+from .ControlSend import ControlSend
+from .ControlSlice import ControlSlice
+from .ControlSwitchcase import ControlSwitchcase
+from .ControlSystem import ControlSystem
+from .ControlTabhead import ControlTabhead
+from .ControlTabread import ControlTabread
+from .ControlTabwrite import ControlTabwrite
+from .ControlUnop import ControlUnop
+from .ControlVar import ControlVar
+from .HeavyObject import HeavyObject
+from .HeavyTable import HeavyTable
+from .SignalConvolution import SignalConvolution
+from .SignalBiquad import SignalBiquad
+from .SignalCPole import SignalCPole
+from .SignalDel1 import SignalDel1
+from .SignalEnvelope import SignalEnvelope
+from .SignalLine import SignalLine
+from .SignalLorenz import SignalLorenz
+from .SignalMath import SignalMath
+from .SignalPhasor import SignalPhasor
+from .SignalRPole import SignalRPole
+from .SignalSample import SignalSample
+from .SignalSamphold import SignalSamphold
+from .SignalTabhead import SignalTabhead
+from .SignalTabread import SignalTabread
+from .SignalTabwrite import SignalTabwrite
+from .SignalVar import SignalVar
 
 class ir2c:
 
@@ -128,7 +128,7 @@ class ir2c:
     def filter_extern(clazz, d):
         """ Return a dictionary of objects that are externed.
         """
-        return {k:v for k,v in d.iteritems() if v["extern"]}
+        return {k:v for k,v in d.items() if v["extern"]}
 
     @classmethod
     def get_class(clazz, obj_type):
@@ -209,7 +209,7 @@ class ir2c:
 
         # generate static table data initialisers
         table_data_list = []
-        for k, v in ir["tables"].iteritems():
+        for k, v in ir["tables"].items():
             o = ir["objects"][v["id"]]
             obj_class = ir2c.get_class(o["type"])
             table_data_list.extend(obj_class.get_table_data_decl(
@@ -241,7 +241,7 @@ class ir2c:
         name = ir["name"]["escaped"]
 
         # ensure that send_receive dictionary is alphabetised by the receiver key
-        send_receive = OrderedDict(sorted([(k,v) for k,v in ir["control"]["receivers"].iteritems()], key=lambda x: x[0]))
+        send_receive = OrderedDict(sorted([(k,v) for k,v in ir["control"]["receivers"].items()], key=lambda x: x[0]))
 
         # write HeavyContext.h
         with open(os.path.join(output_dir, "Heavy_{0}.hpp".format(name)), "w") as f:
@@ -327,7 +327,7 @@ def main():
         args.copyright)
 
     if args.verbose:
-        print "Total ir2c time: {0:.2f}ms".format(results["compile_time"]*1000)
+        print("Total ir2c time: {0:.2f}ms".format(results["compile_time"]*1000))
 
 if __name__ == "__main__":
     main()

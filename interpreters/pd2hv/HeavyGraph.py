@@ -16,8 +16,8 @@
 import json
 import os
 
-from PdObject import PdObject
-from HeavyObject import HeavyObject
+from .PdObject import PdObject
+from .HeavyObject import HeavyObject
 
 class HeavyGraph(PdObject):
     def __init__(self, hv_path, obj_args=None, pos_x=0, pos_y=0):

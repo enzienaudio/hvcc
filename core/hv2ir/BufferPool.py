@@ -15,7 +15,7 @@
 
 from collections import defaultdict
 
-from HeavyException import HeavyException
+from .HeavyException import HeavyException
 
 class BufferPool:
 
@@ -66,7 +66,7 @@ class BufferPool:
             return 0
         else:
             pool = self.pool[b[0]]
-            for k, v in pool.iteritems():
+            for k, v in pool.items():
                 if b in v:
                     v.remove(b)
                     pool[k+count].append(b)
@@ -83,7 +83,7 @@ class BufferPool:
             return 0
         else:
             pool = self.pool[b[0]]
-            for k, v in pool.iteritems():
+            for k, v in pool.items():
                 if b in v:
                     v.remove(b)
                     pool[k-count].append(b)

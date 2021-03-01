@@ -80,12 +80,12 @@ def generate_extern_info(hvir, results):
         externed with @hv_param, @hv_event or @hv_table
     """
     # Exposed input parameters
-    in_parameter_list = [(k, v) for k, v in hvir["control"]["receivers"].iteritems() if v.get("extern", None) == "param"]
+    in_parameter_list = [(k, v) for k, v in hvir["control"]["receivers"].items() if v.get("extern", None) == "param"]
     in_parameter_list.sort(key=lambda x: x[0])
     check_extern_name_conflicts("input parameter", in_parameter_list, results)
 
     # Exposed input events
-    in_event_list = [(k, v) for k, v in hvir["control"]["receivers"].iteritems() if v.get("extern", None) == "event"]
+    in_event_list = [(k, v) for k, v in hvir["control"]["receivers"].items() if v.get("extern", None) == "event"]
     in_event_list.sort(key=lambda x: x[0])
     check_extern_name_conflicts("input event", in_event_list, results)
 
@@ -93,18 +93,18 @@ def generate_extern_info(hvir, results):
     out_parameter_list = [(v["name"], v) for v in hvir["control"]["sendMessage"] if v.get("extern", None) == "param"]
     # remove duplicate output parameters/events
     # NOTE(joe): is the id argument important here? We'll only take the first one in this case.
-    out_parameter_list = list(dict(out_parameter_list).iteritems())
+    out_parameter_list = list(dict(out_parameter_list).items())
     out_parameter_list.sort(key=lambda x: x[0])
     check_extern_name_conflicts("output parameter", out_parameter_list, results)
 
     # Exposed output events
     out_event_list = [(v["name"], v) for v in hvir["control"]["sendMessage"] if v.get("extern", None) == "event"]
-    out_event_list = list(dict(out_event_list).iteritems())
+    out_event_list = list(dict(out_event_list).items())
     out_event_list.sort(key=lambda x: x[0])
     check_extern_name_conflicts("output event", out_event_list, results)
 
     # Exposed tables
-    table_list = [(k, v) for k, v in hvir["tables"].iteritems() if v.get("extern", None) == True]
+    table_list = [(k, v) for k, v in hvir["tables"].items() if v.get("extern", None) == True]
     table_list.sort(key=lambda x: x[0])
     check_extern_name_conflicts("table", table_list, results)
 
@@ -147,7 +147,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if in_path.endswith((".pd", ".maxpat")):
         if verbose:
-            print "--> Generating C"
+            print("--> Generating C")
         if in_path.endswith(".pd"):
             results["pd2hv"] = pd2hv.pd2hv.compile(
                 pd_path=in_path,
@@ -162,11 +162,11 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
                 verbose=verbose)
 
         # check for errors
-        if results.values()[0]["notifs"].get("has_error", False):
+        if list(results.values())[0]["notifs"].get("has_error", False):
             return results
 
         results["hv2ir"] = hv2ir.hv2ir.compile(
-            hv_file=os.path.join(results.values()[0]["out_dir"], results.values()[0]["out_file"]),
+            hv_file=os.path.join(list(results.values())[0]["out_dir"], list(results.values())[0]["out_file"]),
             # ensure that the ir filename has no funky characters in it
             ir_file=os.path.join(out_dir, "ir", re.sub("\W", "_", patch_name)+".heavy.ir.json"),
             patch_name=patch_name,
@@ -230,7 +230,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if "bela" in generators:
         if verbose:
-            print "--> Generating Bela plugin"
+            print("--> Generating Bela plugin")
         results["c2fabric"] = c2bela.c2bela.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "bela"),
@@ -242,7 +242,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if "fabric" in generators:
         if verbose:
-            print "--> Generating Fabric plugin"
+            print("--> Generating Fabric plugin")
         results["c2fabric"] = c2fabric.c2fabric.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "fabric"),
@@ -255,7 +255,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if "js" in generators:
         if verbose:
-            print "--> Generating Javascript"
+            print("--> Generating Javascript")
         results["c2js"] = c2js.c2js.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "js"),
@@ -268,7 +268,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if "pdext" in generators:
         if verbose:
-            print "--> Generating Pd external"
+            print("--> Generating Pd external")
         results["c2pdext"] = c2pdext.c2pdext.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "pdext"),
@@ -282,7 +282,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if "unity" in generators:
         if verbose:
-            print "--> Generating Unity plugin"
+            print("--> Generating Unity plugin")
         results["c2unity"] = c2unity.c2unity.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "unity"),
@@ -295,7 +295,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if "vst2" in generators:
         if verbose:
-            print "--> Generating VST2 plugin"
+            print("--> Generating VST2 plugin")
         results["c2vst2"] = c2vst2.c2vst2.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "vst2.4"),
@@ -308,7 +308,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     if "wwise" in generators:
         if verbose:
-            print "--> Generating Wwise plugin"
+            print("--> Generating Wwise plugin")
         results["c2wwise"] = c2wwise.c2wwise.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "wwise"),
@@ -371,26 +371,26 @@ def main():
         verbose=args.verbose,
         copyright=args.copyright)
 
-    for r in results.values():
+    for r in list(results.values()):
         # print any errors
         if r["notifs"].get("has_error", False):
             for i,error in enumerate(r["notifs"].get("errors", [])):
-                print "{4:3d}) {2}Error{3} {0}: {1}".format(
-                    r["stage"], error["message"], Colours.red, Colours.end, i+1)
+                print("{4:3d}) {2}Error{3} {0}: {1}".format(
+                    r["stage"], error["message"], Colours.red, Colours.end, i+1))
 
             # only print exception if no errors are indicated
             if len(r["notifs"].get("errors", [])) == 0 and \
             r["notifs"].get("exception",None) is not None:
-                print "{2}Error{3} {0} exception: {1}".format(
-                    r["stage"], r["notifs"]["exception"], Colours.red, Colours.end)
+                print("{2}Error{3} {0} exception: {1}".format(
+                    r["stage"], r["notifs"]["exception"], Colours.red, Colours.end))
 
             # clear any exceptions such that results can be JSONified if necessary
             r["notifs"]["exception"] = []
 
         # print any warnings
         for i,warning in enumerate(r["notifs"].get("warnings", [])):
-            print "{4:3d}) {2}Warning{3} {0}: {1}".format(
-                r["stage"], warning["message"], Colours.yellow, Colours.end, i+1)
+            print("{4:3d}) {2}Warning{3} {0}: {1}".format(
+                r["stage"], warning["message"], Colours.yellow, Colours.end, i+1))
 
     if args.results_path:
         results_path = os.path.realpath(os.path.abspath(args.results_path))
@@ -403,7 +403,7 @@ def main():
             json.dump(results, f)
 
     if args.verbose:
-        print "Total compile time: {0:.2f}ms".format(1000*(time.time()-tick))
+        print("Total compile time: {0:.2f}ms".format(1000*(time.time()-tick)))
 
 if __name__ == "__main__":
     main()

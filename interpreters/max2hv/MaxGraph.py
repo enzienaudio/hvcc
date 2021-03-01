@@ -2,8 +2,8 @@
 
 import os
 
-from Connection import Connection
-from MaxObject import MaxObject
+from .Connection import Connection
+from .MaxObject import MaxObject
 
 class MaxGraph(MaxObject):
     def __init__(self, obj_type=None, obj_args=None, obj_id=None, pos_x=0, pos_y=0, max_path=None):

@@ -17,8 +17,8 @@ import decimal
 import json
 import os
 
-from NotificationEnum import NotificationEnum
-from PdObject import PdObject
+from .NotificationEnum import NotificationEnum
+from .PdObject import PdObject
 
 class HeavyObject(PdObject):
 
