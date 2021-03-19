@@ -28,10 +28,10 @@ import generators.ir2c.ir2c_perf as ir2c_perf
 import generators.c2bela.c2bela as c2bela
 import generators.c2fabric.c2fabric as c2fabric
 import generators.c2js.c2js as c2js
+import generators.c2dpf.c2dpf as c2dpf
 import generators.c2pdext.c2pdext as c2pdext
 import generators.c2wwise.c2wwise as c2wwise
 import generators.c2unity.c2unity as c2unity
-import generators.c2vst2.c2vst2 as c2vst2
 
 class Colours:
     purple = "\033[95m"
@@ -266,6 +266,19 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
             copyright=copyright,
             verbose=verbose)
 
+    if "dpf" in generators:
+        if verbose:
+            print("--> Generating DPF plugin")
+        results["c2dpf"] = c2dpf.c2dpf.compile(
+            c_src_dir=c_src_dir,
+            out_dir=os.path.join(out_dir, "distrho"),
+            patch_name=patch_name,
+            num_input_channels=num_input_channels,
+            num_output_channels=num_output_channels,
+            externs=externs,
+            copyright=copyright,
+            verbose=verbose)
+
     if "pdext" in generators:
         if verbose:
             print("--> Generating Pd external")
@@ -286,19 +299,6 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
         results["c2unity"] = c2unity.c2unity.compile(
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "unity"),
-            patch_name=patch_name,
-            num_input_channels=num_input_channels,
-            num_output_channels=num_output_channels,
-            externs=externs,
-            copyright=copyright,
-            verbose=verbose)
-
-    if "vst2" in generators:
-        if verbose:
-            print("--> Generating VST2 plugin")
-        results["c2vst2"] = c2vst2.c2vst2.compile(
-            c_src_dir=c_src_dir,
-            out_dir=os.path.join(out_dir, "vst2.4"),
             patch_name=patch_name,
             num_input_channels=num_input_channels,
             num_output_channels=num_output_channels,
@@ -347,7 +347,7 @@ def main():
         "--gen",
         nargs="+",
         default=["c"],
-        help="List of generator outputs: c, unity, wwise, js, vst2, fabric")
+        help="List of generator outputs: c, unity, wwise, js, vst2, dpf, fabric")
     parser.add_argument(
         "--results_path",
         help="Write results dictionary to the given path as a JSON-formatted string. Target directory will be created if it does not exist.")

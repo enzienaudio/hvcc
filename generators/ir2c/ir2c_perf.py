@@ -66,7 +66,7 @@ class ir2c_perf:
 
             # print object in order of highest load
             items = per_object_perf.items()
-            items.sort(key=lambda o: o[1]["avx"], reverse=True)
+            # items.sort(key=lambda o: o[1]["avx"], reverse=True)
             for k, v in items:
                 print("{2:>2.2g}%  {3:<5} {0:<16} {1}".format(k, v, int(100.0*v["avx"]/perf["avx"]), objects[k]))
 

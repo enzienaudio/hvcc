@@ -3,6 +3,8 @@
 
 :warning: Not all functionality has been tested. Use at your own risk. :warning:
 
+Instead of the old VST2 we now build to Distrho Plugin Format, this allows us to compile VST2 and LV2 plugin versions from the same code base.
+
 
 # Heavy Compiler Collection (hvcc)
 
@@ -88,6 +90,7 @@ Available generator options:
 * `pdext`
 * `unity`
 * `vst2`
+* `lv2`
 * `wwise`
 
 
@@ -125,7 +128,7 @@ Displays all the available parameters and options for hvcc.
 * [Unity](/docs/05.unity.md)
 * [Wwise](/docs/06.wwise.md)
 * [Javascript](/docs/07.javascript.md)
-* [VST](/docs/08.vst.md)
+* [DPF](/docs/08.dpf.md)
 * [MIDI](/docs/09.midi.md)
 * [C API](/docs/10.c.md)
 * [C++ API](/docs/11.cpp.md)
