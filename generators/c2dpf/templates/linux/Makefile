@@ -5,6 +5,7 @@ include ../../dpf/Makefile.plugins.mk
 
 LINK_FLAGS += -lpthread
 
+TARGETS += jack
 TARGETS += lv2_dsp
 TARGETS += vst
 
