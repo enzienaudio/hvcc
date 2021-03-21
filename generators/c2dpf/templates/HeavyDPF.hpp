@@ -11,6 +11,13 @@ START_NAMESPACE_DISTRHO
 class {{class_name}} : public Plugin
 {
 public:
+  enum Parameters
+  {
+    {%- for k, v in receivers %}
+      param{{v.display}},
+    {%- endfor %}
+  };
+
   {{class_name}}();
   ~{{class_name}}() override;
 
@@ -50,7 +57,8 @@ protected:
 
   int64_t getUniqueId() const noexcept override
   {
-    return d_cconst('W', 'S', 't', 'd');
+    // return d_cconst('W', 'S', 't', 'd');
+    return int64_t( {{class_name|uniqueid}} );
   }
 
   // -------------------------------------------------------------------

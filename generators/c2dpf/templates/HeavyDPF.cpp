@@ -10,37 +10,39 @@
 #include "HvControlBinop.c"
 #include "HvControlCast.c"
 #include "HvControlDelay.c"
-#include "HvControlSystem.c"
-#include "HvControlVar.c"
 #include "HvHeavy.cpp"
 #include "HvLightPipe.c"
 #include "HvMessage.c"
 #include "HvMessagePool.c"
 #include "HvMessageQueue.c"
-#include "HvSignalDel1.c"
 #include "HvSignalLine.c"
 #include "HvSignalPhasor.c"
-#include "HvSignalRPole.c"
-#include "HvSignalTabread.c"
-#include "HvSignalTabwrite.c"
 #include "HvSignalVar.c"
 #include "HvTable.c"
 #include "HvUtils.c"
+
+#include "HvControlSystem.c"
+#include "HvControlVar.c"
+#include "HvSignalDel1.c"
+#include "HvSignalRPole.c"
+#include "HvSignalTabread.c"
+#include "HvSignalTabwrite.c"
+#include "HvControlSlice.c"
 
 
 #define HV_LV2_NUM_PARAMETERS {{receivers|length}}
 
 START_NAMESPACE_DISTRHO
 
-// static float scaleParameterForIndex(uint32_t index, float value)
-// {
-//   switch (index) {
-//     {%- for k, v in receivers %}
-//     case {{loop.index-1}}: return ({{v.attributes.max-v.attributes.min}}f*value) + {{v.attributes.min}}f; // {{v.display}}
-//     {%- endfor %}
-//     default: return 0.0f;
-//   }
-// }
+static float scaleParameterForIndex(uint32_t index, float value)
+{
+  switch (index) {
+    {%- for k, v in receivers %}
+    case {{loop.index-1}}: return ({{v.attributes.max-v.attributes.min}}f*value) + {{v.attributes.min}}f; // {{v.display}}
+    {%- endfor %}
+    default: return 0.0f;
+  }
+}
 
 {{class_name}}::{{class_name}}()
  : Plugin(HV_LV2_NUM_PARAMETERS, 0, 0)
@@ -55,9 +57,16 @@ START_NAMESPACE_DISTRHO
 void {{class_name}}::initParameter(uint32_t index, Parameter& parameter)
 {
   // initialise parameters with defaults
-  {%- for k, v in receivers %}
-  _parameters[{{loop.index-1}}] = {{(v.attributes.default-v.attributes.min)/(v.attributes.max-v.attributes.min)}}f; // {{v.display}}
-  {%- endfor %}
+  switch (index)
+  {
+    {%- for k, v in receivers %}
+      case param{{v.display}}:
+        parameter.name = "{{v.display.replace('_', ' ')}}";
+        parameter.symbol = "{{v.display|lower}}";
+        _parameters[{{loop.index-1}}] = {{(v.attributes.default-v.attributes.min)/(v.attributes.max-v.attributes.min)}}f; // {{v.display}}
+        break;
+    {%- endfor %}
+  }
   _context = nullptr;
   // // sampleRateChanged(0.0f); // initialise sample rate
   sampleRateChanged(44100.0f); // set sample rate to some default
@@ -83,8 +92,8 @@ void {{class_name}}::setParameterValue(uint32_t index, float value)
     case {{loop.index-1}}: {
       _context->sendFloatToReceiver(
           Heavy_{{name}}::Parameter::In::{{k|upper}},
-          // scaleParameterForIndex(index, value));
-          value);
+          scaleParameterForIndex(index, value));
+          // value);
       break;
     }
     {%- endfor %}
