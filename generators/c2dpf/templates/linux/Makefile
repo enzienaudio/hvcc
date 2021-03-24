@@ -1,5 +1,7 @@
 NAME = {{name}}
-FILES_DSP = {{class_name}}.cpp
+
+FILES_DSP = $(wildcard *.cpp)
+FILES_DSP += $(wildcard *.c)
 
 include ../../dpf/Makefile.plugins.mk
 

@@ -1,33 +1,6 @@
 {{copyright}}
 
 #include "{{class_name}}.hpp"
-#include "HvUtils.h"
-
-#include "Heavy_{{name}}.cpp"
-
-#include "HeavyContext.cpp"
-#include "HeavyContextInterface.hpp"
-#include "HvControlBinop.c"
-#include "HvControlCast.c"
-#include "HvControlDelay.c"
-#include "HvHeavy.cpp"
-#include "HvLightPipe.c"
-#include "HvMessage.c"
-#include "HvMessagePool.c"
-#include "HvMessageQueue.c"
-#include "HvSignalLine.c"
-#include "HvSignalPhasor.c"
-#include "HvSignalVar.c"
-#include "HvTable.c"
-#include "HvUtils.c"
-
-#include "HvControlSystem.c"
-#include "HvControlVar.c"
-#include "HvSignalDel1.c"
-#include "HvSignalRPole.c"
-#include "HvSignalTabread.c"
-#include "HvSignalTabwrite.c"
-#include "HvControlSlice.c"
 
 
 #define HV_LV2_NUM_PARAMETERS {{receivers|length}}
