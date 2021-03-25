@@ -89,8 +89,10 @@ Available generator options:
 * `js`
 * `pdext`
 * `unity`
-* `vst2`
-* `lv2`
+* `dpf`
+  * `vst2`
+  * `lv2`
+  * `jack`
 * `wwise`
 
 
