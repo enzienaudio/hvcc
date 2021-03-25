@@ -95,7 +95,7 @@ class c2dpf:
             # os.makedirs(linux_path)
 
             with open(os.path.join(source_dir, "Makefile"), "w") as f:
-                f.write(env.get_template("linux/Makefile").render(
+                f.write(env.get_template("Makefile").render(
                     name=patch_name,
                     class_name="HeavyDPF_"+patch_name))
 
