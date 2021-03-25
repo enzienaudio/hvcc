@@ -107,7 +107,7 @@ class hv2ir:
                     if len(o["args"]) > 0:
                         print("{0} {{{1}}}".format(
                             o["type"],
-                            " ".join(["{0}:{1}".format(k,v) for k,v in o["args"].iteritems()])))
+                            " ".join(["{0}:{1}".format(k,v) for k,v in o["args"].items()])))
                     else:
                         print(o["type"])
 

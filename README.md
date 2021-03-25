@@ -1,7 +1,9 @@
 
-:warning: This is an attempt to modernize `hvcc` to work with `python3`. :warning:
+:warning: This is an attempt to modernize `hvcc` to work with `python3` and add some additional targets. :warning:
 
 :warning: Not all functionality has been tested. Use at your own risk. :warning:
+
+Instead of the old VST2 implementation we now build to Distrho Plugin Framework, this allows us to compile LV2 and VST2 plugin formats, with additional jack-standalone, from the same code base.
 
 
 # Heavy Compiler Collection (hvcc)
@@ -87,7 +89,10 @@ Available generator options:
 * `js`
 * `pdext`
 * `unity`
-* `vst2`
+* `dpf`
+  * `vst2`
+  * `lv2`
+  * `jack`
 * `wwise`
 
 
@@ -125,7 +130,7 @@ Displays all the available parameters and options for hvcc.
 * [Unity](/docs/05.unity.md)
 * [Wwise](/docs/06.wwise.md)
 * [Javascript](/docs/07.javascript.md)
-* [VST](/docs/08.vst.md)
+* [DPF](/docs/08.dpf.md)
 * [MIDI](/docs/09.midi.md)
 * [C API](/docs/10.c.md)
 * [C++ API](/docs/11.cpp.md)
