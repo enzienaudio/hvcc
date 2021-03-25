@@ -71,7 +71,7 @@ class HeavyGraph(HeavyIrObject):
         args = dict(obj_args) # make a copy of the input arguments
         for key,value in args.items():
             # do any of them reference a variable input?
-            if (isinstance(value, str) or isinstance(value, str)):
+            if isinstance(value, str):
                 if value.find("$") > -1:
                     # is there a value provided for that key in the graph arguments?
                     for k in self.args:
@@ -87,7 +87,7 @@ class HeavyGraph(HeavyIrObject):
                                 value = value.replace(dollar_key, str(self.args[k]))
                                 # continue around the loop in case value has multiple dollar args
 
-                    if (isinstance(value, str) or isinstance(value, str)) and value.find("$") > -1:
+                    if isinstance(value, str) and value.find("$") > -1:
                         # if the variable cannot be resolved, leave it alone.
                         # When the arguments are passed to the object, they will be
                         # set to the default value. These unset variables are simply
