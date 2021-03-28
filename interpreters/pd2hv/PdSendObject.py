@@ -44,7 +44,7 @@ class PdSendObject(PdObject):
                 pd_owl_args = parse_pd_owl_args(self.obj_args)
                 self.__attributes.update(pd_owl_args)
                 self.__extern_type = "param" # make sure output code is generated
-            except PdOwlException, e:
+            except PdOwlException as e:
                 self.add_error(e)
 
 

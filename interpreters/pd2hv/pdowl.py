@@ -38,7 +38,7 @@ def parse_pd_owl_args(args):
             try:
                 attrdict["owl"] = args[i+1]
             except IndexError:
-                raise PdOwlException, "%s annotation missing assigned parameter" % owl_param
+                raise PdOwlException(f"{owl_param} annotation missing assigned parameter")
             if owl_param == '@owl':
                 try:
                     # expect the presence of up to 3 parameters which can be converted to float
@@ -53,10 +53,9 @@ def parse_pd_owl_args(args):
             try:
                 attrdict[owl_param.split('@owl_')[1]] = float(args[i+1])
             except ValueError:
-                raise PdOwlException, ("%s annotation value '%s' is not numeric" %
-                                       (owl_param, args[i+1]))
+                raise PdOwlException(f"{owl_param} annotation value '{args[i+1]}' is not numeric")
             except IndexError:
-                raise PdOwlException, "%s annotation is missing its value"
+                raise PdOwlException(f"{owl_param} annotation is missing its value")
 
     if attrdict["default"] is None:
         attrdict["default"] = (attrdict["max"] - attrdict["min"]) / 2.0
