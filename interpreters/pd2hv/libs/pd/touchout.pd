@@ -5,7 +5,7 @@
 #X obj 97 168 clip 0 15;
 #X obj 114 106 loadbang;
 #X obj 52 40 inlet touch;
-#X obj 52 233 s __hv_touchout;
+#X obj 52 233 s __hv_touchout @hv_param;
 #X connect 0 0 6 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
