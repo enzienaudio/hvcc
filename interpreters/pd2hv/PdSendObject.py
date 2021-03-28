@@ -15,6 +15,7 @@
 
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
+from .pdowl import parse_pd_owl_args, PdOwlException
 
 class PdSendObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
@@ -37,6 +38,15 @@ class PdSendObject(PdObject):
                     self.__extern_type = "event"
         except:
             pass
+
+        if '@owl' in self.obj_args or '@owl_param' in self.obj_args:
+            try:
+                pd_owl_args = parse_pd_owl_args(self.obj_args)
+                self.__attributes.update(pd_owl_args)
+                self.__extern_type = "param" # make sure output code is generated
+            except PdOwlException, e:
+                self.add_error(e)
+
 
     def validate_configuration(self):
         if len(self.obj_args) == 0:

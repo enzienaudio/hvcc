@@ -14,6 +14,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .PdObject import PdObject
+from .pdowl import parse_pd_owl_args, PdOwlException
 
 class PdReceiveObject(PdObject):
 
@@ -75,6 +76,15 @@ class PdReceiveObject(PdObject):
                     self.__attributes["default"],
                     self.__attributes["max"]))
                 self.__extern_type = None
+
+        if '@owl' in self.obj_args or '@owl_param' in self.obj_args:
+            try:
+                pd_owl_args = parse_pd_owl_args(self.obj_args)
+                self.__attributes.update(pd_owl_args)
+                self.__extern_type = "param" # make sure output code is generated
+            except PdOwlException, e:
+                self.add_error(e)
+
 
     def validate_configuration(self):
         if self.obj_type in ["r~", "receive~"]:
