@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalEnvelope(HeavyObject):
 
     c_struct = "SignalEnvelope"

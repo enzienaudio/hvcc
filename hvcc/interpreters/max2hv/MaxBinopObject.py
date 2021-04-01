@@ -2,6 +2,7 @@
 
 from .MaxObject import MaxObject
 
+
 class MaxBinopObject(MaxObject):
     # a translation dictionary from max object to corresponding heavy object
     __MAX_HEAVY_DICT = {

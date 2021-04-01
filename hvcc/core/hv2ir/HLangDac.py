@@ -16,6 +16,7 @@
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
 
+
 class HLangDac(HeavyLangObject):
     """ Translates HeavyLang [dac] to HeavyIR [__add~f].
     """
@@ -35,11 +36,11 @@ class HLangDac(HeavyLangObject):
         connections = []
 
         # reduce a HeavyLang dac to a number of individual HeavyIR __add~f objects
-        for i,channel_index in enumerate(self.args["channels"]):
-            if len(self.inlet_connections[i]) > 0: # if there are any connections to this inlet
+        for i, channel_index in enumerate(self.args["channels"]):
+            if len(self.inlet_connections[i]) > 0:  # if there are any connections to this inlet
                 x = HeavyIrObject("__add~f")
-                x.inlet_buffers[1] = ("output", channel_index-1) # channel indicies are one-indexed
-                x.outlet_buffers[0] = ("output", channel_index-1)
+                x.inlet_buffers[1] = ("output", channel_index - 1)  # channel indicies are one-indexed
+                x.outlet_buffers[0] = ("output", channel_index - 1)
                 objects.add(x)
 
                 for c in self.inlet_connections[i]:

@@ -52,6 +52,7 @@ from .HLangVario import HLangVario
 from .HeavyGraph import HeavyGraph
 from .Connection import Connection
 
+
 class HeavyParser:
 
     @classmethod
@@ -106,11 +107,11 @@ class HeavyParser:
                     graph=graph)
 
         # create a new graph
-        subpatch_name = json_heavy.get("annotations",{}).get("name", xname)
+        subpatch_name = json_heavy.get("annotations", {}).get("name", xname)
         g = HeavyGraph(graph, graph_args, file=hv_file, xname=subpatch_name)
 
         # add the import paths to the global vars
-        g.local_vars.add_import_paths(json_heavy.get("imports",[]))
+        g.local_vars.add_import_paths(json_heavy.get("imports", []))
         # add the file's relative directory to global vars
         g.local_vars.add_import_paths([os.path.dirname(hv_file)])
 
@@ -118,7 +119,7 @@ class HeavyParser:
         try:
             for obj_id, o in json_heavy["objects"].items():
                 if o["type"] == "comment":
-                    continue # first and foremost, ignore comment objects
+                    continue  # first and foremost, ignore comment objects
 
                 elif o["type"] == "graph":
                     # inline HeavyGraph objects (i.e. subgraphs)
@@ -196,6 +197,7 @@ class HeavyParser:
             return LANG_CLASS_DICT[obj_type]
         else:
             return None
+
 
 # NOTE(mhroth): these imports are at the end of the file in order to prevent
 # circular import errors

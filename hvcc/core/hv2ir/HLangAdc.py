@@ -16,6 +16,7 @@
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
 
+
 class HLangAdc(HeavyLangObject):
     """ adc
     """
@@ -37,12 +38,12 @@ class HLangAdc(HeavyLangObject):
         connections = []
 
         # reduce a HeavyLang adc to a number of individual HeavyIR __inlet objects
-        for i,channel_index in enumerate(self.args["channels"]):
-            if len(self.outlet_connections[i]) > 0: # if there are any connections to this inlet
+        for i, channel_index in enumerate(self.args["channels"]):
+            if len(self.outlet_connections[i]) > 0:  # if there are any connections to this inlet
                 x = HeavyIrObject("__inlet", args={
                     "index": 127 + channel_index
                 })
-                x.outlet_buffers[0] = ("input", channel_index-1) # channel indicies are one-indexed
+                x.outlet_buffers[0] = ("input", channel_index - 1)  # channel indicies are one-indexed
                 objects.add(x)
 
                 for c in self.outlet_connections[i]:

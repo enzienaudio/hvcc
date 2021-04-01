@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlReceive(HeavyObject):
 
     c_struct = "ControlReceive"

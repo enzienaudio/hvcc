@@ -15,10 +15,11 @@
 
 from .HeavyIrObject import HeavyIrObject
 
+
 class HIrPack(HeavyIrObject):
 
     def __init__(self, obj_type, args=None, graph=None, annotations=None):
         HeavyIrObject.__init__(self, "__pack", args=args, graph=graph,
-            num_inlets=len(args["values"]),
-            num_outlets=1,
-            annotations=annotations)
+                               num_inlets=len(args["values"]),
+                               num_outlets=1,
+                               annotations=annotations)

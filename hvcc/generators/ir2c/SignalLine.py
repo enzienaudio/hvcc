@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalLine(HeavyObject):
 
     c_struct = "SignalLine"
@@ -31,19 +32,17 @@ class SignalLine(HeavyObject):
     @classmethod
     def get_C_init(clazz, obj_type, obj_id, args):
         return [
-            "sLine_init(&sLine_{0});".format(obj_id)
+            f"sLine_init(&sLine_{obj_id});"()
         ]
 
     @classmethod
     def get_C_free(clazz, obj_type, obj_id, args):
-        return [] # nothing to free
+        return []  # nothing to free
 
     @classmethod
     def get_C_onMessage(clazz, obj_type, obj_id, inlet_index, args):
         return [
-            "sLine_onMessage(_c, &Context(_c)->sLine_{0}, {1}, m, NULL);".format(
-                obj_id,
-                inlet_index)
+            f"sLine_onMessage(_c, &Context(_c)->sLine_{obj_id}, {inlet_index}, m, NULL);"
         ]
 
     @classmethod

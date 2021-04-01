@@ -21,6 +21,7 @@ import time
 from .HeavyException import HeavyException
 from .HeavyParser import HeavyParser
 
+
 class hv2ir:
 
     @classmethod
@@ -42,11 +43,11 @@ class hv2ir:
         except HeavyException as e:
             return {
                 "stage": "hv2ir",
-                "compile_time": time.time()-tick,
+                "compile_time": time.time() - tick,
                 "notifs": {
                     "has_error": True,
                     "exception": e,
-                    "errors": [{"message":e.message}],
+                    "errors": [{"message": e.message}],
                     "warnings": []
                 },
                 "obj_counter": None,
@@ -72,11 +73,11 @@ class hv2ir:
         except HeavyException as e:
             return {
                 "stage": "hv2ir",
-                "compile_time": time.time()-tick,
+                "compile_time": time.time() - tick,
                 "notifs": {
                     "has_error": True,
                     "exception": e,
-                    "errors": [{"message":e.message}],
+                    "errors": [{"message": e.message}],
                     "warnings": []
                 },
                 "obj_counter": hv_counter,
@@ -107,13 +108,13 @@ class hv2ir:
                     if len(o["args"]) > 0:
                         print("{0} {{{1}}}".format(
                             o["type"],
-                            " ".join(["{0}:{1}".format(k,v) for k,v in o["args"].items()])))
+                            " ".join(["{0}:{1}".format(k, v) for k, v in o["args"].items()])))
                     else:
                         print(o["type"])
 
         return {
             "stage": "hv2ir",
-            "compile_time": time.time()-tick, # record the total compile time
+            "compile_time": time.time() - tick,  # record the total compile time
             "notifs": hv_graph.get_notices(),
             "obj_counter": hv_counter,
             "in_file": os.path.basename(hv_file),
@@ -122,6 +123,7 @@ class hv2ir:
             "out_dir": os.path.dirname(ir_file),
             "ir": ir
         }
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -147,7 +149,8 @@ def main():
         verbose=args.verbose)
 
     if args.verbose:
-        print("Total hv2ir time: {0:.2f}ms".format(d["compile_time"]*1000))
+        print("Total hv2ir time: {0:.2f}ms".format(d["compile_time"] * 1000))
+
 
 if __name__ == "__main__":
     main()

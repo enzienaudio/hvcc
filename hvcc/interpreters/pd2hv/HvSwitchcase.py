@@ -15,16 +15,17 @@
 
 from .PdObject import PdObject
 
+
 class HvSwitchcase(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type == "__switchcase"
         PdObject.__init__(self, obj_type, obj_args, pos_x, pos_y)
 
         # ensure that correct case hashes are generated
-        for i,a in enumerate(self.obj_args):
+        for i, a in enumerate(self.obj_args):
             try:
                 self.obj_args[i] = float(a)
-            except:
+            except Exception:
                 pass
 
     def get_outlet_connection_type(self, outlet_index):

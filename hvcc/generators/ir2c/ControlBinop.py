@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlBinop(HeavyObject):
     # a dictionary translating from the operation argument to the C case
     __OPERATION_DICT = {
@@ -100,7 +101,7 @@ class ControlBinop(HeavyObject):
 
     @classmethod
     def get_C_free(clazz, obj_type, obj_id, args):
-        return [] # no need to free any control binop objects
+        return []  # no need to free any control binop objects
 
     @classmethod
     def get_C_onMessage(clazz, obj_type, obj_id, inlet_index, args):

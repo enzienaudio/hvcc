@@ -17,6 +17,7 @@ from .Connection import Connection
 from .PdObject import PdObject
 from .HeavyObject import HeavyObject
 
+
 class PdBinopObject(PdObject):
     # a translation dictionary from a Pd object to corresponding heavy object
     __PD_HEAVY_DICT = {
@@ -93,9 +94,8 @@ class PdBinopObject(PdObject):
         if len(self.obj_args) > 0:
             try:
                 self.__k = float(self.obj_args[0])
-            except:
-                self.add_warning(("\"{0}\" cannot be resolved to a number. "
-                    "Defaulting to zero.").format(self.obj_args[0]))
+            except Exception:
+                self.add_warning(f"\"{self.obj_args[0]}\" cannot be resolved to a number. Defaulting to zero.")
                 self.__k = 0.0
         else:
             self.__k = 0.0
@@ -103,18 +103,17 @@ class PdBinopObject(PdObject):
     def convert_ctrl_to_sig_connections_at_inlet(self, connection_list, inlet_index):
         """ Auto insert heavy var object inbetween control connections.
         """
-        sig_obj = HeavyObject(
-            obj_type="var",
-            obj_args=[0],
-            pos_x = int(self.pos_x),
-            pos_y = int(self.pos_y-5)) # shift upwards a few points
+        sig_obj = HeavyObject(obj_type="var",
+                              obj_args=[0],
+                              pos_x=int(self.pos_x),
+                              pos_y=int(self.pos_y - 5))  # shift upwards a few points
 
         # add sig~ object to parent graph
         self.parent_graph.add_object(sig_obj)
 
         # add connection from sig~ to this object
         c = Connection(sig_obj, 0, self, inlet_index, "~f>")
-        self.parent_graph._PdGraph__connections.append(c) # update the local connections list
+        self.parent_graph._PdGraph__connections.append(c)  # update the local connections list
         sig_obj.add_connection(c)
         self.add_connection(c)
 

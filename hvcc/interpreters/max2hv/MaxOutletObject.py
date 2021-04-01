@@ -2,6 +2,7 @@
 
 from .MaxObject import MaxObject
 
+
 class MaxOutletObject(MaxObject):
     def __init__(self, outlet_type=None, obj_id=None, pos_x=0, pos_y=0):
         MaxObject.__init__(self, "outlet", None, obj_id, pos_x, pos_y)
@@ -19,7 +20,7 @@ class MaxOutletObject(MaxObject):
         return {
             "type": "outlet",
             "args": {
-                "name": "", # max does not give an outlet name
+                "name": "",  # max does not give an outlet name
                 "index": self.__index,
                 "type": self.__outlet_type
             },

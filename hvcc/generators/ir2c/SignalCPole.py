@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalCPole(HeavyObject):
     """Handles the __cpole~f object.
     """

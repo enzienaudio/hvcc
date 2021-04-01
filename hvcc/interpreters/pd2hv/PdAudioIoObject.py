@@ -16,6 +16,7 @@
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 
+
 class PdAudioIoObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type in ["adc~", "dac~"]
@@ -23,7 +24,7 @@ class PdAudioIoObject(PdObject):
 
     def validate_configuration(self):
         # ensure that only signal connections are made to the dac
-        for i,connections in self._inlet_connections.items():
+        for i, connections in self._inlet_connections.items():
             if any(c.conn_type == "-->" for c in connections):
                 self.add_error(
                     "{0} does not support control connections (inlet {1}). They should be removed.".format(

@@ -15,6 +15,7 @@
 
 from .HeavyIrObject import HeavyIrObject
 
+
 class HIrConvolution(HeavyIrObject):
     """ __conv~f
     """

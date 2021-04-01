@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalTabread(HeavyObject):
     """Handles __tabread~if, __tabread~f, __tabreadu~f
     """
@@ -49,7 +50,7 @@ class SignalTabread(HeavyObject):
                 "sTabread_onMessage(_c, &Context(_c)->sTabread_{0}, {1}, m, &sTabread_{0}_sendMessage);".format(
                     obj_id,
                     inlet_index)]
-        else: # "__tabread~if"
+        else:  # "__tabread~if"
             return [
                 "sTabread_onMessage(_c, &Context(_c)->sTabread_{0}, {1}, m, NULL);".format(
                     obj_id,

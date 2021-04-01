@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlVar(HeavyObject):
     """An object which holds a variable. In this case only a float.
     NOTE(mhroth): maybe in the future this can hold any data structure, such as

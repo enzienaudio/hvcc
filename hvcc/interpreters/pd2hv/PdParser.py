@@ -20,24 +20,25 @@ import os
 import re
 
 from .HeavyObject import HeavyObject
-from .HeavyGraph import HeavyGraph             # pre-converted Heavy graphs
-from .HvSwitchcase import HvSwitchcase         # __switchcase
-from .PdAudioIoObject import PdAudioIoObject   # adc~/dac~
-from .PdBinopObject import PdBinopObject       # binary arithmatic operators
-from .PdGraph import PdGraph                   # canvas
-from .PdLetObject import PdLetObject           # inlet/inlet~/outlet/outlet~
-from .PdMessageObject import PdMessageObject   # msg
-from .PdPackObject import PdPackObject         # pack
-from .PdReceiveObject import PdReceiveObject   # r/r~/receive/receive~/catch~
-from .PdRouteObject import PdRouteObject       # route
-from .PdSelectObject import PdSelectObject     # select/sel
-from .PdSendObject import PdSendObject         # s/s~/send/send~/throw~
-from .PdTriggerObject import PdTriggerObject   # trigger/t
-from .PdTableObject import PdTableObject       # table
-from .PdUnpackObject import PdUnpackObject     # unpack
-from .PdLibSignalGraph import PdLibSignalGraph # pd/lib abstraction connection checks
+from .HeavyGraph import HeavyGraph              # pre-converted Heavy graphs
+from .HvSwitchcase import HvSwitchcase          # __switchcase
+from .PdAudioIoObject import PdAudioIoObject    # adc~/dac~
+from .PdBinopObject import PdBinopObject        # binary arithmatic operators
+from .PdGraph import PdGraph                    # canvas
+from .PdLetObject import PdLetObject            # inlet/inlet~/outlet/outlet~
+from .PdMessageObject import PdMessageObject    # msg
+from .PdPackObject import PdPackObject          # pack
+from .PdReceiveObject import PdReceiveObject    # r/r~/receive/receive~/catch~
+from .PdRouteObject import PdRouteObject        # route
+from .PdSelectObject import PdSelectObject      # select/sel
+from .PdSendObject import PdSendObject          # s/s~/send/send~/throw~
+from .PdTriggerObject import PdTriggerObject    # trigger/t
+from .PdTableObject import PdTableObject        # table
+from .PdUnpackObject import PdUnpackObject      # unpack
+from .PdLibSignalGraph import PdLibSignalGraph  # pd/lib abstraction connection checks
 
 from .NotificationEnum import NotificationEnum
+
 
 class PdParser:
 
@@ -81,33 +82,33 @@ class PdParser:
         hv_arg_dict = OrderedDict()
         hv_arg_list = None
         with open(pd_path, "r") as f:
-            for l in f:
-                if l.startswith("#N canvas"):
+            for li in f:
+                if li.startswith("#N canvas"):
                     hv_arg_list = []
-                    hv_arg_dict[l.rstrip(";\r\n")] = hv_arg_list
+                    hv_arg_dict[li.rstrip(";\r\n")] = hv_arg_list
                     num_canvas += 1
-                elif "@hv_arg" in l:
-                    hv_arg_list.append(l.rstrip(";\r\n"))
-                elif l.startswith("#X restore"):
+                elif "@hv_arg" in li:
+                    hv_arg_list.append(li.rstrip(";\r\n"))
+                elif li.startswith("#X restore"):
                     num_canvas -= 1
                     hv_arg_list = list(hv_arg_dict.values())[num_canvas]
         return hv_arg_dict
 
     @classmethod
     def __get_pd_line(clazz, pd_path):
-        concat = "" # concatination state
+        concat = ""  # concatination state
         with open(pd_path, "r") as f:
-            for l in f:
+            for li in f:
                 # concatenate split lines in the Pd file here
-                l = l.rstrip("\r\n") # account for windows CRLF
-                if l.endswith(";") and not l.endswith("\;"):
-                    out = l[:-1] # remove single ";"
+                li = li.rstrip("\r\n")  # account for windows CRLF
+                if li.endswith(";") and not li.endswith("\;"):
+                    out = li[:-1]  # remove single ";"
                     if len(concat) > 0:
                         out = concat + " " + out
-                        concat = "" # reset concatenation state
+                        concat = ""  # reset concatenation state
                     yield out
                 else:
-                    concat = (concat + " " + l) if len(concat) > 0 else l
+                    concat = (concat + " " + li) if len(concat) > 0 else li
 
     def add_relative_search_directory(self, search_dir):
         search_dir = os.path.abspath(os.path.join(
@@ -154,7 +155,7 @@ class PdParser:
         file_iterator = PdParser.__get_pd_line(file_path)
         canvas_line = file_iterator.__next__()
 
-        self.__DOLLAR_ZERO += 1 # increment $0
+        self.__DOLLAR_ZERO += 1  # increment $0
         graph_args = [self.__DOLLAR_ZERO] + (obj_args or [])
 
         if not canvas_line.startswith("#N canvas"):
@@ -181,7 +182,8 @@ class PdParser:
 
         return g
 
-    def graph_from_canvas(self, file_iterator, file_hv_arg_dict, canvas_line, graph_args, pd_path, pos_x=0, pos_y=0, is_root=False, pd_graph_class=PdGraph):
+    def graph_from_canvas(self, file_iterator, file_hv_arg_dict, canvas_line, graph_args,
+                          pd_path, pos_x=0, pos_y=0, is_root=False, pd_graph_class=PdGraph):
         """ Instantiate a PdGraph from an existing canvas.
             Note that graph_args includes $0.
             @param file_hv_arg_dict  A dictionary containing all Heavy argument lines
@@ -189,36 +191,36 @@ class PdParser:
             @param canvas_line  The "#N canvas" which initiates this canvas.
             @param pd_graph_class  The python class to handle specific graph types
         """
-        obj_array = None # an #A (table) object which is currently being parsed
+        obj_array = None  # an #A (table) object which is currently being parsed
 
         g = pd_graph_class(graph_args, pd_path, pos_x, pos_y)
 
         # parse and add all Heavy arguments to the graph
-        for l in file_hv_arg_dict[canvas_line]:
-            line = l.split()
+        for li in file_hv_arg_dict[canvas_line]:
+            line = li.split()
             assert line[4] == "@hv_arg"
             is_required = (line[9] == "true")
             default_value = HeavyObject.force_arg_type(line[8], line[7]) \
                 if not is_required else None
             g.add_hv_arg(
-                arg_index=int(line[5][2:])-1, # strip off the leading "\$" and make index zero-based
+                arg_index=int(line[5][2:]) - 1,  # strip off the leading "\$" and make index zero-based
                 name=line[6],
                 value_type=line[7],
                 default_value=default_value,
                 required=is_required)
 
-        try: # this try will capture any critical errors
-            for l in file_iterator:
+        try:  # this try will capture any critical errors
+            for li in file_iterator:
                 # remove width parameter
-                line = PdParser.__RE_WIDTH.sub("", l).split()
+                line = PdParser.__RE_WIDTH.sub("", li).split()
 
                 if line[0] == "#N":
                     if line[1] == "canvas":
                         x = self.graph_from_canvas(
                             file_iterator,
                             file_hv_arg_dict,
-                            canvas_line=l,
-                            graph_args=graph_args, # subpatch inherits parent graph arguments, including $0
+                            canvas_line=li,
+                            graph_args=graph_args,  # subpatch inherits parent graph arguments, including $0
                             pd_path=pd_path,
                             pos_x=int(line[2]),
                             pos_y=int(line[3]))
@@ -245,7 +247,7 @@ class PdParser:
                                     obj_args=obj_args,
                                     pos_x=int(line[2]),
                                     pos_y=int(line[3]))
-                            return x # return a Heavy object instead of a graph
+                            return x  # return a Heavy object instead of a graph
                         else:
                             # are we restoring an array object?
                             # do some final sanity checks
@@ -266,12 +268,13 @@ class PdParser:
                                     if new_size < declared_size:
                                         obj_array.obj_args["values"] = obj_args["values"][:new_size]
                                     else:
-                                        obj_array.obj_args["values"].extend([0.0 for _ in range(new_size-declared_size)])
-                                obj_array = None # done parsing the array
+                                        obj_array.obj_args["values"].extend([0.0 for _ in
+                                                                             range(new_size - declared_size)])
+                                obj_array = None  # done parsing the array
 
                             # set the subpatch name
                             g.subpatch_name = " ".join(line[5:]) if len(line) > 5 else "subpatch"
-                            return g # pop the graph
+                            return g  # pop the graph
 
                     elif line[1] == "text":
                         # @hv_arg arguments are pre-parsed
@@ -281,11 +284,11 @@ class PdParser:
                         g.add_object(HeavyObject(
                             obj_type="comment",
                             obj_args=[" ".join(line[4:])],
-                            pos_x = int(line[2]),
-                            pos_y = int(line[3])))
+                            pos_x=int(line[2]),
+                            pos_y=int(line[3])))
 
                     elif line[1] == "obj":
-                        x = None # a PdObject
+                        x = None  # a PdObject
                         if len(line) > 4:
                             obj_type = line[4]
                             # sometimes objects have $ arguments in them as well
@@ -307,8 +310,8 @@ class PdParser:
                             g.add_object(HeavyObject(
                                 obj_type="comment",
                                 obj_args=["null object placeholder"],
-                                pos_x = int(line[2]),
-                                pos_y = int(line[3])))
+                                pos_x=int(line[2]),
+                                pos_y=int(line[3])))
                             continue
 
                         # do we have an abstraction for this object?
@@ -322,27 +325,27 @@ class PdParser:
                                 is_root=False)
 
                         # is this object in lib/pd_converted?
-                        elif os.path.isfile(os.path.join(PdParser.__PDLIB_CONVERTED_DIR, obj_type+".hv.json")):
+                        elif os.path.isfile(os.path.join(PdParser.__PDLIB_CONVERTED_DIR, obj_type + ".hv.json")):
                             self.obj_counter[obj_type] += 1
-                            hv_path = os.path.join(PdParser.__PDLIB_CONVERTED_DIR, obj_type+".hv.json")
+                            hv_path = os.path.join(PdParser.__PDLIB_CONVERTED_DIR, obj_type + ".hv.json")
                             x = HeavyGraph(
                                 hv_path=hv_path,
                                 obj_args=obj_args,
                                 pos_x=int(line[2]), pos_y=int(line[3]))
 
                         # is this object in lib/heavy_converted?
-                        elif os.path.isfile(os.path.join(PdParser.__HVLIB_CONVERTED_DIR, obj_type+".hv.json")):
+                        elif os.path.isfile(os.path.join(PdParser.__HVLIB_CONVERTED_DIR, obj_type + ".hv.json")):
                             self.obj_counter[obj_type] += 1
-                            hv_path = os.path.join(PdParser.__HVLIB_CONVERTED_DIR, obj_type+".hv.json")
+                            hv_path = os.path.join(PdParser.__HVLIB_CONVERTED_DIR, obj_type + ".hv.json")
                             x = HeavyGraph(
                                 hv_path=hv_path,
                                 obj_args=obj_args,
                                 pos_x=int(line[2]), pos_y=int(line[3]))
 
                         # is this object in lib/pd?
-                        elif os.path.isfile(os.path.join(PdParser.__PDLIB_DIR, obj_type+".pd")):
+                        elif os.path.isfile(os.path.join(PdParser.__PDLIB_DIR, obj_type + ".pd")):
                             self.obj_counter[obj_type] += 1
-                            pdlib_path = os.path.join(PdParser.__PDLIB_DIR, obj_type+".pd")
+                            pdlib_path = os.path.join(PdParser.__PDLIB_DIR, obj_type + ".pd")
 
                             # mapping of pd/lib abstraction objects to classes
                             # for checking connection validity
@@ -380,9 +383,9 @@ class PdParser:
                                     "Arguments and control connections are ignored.".format(obj_type))
 
                         # is this object in lib/heavy?
-                        elif os.path.isfile(os.path.join(PdParser.__HVLIB_DIR, obj_type+".pd")):
+                        elif os.path.isfile(os.path.join(PdParser.__HVLIB_DIR, obj_type + ".pd")):
                             self.obj_counter[obj_type] += 1
-                            hvlib_path = os.path.join(PdParser.__HVLIB_DIR, obj_type+".pd")
+                            hvlib_path = os.path.join(PdParser.__HVLIB_DIR, obj_type + ".pd")
                             x = self.graph_from_file(
                                 file_path=hvlib_path,
                                 obj_args=obj_args,
@@ -421,7 +424,7 @@ class PdParser:
                     elif line[1] in ["floatatom", "symbolatom"]:
                         self.obj_counter[line[1]] += 1
                         x = self.graph_from_file(
-                            file_path=os.path.join(PdParser.__PDLIB_DIR, line[1]+".pd"),
+                            file_path=os.path.join(PdParser.__PDLIB_DIR, line[1] + ".pd"),
                             obj_args=[],
                             pos_x=int(line[2]), pos_y=int(line[3]),
                             is_root=False)
@@ -479,7 +482,7 @@ class PdParser:
                                 NotificationEnum.WARNING_DECLARE_PATH)
 
                     elif line[1] == "coords":
-                        pass # don't do anything with this command
+                        pass  # don't do anything with this command
 
                     else:
                         g.add_error("Don't know how to parse line: {0}".format(
@@ -514,21 +517,21 @@ class PdParser:
             may be used.
         """
         # TODO(mhroth): can this be done more elegantly?
-        resolved_obj_args = list(obj_args) # make a copy of the original obj_args
-        for i,a in enumerate(obj_args):
+        resolved_obj_args = list(obj_args)  # make a copy of the original obj_args
+        for i, a in enumerate(obj_args):
             for m in set(PdParser.__RE_DOLLAR.findall(a)):
-                x = int(m) # the dollar index (i.e. $x)
+                x = int(m)  # the dollar index (i.e. $x)
                 if len(graph.obj_args) > x:
-                    a = a.replace("\$"+m, str(graph.obj_args[x]))
+                    a = a.replace("\$" + m, str(graph.obj_args[x]))
 
                 # check if hv_args can be used to supply a default value
-                elif len(graph.hv_args) > (x-1): # heavy args are zero-indexed
-                    if not graph.hv_args[x-1]["required"]:
-                        a = a.replace("\$"+m, str(graph.hv_args[x-1]["default"]))
+                elif len(graph.hv_args) > (x - 1):  # heavy args are zero-indexed
+                    if not graph.hv_args[x - 1]["required"]:
+                        a = a.replace("\$" + m, str(graph.hv_args[x - 1]["default"]))
                     else:
                         graph.add_error(
                             "There is a missing required argument named \"{0}\".".format(
-                                graph.hv_args[x-1]["name"]),
+                                graph.hv_args[x - 1]["name"]),
                             NotificationEnum.ERROR_MISSING_REQUIRED_ARGUMENT)
 
                 elif is_root:
@@ -538,7 +541,7 @@ class PdParser:
                     #     "${0} in \"{1}\" in the top-level graph is resolved to "
                     #     "\"0\". It is recommended that you remove $-arguments "
                     #     "from the top-level graph.".format(m, a))
-                    a = a.replace("\$"+m, "0")
+                    a = a.replace("\$" + m, "0")
 
                 else:
                     if raise_on_failure:
@@ -548,9 +551,9 @@ class PdParser:
                         #     "Object [{0}] requires argument \"{1}\" but the parent "
                         #     "patch does not provide one ({2}). A default value of "
                         #     "\"0\" will be used.".format(obj_type, a, graph.obj_args))
-                        a = a.replace("\$"+m, "0")
+                        a = a.replace("\$" + m, "0")
                     else:
-                        a = None # indicate that this argument could not be resolved by replacing it with None
+                        a = None  # indicate that this argument could not be resolved by replacing it with None
             resolved_obj_args[i] = a
         return resolved_obj_args
 
@@ -593,5 +596,5 @@ class PdParser:
         try:
             float(x)
             return True
-        except:
+        except Exception:
             return False

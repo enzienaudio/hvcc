@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlSwitchcase(HeavyObject):
 
     c_struct = "ControlSwitchase"
@@ -31,7 +32,8 @@ class ControlSwitchcase(HeavyObject):
     @classmethod
     def get_C_decl(clazz, obj_type, obj_id, args):
         return [
-            "cSwitchcase_{0}_onMessage(HeavyContextInterface *, void *, int letIn, const HvMessage *const, void *);".format(obj_id)
+            f"cSwitchcase_{obj_id}_onMessage(HeavyContextInterface *, void *, int letIn,"
+            " const HvMessage *const, void *);"
         ]
 
     @classmethod
@@ -46,11 +48,12 @@ class ControlSwitchcase(HeavyObject):
     def get_C_impl(clazz, obj_type, obj_id, on_message_list, obj_class_dict, objects):
         # generate the onMessage implementation
         out_list = [
-            "cSwitchcase_{0}_onMessage(HeavyContextInterface *_c, void *o, int letIn, const HvMessage *const m, void *sendMessage) {{".format(
-                obj_id)]
+            f"cSwitchcase_{obj_id}_onMessage(HeavyContextInterface *_c, void *o, int letIn,"
+            " const HvMessage *const m, void *sendMessage) {{"
+        ]
         out_list.append("switch (msg_getHash(m, 0)) {")
         cases = objects[obj_id]["args"]["cases"]
-        for i,c in enumerate(cases):
+        for i, c in enumerate(cases):
             out_list.append("case {0}: {{ // \"{1}\"".format(
                 HeavyObject.get_hash_string(c),
                 c))
@@ -62,8 +65,8 @@ class ControlSwitchcase(HeavyObject):
         out_list.extend(
             HeavyObject._get_on_message_list(on_message_list[-1], obj_class_dict, objects))
         out_list.append("break;")
-        out_list.append("}") # end default
-        out_list.append("}") # end switch
-        out_list.append("}") # end function
+        out_list.append("}")  # end default
+        out_list.append("}")  # end switch
+        out_list.append("}")  # end function
 
         return out_list

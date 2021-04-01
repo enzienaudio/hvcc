@@ -19,6 +19,7 @@ import os
 from .PdObject import PdObject
 from .HeavyObject import HeavyObject
 
+
 class HeavyGraph(PdObject):
     def __init__(self, hv_path, obj_args=None, pos_x=0, pos_y=0):
         PdObject.__init__(
@@ -33,11 +34,11 @@ class HeavyGraph(PdObject):
 
         # parse the heavy data structure to determine the outlet connection type
         outlets = [o for o in self.hv_json["objects"].values() if o["type"] == "outlet"]
-        sorted(outlets, key=lambda o:o["args"]["index"])
+        sorted(outlets, key=lambda o: o["args"]["index"])
         self.__outlet_connection_types = [o["args"]["type"] for o in outlets]
 
         # resolve the arguments
-        for i,a in enumerate(self.hv_json["args"]):
+        for i, a in enumerate(self.hv_json["args"]):
             if i < len(self.obj_args):
                 arg_value = self.obj_args[i]
             elif a["required"]:
@@ -50,17 +51,17 @@ class HeavyGraph(PdObject):
                 arg_value = HeavyObject.force_arg_type(arg_value, a["value_type"])
             except Exception as e:
                 self.add_error("Heavy {0} cannot convert argument \"{1}\" with value \"{2}\" to type {3}: {4}".format(
-                        self.obj_type,
-                        a["name"],
-                        arg_value,
-                        a["value_type"],
-                        str(e)))
+                               self.obj_type,
+                               a["name"],
+                               arg_value,
+                               a["value_type"],
+                               str(e)))
 
             # resolve all arguments for each object in the graph
             for o in self.hv_json["objects"].values():
-                for k,v in o["args"].items():
+                for k, v in o["args"].items():
                     # TODO(mhroth): make resolution more robust
-                    if v == "$"+a["name"]:
+                    if v == "$" + a["name"]:
                         o["args"][k] = arg_value
 
         # reset all arguments, as they have all been resolved

@@ -6,6 +6,7 @@ import re
 
 from .MaxObject import MaxObject
 
+
 class HeavyObject(MaxObject):
 
     with open(os.path.join(os.path.dirname(__file__), "../../core/json/heavy.lang.json"), "r") as f:
@@ -30,7 +31,7 @@ class HeavyObject(MaxObject):
         # resolve arguments
         obj_args = obj_args or []
         self.obj_args = {}
-        for i,a in enumerate(self.__obj_dict["args"]):
+        for i, a in enumerate(self.__obj_dict["args"]):
             # if the argument exists and is not an unresolved dollar argument
             if len(obj_args) > i and not HeavyObject.__re_dollar.findall(obj_args[i]):
                 # TODO(mhroth): need to force type of argument?

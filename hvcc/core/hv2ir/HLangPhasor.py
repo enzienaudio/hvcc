@@ -16,6 +16,7 @@
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
 
+
 class HLangPhasor(HeavyLangObject):
     """ Translates HeavyLang object [phasor] to HeavyIR [phasor~].
     """

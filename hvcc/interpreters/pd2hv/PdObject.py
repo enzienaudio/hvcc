@@ -19,6 +19,7 @@ import string
 
 from hvcc.interpreters.pd2hv.NotificationEnum import NotificationEnum
 
+
 class PdObject:
 
     __RANDOM = random.Random()
@@ -62,7 +63,8 @@ class PdObject:
         #     "objectString": "t l l",
         #     "graphs": ["_main", "hello"],
         #     "rawText": "Heavy only supports arguments 'a', 'f', 's', and 'b'.",
-        #     "humanText": "[t l l] in "_main/osc~" @ (x:452, y:273): Heavy only supports arguments 'a', 'f', 's', and 'b'.",
+        #     "humanText": "[t l l] in "_main/osc~" @ (x:452, y:273): Heavy only supports
+        # arguments 'a', 'f', 's', and 'b'.",
         #     "position": {
         #         "x": 452,
         #         "y": 273
@@ -85,14 +87,14 @@ class PdObject:
                 {
                     "enum": n["enum"],
                     "message": "{0} in \"{1}\" @ (x:{2}, y:{3}): {4}".format(
-                    self, "/".join(self.get_graph_heirarchy()), self.pos_x, self.pos_y, n["message"])
+                        self, "/".join(self.get_graph_heirarchy()), self.pos_x, self.pos_y, n["message"])
                 } for n in self._warnings
             ],
             "errors": [
                 {
                     "enum": n["enum"],
                     "message": "{0} in \"{1}\" @ (x:{2}, y:{3}): {4}".format(
-                    self, "/".join(self.get_graph_heirarchy()), self.pos_x, self.pos_y, n["message"])
+                        self, "/".join(self.get_graph_heirarchy()), self.pos_x, self.pos_y, n["message"])
                 } for n in self._errors
             ]
         }

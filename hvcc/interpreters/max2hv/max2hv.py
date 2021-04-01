@@ -7,6 +7,7 @@ import time
 
 from .MaxParser import MaxParser
 
+
 class max2hv:
 
     @classmethod
@@ -44,6 +45,7 @@ class max2hv:
             "compile_time": (time.time() - tick)
         }
 
+
 def main():
     parser = argparse.ArgumentParser(
         description="Converts a Max patch into the Heavy language format.")
@@ -74,7 +76,8 @@ def main():
 
     if args.verbose:
         print("Heavy file written to", os.path.join(result["output_dir"], result["output_file"]))
-        print("Total max2hv compile time: {0:.2f}ms".format(result["compile_time"]*1000))
+        print("Total max2hv compile time: {0:.2f}ms".format(result["compile_time"] * 1000))
+
 
 if __name__ == "__main__":
     main()

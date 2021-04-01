@@ -16,6 +16,8 @@
 from .HeavyException import HeavyException
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
+from .HeavyParser import HeavyParser
+
 
 class HLangIf(HeavyLangObject):
     """ Translates HeavyLang object [if] to HeavyIR [if] or [if~].
@@ -23,9 +25,9 @@ class HLangIf(HeavyLangObject):
 
     def __init__(self, obj_type, args, graph, annotations=None):
         HeavyLangObject.__init__(self, "if", args, graph,
-            num_inlets=2,
-            num_outlets=2,
-            annotations=annotations)
+                                 num_inlets=2,
+                                 num_outlets=2,
+                                 annotations=annotations)
 
     def reduce(self):
         if self.has_inlet_connection_format(["cc", "_c", "c_", "__"]):

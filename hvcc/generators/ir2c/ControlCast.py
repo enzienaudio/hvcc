@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlCast(HeavyObject):
     __OPERATION_DICT = {
         "__cast_b": "HV_CAST_BANG",

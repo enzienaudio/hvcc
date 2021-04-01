@@ -15,6 +15,7 @@
 
 import os
 
+
 class PrettyfyC:
 
     @classmethod
@@ -23,20 +24,19 @@ class PrettyfyC:
             with open(file_out, "w") as g:
                 for line in f:
                     indent -= line.count("}")
-                    new_line = (" "*(step*indent)) + line
+                    new_line = (" " * (step * indent)) + line
                     g.write(new_line + os.linesep)
                     indent += line.count("{")
 
         if delete_input_on_finish:
             os.path.delete(file_in)
 
-
     @classmethod
     def prettyfy_list(clazz, list_in, indent=0, step=2):
         g = []
         for line in list_in:
             indent -= line.count("}")
-            new_line = (" "*(step*indent)) + line
+            new_line = (" " * (step * indent)) + line
             g.append(new_line)
             indent += line.count("{")
         return g

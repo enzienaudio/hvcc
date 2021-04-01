@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class HeavyTable(HeavyObject):
     """Outputs code for the table object.
     """
@@ -33,14 +34,12 @@ class HeavyTable(HeavyObject):
     @classmethod
     def get_C_decl(clazz, obj_type, obj_id, args):
         return [
-            "{0}_{1}_sendMessage(HeavyContextInterface *, int, const HvMessage *);".format(
-            clazz.preamble,
-            obj_id)
+            f"{clazz.preamble}_{obj_id}_sendMessage(HeavyContextInterface *, int, const HvMessage *);"
         ]
 
     @classmethod
     def get_table_data_decl(clazz, obj_type, obj_id, args):
-        if len(args.get("values",[])) > 0:
+        if len(args.get("values", [])) > 0:
             return [
                 "float hTable_{0}_data[{1}] = {{{2}}};".format(
                     obj_id,
@@ -51,7 +50,7 @@ class HeavyTable(HeavyObject):
 
     @classmethod
     def get_C_init(clazz, obj_type, obj_id, args):
-        if len(args.get("values",[])) > 0:
+        if len(args.get("values", [])) > 0:
             return [
                 "hTable_initWithData(&hTable_{0}, {1}, hTable_{0}_data);".format(
                     obj_id,
@@ -60,7 +59,7 @@ class HeavyTable(HeavyObject):
             return [
                 "hTable_init(&hTable_{0}, {1});".format(
                     obj_id,
-                    int(args.get("size",256)))] # 1KB default memory allocation
+                    int(args.get("size", 256)))]  # 1KB default memory allocation
 
     @classmethod
     def get_C_free(clazz, obj_type, obj_id, args):

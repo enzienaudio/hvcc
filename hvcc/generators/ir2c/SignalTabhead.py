@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalTabhead(HeavyObject):
     """Handles __tabhead~f
     """
@@ -43,7 +44,7 @@ class SignalTabhead(HeavyObject):
 
     @classmethod
     def get_C_onMessage(clazz, obj_type, obj_id, inlet_index, args):
-        return [] # TODO(mhroth): deal with this later
+        return []  # TODO(mhroth): deal with this later
 
     @classmethod
     def get_C_process(clazz, obj_type, process_dict, objects):

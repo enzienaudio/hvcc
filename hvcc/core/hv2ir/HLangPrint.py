@@ -16,6 +16,7 @@
 from .HeavyLangObject import HeavyLangObject
 from .HeavyIrObject import HeavyIrObject
 
+
 class HLangPrint(HeavyLangObject):
     """ Handles the HeavyLang "print" object.
     """
@@ -23,9 +24,9 @@ class HLangPrint(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "print"
         HeavyLangObject.__init__(self, obj_type, args, graph,
-            num_inlets=1,
-            num_outlets=0,
-            annotations=annotations)
+                                 num_inlets=1,
+                                 num_outlets=0,
+                                 annotations=annotations)
 
     def reduce(self):
         x = HeavyIrObject("__print", self.args)

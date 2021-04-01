@@ -16,6 +16,7 @@
 from .HeavyLangObject import HeavyLangObject
 from .HeavyIrObject import HeavyIrObject
 
+
 class HLangMessage(HeavyLangObject):
     """ Handles the HeavyLang "message" object.
     """
@@ -23,9 +24,9 @@ class HLangMessage(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "message"
         HeavyLangObject.__init__(self, obj_type, args, graph,
-            num_inlets=1,
-            num_outlets=1,
-            annotations=annotations)
+                                 num_inlets=1,
+                                 num_outlets=1,
+                                 annotations=annotations)
 
     def reduce(self):
         x = HeavyIrObject("__message", self.args)

@@ -18,6 +18,7 @@ import random
 from .HeavyLangObject import HeavyLangObject
 from .HeavyIrObject import HeavyIrObject
 
+
 class HLangRandom(HeavyLangObject):
     """ Handles the HeavyLang "print" object.
     """
@@ -25,9 +26,9 @@ class HLangRandom(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "random"
         HeavyLangObject.__init__(self, obj_type, args, graph,
-            num_inlets=2,
-            num_outlets=1,
-            annotations=annotations)
+                                 num_inlets=2,
+                                 num_outlets=1,
+                                 annotations=annotations)
 
     def reduce(self):
         self.args["seed"] = int(random.uniform(-2147483647, 2147483648))

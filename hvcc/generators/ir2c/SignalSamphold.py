@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalSamphold(HeavyObject):
 
     c_struct = "SignalSamphold"

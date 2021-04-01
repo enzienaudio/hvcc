@@ -16,6 +16,8 @@
 from enum import Enum
 
 # http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python
+
+
 class NotificationEnum(Enum):
     """ These enumerations refer to all possible warnings and errors produced by pd2hv.
     """
@@ -36,8 +38,6 @@ class NotificationEnum(Enum):
 
     # the message box is empty and does nothing
     WARNING_EMPTY_MESSAGE = 1004
-
-
 
     # Errors
 
@@ -67,8 +67,6 @@ class NotificationEnum(Enum):
 
     # a particular connection (type?) is not supported
     ERROR_UNSUPPORTED_CONNECTION = 2007
-
-
 
     # Exception
 

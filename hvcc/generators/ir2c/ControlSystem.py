@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlSystem(HeavyObject):
 
     c_struct = "ControlSystem"

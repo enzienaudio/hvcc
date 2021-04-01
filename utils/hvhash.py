@@ -14,9 +14,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
-import json
 
 import hvcc.core.hv2ir.HeavyLangObject as HeavyLangObject
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -27,6 +27,7 @@ def main():
     args = parser.parse_args()
 
     print("0x{0:X}".format(HeavyLangObject.HeavyLangObject.get_hash(args.string)))
+
 
 if __name__ == "__main__":
     main()

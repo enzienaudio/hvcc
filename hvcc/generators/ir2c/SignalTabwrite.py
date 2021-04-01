@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalTabwrite(HeavyObject):
     """Handles __tabwrite~f
     """

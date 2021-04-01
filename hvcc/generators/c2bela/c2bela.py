@@ -19,6 +19,7 @@ import shutil
 import time
 from ..buildjson import buildjson
 
+
 class c2bela:
     """ Generates a makefile to compile source to object files suitable for the
         bela platform.
@@ -26,8 +27,8 @@ class c2bela:
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,
-            patch_name=None, num_input_channels=0, num_output_channels=0,
-            copyright=None, verbose=False):
+                patch_name=None, num_input_channels=0, num_output_channels=0,
+                copyright=None, verbose=False):
 
         tick = time.time()
         patch_name = patch_name or "heavy"
@@ -60,7 +61,7 @@ class c2bela:
                 out_dir,
                 linux_armv7a_args=["-j"])
 
-            return  {
+            return {
                 "stage": "c2bela",
                 "notifs": {
                     "has_error": False,
@@ -72,11 +73,11 @@ class c2bela:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }
 
         except Exception as e:
-            return  {
+            return {
                 "stage": "c2bela",
                 "notifs": {
                     "has_error": True,
@@ -91,5 +92,5 @@ class c2bela:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }

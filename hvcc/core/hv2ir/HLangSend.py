@@ -16,6 +16,7 @@
 from .HeavyLangObject import HeavyLangObject
 from .HIrSend import HIrSend
 
+
 class HLangSend(HeavyLangObject):
     """ Translates HeavyLang object [send] to HeavyIR [__send] if control,
         otherwise for signal connections it will remove the send~/receive~ objects

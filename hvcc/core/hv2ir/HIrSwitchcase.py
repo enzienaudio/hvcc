@@ -15,14 +15,15 @@
 
 from .HeavyIrObject import HeavyIrObject
 
+
 class HIrSwitchcase(HeavyIrObject):
     """ A specific implementation of the __switchcase object.
     """
 
     def __init__(self, obj_type, args=None, graph=None, annotations=None):
         HeavyIrObject.__init__(self, "__switchcase",
-            args=args,
-            graph=graph,
-            num_inlets=1,
-            num_outlets=len(args["cases"])+1,
-            annotations=annotations)
+                               args=args,
+                               graph=graph,
+                               num_inlets=1,
+                               num_outlets=len(args["cases"]) + 1,
+                               annotations=annotations)
