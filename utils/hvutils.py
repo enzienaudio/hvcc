@@ -16,7 +16,7 @@
 import argparse
 import json
 
-import interpreters.pd2hv.PdParser as PdParser
+import hvcc.interpreters.pd2hv.PdParser as PdParser
 
 def main():
     parser = argparse.ArgumentParser(
@@ -28,7 +28,7 @@ def main():
 
     if args.cmd == "pdobjects":
         obj_list = PdParser.PdParser.get_supported_objects()
-        print json.dumps(obj_list)
+        print(json.dumps(obj_list))
     else:
         pass
 
