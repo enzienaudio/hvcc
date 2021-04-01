@@ -24,7 +24,7 @@ import unittest
 
 sys.path.append("../")
 import hvcc
-from interpreters.pd2hv.NotificationEnum import NotificationEnum
+from hvcc.interpreters.pd2hv.NotificationEnum import NotificationEnum
 
 SCRIPT_DIR = os.path.dirname(__file__)
 CONTROL_TEST_DIR = os.path.join(os.path.dirname(__file__), "pd", "control")
@@ -476,7 +476,7 @@ def main():
         result = TestPdControlPatches._test_control_patch(args.pd_path)
         print(result)
     else:
-        print(f"Pd file path '{args.pd_path}' doesn't exist"
+        print(f"Pd file path '{args.pd_path}' doesn't exist")
 
 if __name__ == "__main__":
     main()
