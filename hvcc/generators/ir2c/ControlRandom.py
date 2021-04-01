@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlRandom(HeavyObject):
 
     c_struct = "ControlRandom"
@@ -37,7 +38,7 @@ class ControlRandom(HeavyObject):
 
     @classmethod
     def get_C_free(clazz, obj_type, obj_id, args):
-        return [] # no need to free any control binop objects
+        return []  # no need to free any control binop objects
 
     @classmethod
     def get_C_onMessage(clazz, obj_type, obj_id, inlet_index, args):

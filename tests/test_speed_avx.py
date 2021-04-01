@@ -21,6 +21,7 @@ import unittest
 
 SCRIPT_DIR = os.path.dirname(__file__)
 
+
 def compile_and_run_patch(pd_file):
     # setup
     patch_name = os.path.splitext(os.path.basename(pd_file))[0]
@@ -67,10 +68,10 @@ def compile_and_run_patch(pd_file):
 
     c_sources = [os.path.join(c_src_dir, c) for c in os.listdir(c_src_dir) if c.endswith(".c")]
     flags = [
-        "-msse" ,"-msse2", "-msse3", "-mssse3", "-msse4.1", "-msse4.2", "-mavx",
+        "-msse", "-msse2", "-msse3", "-mssse3", "-msse4.1", "-msse4.2", "-mavx",
         "-O3", "-march=native",
-        "-funsafe-math-optimizations",  "-ffast-math", "-freciprocal-math",
-        "-ffinite-math-only",  "-fassociative-math", "-fno-trapping-math",
+        "-funsafe-math-optimizations", "-ffast-math", "-freciprocal-math",
+        "-ffinite-math-only", "-fassociative-math", "-fno-trapping-math",
         "-DNDEBUG"
     ]
 
@@ -113,7 +114,7 @@ class TestPdPatches(unittest.TestCase):
 
         # compile, run and compare patches
         for pd_file in test_patches:
-            patch_name = os.path.splitext(os.path.basename(pd_file))[0]
+            # patch_name = os.path.splitext(os.path.basename(pd_file))[0]
 
             print(
                 "##################################################\n"

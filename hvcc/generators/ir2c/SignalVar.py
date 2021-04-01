@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalVar(HeavyObject):
 
     __OPERATION_DICT = {
@@ -92,12 +93,12 @@ class SignalVar(HeavyObject):
                     HeavyObject._c_buffer(process_dict["inputBuffers"][0])
                 )]
         elif obj_type in ["__var_k~f", "__var_k~i"]:
-            if args["k"] == 0.0 and args.get("step",0.0) == 0.0:
+            if args["k"] == 0.0 and args.get("step", 0.0) == 0.0:
                 return ["__hv_zero_{0}(VO{0}({1}));".format(
                     fmt,
                     HeavyObject._c_buffer(process_dict["outputBuffers"][0]))]
             else:
-                c = [float(args["k"]+i*args.get("step",0.0)) for i in range(8)]
+                c = [float(args["k"] + i * args.get("step", 0.0)) for i in range(8)]
                 cx = ", ".join(["{0}f".format(f) for f in c]) if fmt == "f" else ", ".join([str(int(i)) for i in c])
                 return ["__hv_var_k_{0}{3}(VO{0}({1}), {2});".format(
                     fmt,

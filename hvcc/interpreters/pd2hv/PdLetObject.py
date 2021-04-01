@@ -2,6 +2,7 @@
 
 from .PdObject import PdObject
 
+
 class PdLetObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type in ["inlet", "inlet~", "outlet", "outlet~"]
@@ -18,7 +19,7 @@ class PdLetObject(PdObject):
         return {
             "type": self.obj_type.strip("~"),
             "args": {
-                "name": "", # Pd does not give an inlet name
+                "name": "",  # Pd does not give an inlet name
                 "index": self.let_index,
                 "type": self.get_outlet_connection_type()
             },

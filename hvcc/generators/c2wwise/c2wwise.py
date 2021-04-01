@@ -21,6 +21,7 @@ import jinja2
 from ..buildjson import buildjson
 from ..copyright import copyright_manager
 
+
 class c2wwise:
     """Generates a plugin wrapper for Audiokinetic's Wwise game audio middleware
     platform.
@@ -30,18 +31,18 @@ class c2wwise:
     def filter_xcode_build(clazz, s):
         """Return a build hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_build").hexdigest().upper()[0:24]
+        return hashlib.md5(s + "_build").hexdigest().upper()[0:24]
 
     @classmethod
     def filter_xcode_fileref(clazz, s):
         """Return a fileref hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_fileref").hexdigest().upper()[0:24]
+        return hashlib.md5(s + "_fileref").hexdigest().upper()[0:24]
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,
-            patch_name=None, num_input_channels=0, num_output_channels=0,
-            copyright=None, verbose=False):
+                patch_name=None, num_input_channels=0, num_output_channels=0,
+                copyright=None, verbose=False):
 
         tick = time.time()
 
@@ -62,7 +63,7 @@ class c2wwise:
 
         templates_dir = os.path.join(os.path.dirname(__file__), "templates")
         plugin_type = "Source" if num_input_channels == 0 else "FX"
-        plugin_id = int(hashlib.md5(patch_name).hexdigest()[:4], 16) & 0x7FFF # unique id from patch name [0...32767]
+        plugin_id = int(hashlib.md5(patch_name).hexdigest()[:4], 16) & 0x7FFF  # unique id from patch name [0...32767]
 
         env = jinja2.Environment()
         env.filters["xcode_build"] = c2wwise.filter_xcode_build
@@ -76,7 +77,8 @@ class c2wwise:
                 if num_input_channels > 2:
                     raise Exception("Wwise FX plugins support a maximum of 2 channels (i.e. [adc~ 1] or [adc~ 1 2]).")
                 if num_input_channels != num_output_channels:
-                    raise Exception("Wwise FX plugins require the same input/output channel configuration (i.e. [adc~ 1] -> [dac~ 1]).")
+                    raise Exception("Wwise FX plugins require the same input/output channel"
+                                    "configuration (i.e. [adc~ 1] -> [dac~ 1]).")
 
             # copy over generated C source files
             patch_src_dir = os.path.join(out_dir, "source", "heavy")
@@ -139,8 +141,8 @@ class c2wwise:
                     file_path = os.path.join(
                         out_dir,
                         os.path.dirname(xcode_proj_dir[0]),
-                        "Hv_" + patch_name + "_Wwise" + plugin_type + \
-                            os.path.basename(xcode_proj_dir[0]) + xcode_proj_dir[1],
+                        f"Hv_ {patch_name}_Wwise {plugin_type}"
+                        f" {os.path.basename(xcode_proj_dir[0])} {xcode_proj_dir[1]}",
                         os.path.basename(f))
                 else:
                     file_path = f.replace("{{name}}", patch_name)
@@ -167,7 +169,7 @@ class c2wwise:
             linux_makefile = os.path.join(out_dir, "linux", "Makefile")
 
             if not os.path.exists(os.path.dirname(linux_makefile)):
-                    os.makedirs(os.path.dirname(linux_makefile))
+                os.makedirs(os.path.dirname(linux_makefile))
 
             with open(linux_makefile, "w") as g:
                 g.write(env.get_template("linux/Makefile").render(
@@ -201,7 +203,7 @@ class c2wwise:
                     "/t:Rebuild", "/m",
                     "{0}.sln".format(proj_name)])
 
-            return  {
+            return {
                 "stage": "c2wwise",
                 "notifs": {
                     "has_error": False,
@@ -213,11 +215,11 @@ class c2wwise:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }
 
         except Exception as e:
-            return  {
+            return {
                 "stage": "c2wwise",
                 "notifs": {
                     "has_error": True,
@@ -232,5 +234,5 @@ class c2wwise:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }

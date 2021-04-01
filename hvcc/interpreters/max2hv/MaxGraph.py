@@ -5,6 +5,7 @@ import os
 from .Connection import Connection
 from .MaxObject import MaxObject
 
+
 class MaxGraph(MaxObject):
     def __init__(self, obj_type=None, obj_args=None, obj_id=None, pos_x=0, pos_y=0, max_path=None):
         MaxObject.__init__(self, "patcher", obj_args, obj_id, pos_x, pos_y)
@@ -46,7 +47,7 @@ class MaxGraph(MaxObject):
             "type": "graph",
             "imports": [],
             "args": [],
-            "objects": {k:v.to_hv() for k,v in self.__objs.iteritems()},
+            "objects": {k: v.to_hv() for k, v in self.__objs.iteritems()},
             "connections": [c.to_hv() for c in self.__connections],
             "properties": {
                 "x": self.pos_x,

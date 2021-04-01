@@ -20,6 +20,7 @@ import time
 import jinja2
 from ..copyright import copyright_manager
 
+
 class c2pdext:
     """Generates a Pure Data external wrapper for a given patch.
     """
@@ -34,19 +35,19 @@ class c2pdext:
     def filter_xcode_build(clazz, s):
         """Return a build hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_build").hexdigest().upper()[0:24]
+        return hashlib.md5(s + "_build").hexdigest().upper()[0:24]
 
     @classmethod
     def filter_xcode_fileref(clazz, s):
         """Return a fileref hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_fileref").hexdigest().upper()[0:24]
+        return hashlib.md5(s + "_fileref").hexdigest().upper()[0:24]
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,
-            patch_name=None, ext_name=None,
-            num_input_channels=0, num_output_channels=0,
-            copyright=None, verbose=False):
+                patch_name=None, ext_name=None,
+                num_input_channels=0, num_output_channels=0,
+                copyright=None, verbose=False):
 
         tick = time.time()
         receiver_list = externs["parameters"]["in"]
@@ -54,7 +55,7 @@ class c2pdext:
         copyright = copyright_manager.get_copyright_for_c(copyright)
 
         patch_name = patch_name or "heavy"
-        ext_name = ext_name or (patch_name+"~")
+        ext_name = ext_name or (patch_name + "~")
         struct_name = patch_name + "_tilde"
 
         # ensure that the output directory does not exist
@@ -93,7 +94,7 @@ class c2pdext:
 
             # generate Xcode project
             xcode_path = os.path.join(out_dir, "{0}.xcodeproj".format(struct_name))
-            os.mkdir(xcode_path) # create the xcode project bundle
+            os.mkdir(xcode_path)  # create the xcode project bundle
             pbxproj_path = os.path.join(xcode_path, "project.pbxproj")
 
             # generate list of source files
@@ -105,7 +106,7 @@ class c2pdext:
                     name=ext_name,
                     files=files))
 
-            return  {
+            return {
                 "stage": "c2pdext",
                 "notifs": {
                     "has_error": False,
@@ -117,11 +118,11 @@ class c2pdext:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": os.path.basename(pdext_path),
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }
 
         except Exception as e:
-            return  {
+            return {
                 "stage": "c2pdext",
                 "notifs": {
                     "has_error": True,
@@ -136,5 +137,5 @@ class c2pdext:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": os.path.basename(pdext_path),
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }

@@ -16,6 +16,7 @@
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
 
+
 class HLangDelay(HeavyLangObject):
     """ Handle the delay object.
     """
@@ -23,9 +24,9 @@ class HLangDelay(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "delay"
         HeavyLangObject.__init__(self, "delay", args, graph,
-            num_inlets=2,
-            num_outlets=1,
-            annotations=annotations)
+                                 num_inlets=2,
+                                 num_outlets=1,
+                                 annotations=annotations)
 
     def reduce(self):
         x = HeavyIrObject("__delay", self.args, annotations=self.annotations)

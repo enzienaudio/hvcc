@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlTabhead(HeavyObject):
     """Handles __tabhead
     """

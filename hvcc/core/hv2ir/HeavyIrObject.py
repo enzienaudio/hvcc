@@ -16,9 +16,10 @@
 import json
 import os
 
-from .Connection import Connection
-from .HeavyException import HeavyException
-from .HeavyLangObject import HeavyLangObject
+from hvcc.core.hv2ir.Connection import Connection
+from hvcc.core.hv2ir.HeavyException import HeavyException
+from hvcc.core.hv2ir.HeavyLangObject import HeavyLangObject
+
 
 class HeavyIrObject(HeavyLangObject):
     """ Intermediate Representation (IR) objects are atomic and have
@@ -32,11 +33,9 @@ class HeavyIrObject(HeavyLangObject):
 
     def __init__(self, obj_type, args=None, graph=None, num_inlets=-1, num_outlets=-1, annotations=None):
         # allow the number of inlets and outlets to be overridden
-        num_inlets = len(HeavyIrObject.__HEAVY_OBJS_IR_DICT[obj_type]["inlets"]) \
-        if num_inlets < 0 else num_inlets
+        num_inlets = len(HeavyIrObject.__HEAVY_OBJS_IR_DICT[obj_type]["inlets"]) if num_inlets < 0 else num_inlets
 
-        num_outlets = len(HeavyIrObject.__HEAVY_OBJS_IR_DICT[obj_type]["outlets"]) \
-        if num_outlets < 0 else num_outlets
+        num_outlets = len(HeavyIrObject.__HEAVY_OBJS_IR_DICT[obj_type]["outlets"]) if num_outlets < 0 else num_outlets
 
         HeavyLangObject.__init__(self, obj_type, args, graph, num_inlets, num_outlets, annotations)
 
@@ -126,11 +125,11 @@ class HeavyIrObject(HeavyLangObject):
     def assign_signal_buffers(self, buffer_pool):
         # assign the inlet buffers
         for cc in self.inlet_connections:
-            cc = [c for c in cc if c.is_signal] # only need to deal with signal connections
+            cc = [c for c in cc if c.is_signal]  # only need to deal with signal connections
             if len(cc) == 0:
                 continue
             if len(cc) == 1:
-                c = cc[0] # get the connection
+                c = cc[0]  # get the connection
 
                 # get the buffer at the outlet of the connected object
                 buf = c.from_object.outlet_buffers[c.outlet_index]
@@ -153,8 +152,7 @@ class HeavyIrObject(HeavyLangObject):
             # then we skip this set
 
             connection_type = self._resolved_outlet_type(outlet_index=i)
-            if Connection.is_signal_type(connection_type) and \
-            self.outlet_buffers[i][0] == "zero":
+            if Connection.is_signal_type(connection_type) and self.outlet_buffers[i][0] == "zero":
                 b = buffer_pool.get_buffer(
                     connection_type,
                     len(self.outlet_connections[i]),
@@ -171,8 +169,6 @@ class HeavyIrObject(HeavyLangObject):
             This information is always well-defined for IR objects.
         """
         return self.__obj_desc["outlets"][outlet_index]
-
-
 
     #
     # Intermediate Representation generators
@@ -232,9 +228,9 @@ class HeavyIrObject(HeavyLangObject):
         return [{
             "id": self.id,
             "inputBuffers": [
-                {"type": b[0], "index": b[1]} for i,b in enumerate(self.inlet_buffers) \
+                {"type": b[0], "index": b[1]} for i, b in enumerate(self.inlet_buffers)
                 if self.inlet_requires_signal(i)],
             "outputBuffers": [
-                {"type": b[0], "index": b[1]} for i,b in enumerate(self.outlet_buffers) \
+                {"type": b[0], "index": b[1]} for i, b in enumerate(self.outlet_buffers)
                 if self.outlet_requires_signal(i)]
         }]

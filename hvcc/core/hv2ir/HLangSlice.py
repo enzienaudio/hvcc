@@ -16,6 +16,7 @@
 from .HeavyLangObject import HeavyLangObject
 from .HeavyIrObject import HeavyIrObject
 
+
 class HLangSlice(HeavyLangObject):
     """ Handles the HeavyLang "slice" object.
     """
@@ -23,9 +24,9 @@ class HLangSlice(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "slice"
         HeavyLangObject.__init__(self, obj_type, args, graph,
-            num_inlets=3,
-            num_outlets=2,
-            annotations=annotations)
+                                 num_inlets=3,
+                                 num_outlets=2,
+                                 annotations=annotations)
 
     def reduce(self):
         x = HeavyIrObject("__slice", self.args)

@@ -19,6 +19,7 @@ import time
 import jinja2
 from ..copyright import copyright_manager
 
+
 class c2js:
     """Compiles a directory of C source files into javascript. Requires the
     emscripten library to be installed - https://github.com/kripken/emscripten
@@ -83,14 +84,14 @@ class c2js:
         for c in c_src_paths:
             obj_path = os.path.splitext(c)[0] + ".o"
             cmd = [emcc_path] + c_flags + ["-c", "-o", obj_path, c]
-            subprocess.check_output(cmd) # run emscripten
+            subprocess.check_output(cmd)  # run emscripten
             obj_paths += [obj_path]
 
         # compile C++ files
         for cpp in cpp_src_paths:
             obj_path = os.path.splitext(cpp)[0] + ".o"
             cmd = [emcpp_path] + c_flags + ["-std=c++11"] + ["-c", "-o", obj_path, cpp]
-            subprocess.check_output(cmd) # run emscripten
+            subprocess.check_output(cmd)  # run emscripten
             obj_paths += [obj_path]
 
         # exported heavy api methods
@@ -114,18 +115,18 @@ class c2js:
         cmd = [emcc_path] + obj_paths + linker_flags
 
         # run emscripten twice!
-        subprocess.check_output( # fallback asm.js build
+        subprocess.check_output(  # fallback asm.js build
             cmd + [
                 "-s", "EXPORT_NAME='{0}_AsmModule'".format(patch_name),
                 "-o", asm_js_path
-        ])
+            ])
 
-        subprocess.check_output( # WASM
+        subprocess.check_output(  # WASM
             cmd + [
                 "-s", "WASM=1",
                 "-s", "EXPORT_NAME='{0}_Module'".format(patch_name),
                 "-o", wasm_js_path
-        ])
+            ])
 
         # clean up
         for o in obj_paths:
@@ -135,8 +136,8 @@ class c2js:
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,
-            patch_name=None, num_input_channels=0, num_output_channels=0,
-            copyright=None, verbose=False):
+                patch_name=None, num_input_channels=0, num_output_channels=0,
+                copyright=None, verbose=False):
 
         tick = time.time()
 
@@ -170,11 +171,10 @@ class c2js:
                     externs=externs,
                     pool_sizes_kb=externs["memoryPoolSizesKb"]))
 
-            js_path = c2js.run_emscripten(
-                 c_src_dir=c_src_dir,
-                 out_dir=out_dir,
-                 patch_name=patch_name,
-                 post_js_path=post_js_path)
+            js_path = c2js.run_emscripten(c_src_dir=c_src_dir,
+                                          out_dir=out_dir,
+                                          patch_name=patch_name,
+                                          post_js_path=post_js_path)
 
             # delete temporary files
             os.remove(post_js_path)
@@ -190,7 +190,7 @@ class c2js:
                     events=event_list,
                     copyright=copyright_html))
 
-            return  {
+            return {
                 "stage": "c2js",
                 "notifs": {
                     "has_error": False,
@@ -202,11 +202,11 @@ class c2js:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": js_out_file,
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }
 
         except Exception as e:
-            return  {
+            return {
                 "stage": "c2js",
                 "notifs": {
                     "has_error": True,
@@ -221,5 +221,5 @@ class c2js:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }

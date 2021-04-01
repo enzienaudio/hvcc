@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalBiquad(HeavyObject):
     """Handles the biquad~ object.
     """
@@ -48,7 +49,7 @@ class SignalBiquad(HeavyObject):
                 float(args["ff1"]),
                 float(args["ff2"]),
                 float(args["fb1"]),
-                float(args["fb2"]))];
+                float(args["fb2"]))]
         elif obj_type == "__biquad~f":
             return ["sBiquad_init(&sBiquad_s_{0});".format(obj_id)]
         else:

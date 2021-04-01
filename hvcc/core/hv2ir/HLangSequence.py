@@ -18,20 +18,21 @@ from .HeavyException import HeavyException
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
 
+
 class HLangSequence(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         # get the number of outlets that this object has
         num_outlets = len(args[HeavyLangObject._HEAVY_LANG_DICT[obj_type]["args"][0]["name"]])
         HeavyLangObject.__init__(self, obj_type, args, graph,
-            num_inlets=1,
-            num_outlets=num_outlets,
-            annotations=annotations)
+                                 num_inlets=1,
+                                 num_outlets=num_outlets,
+                                 annotations=annotations)
 
     def reduce(self):
         cast_objs = []
         for a in self.args[self.name_for_arg()]:
             if a in ["a", "anything", "l", "list"]:
-                cast_objs.append(None) # pass through
+                cast_objs.append(None)  # pass through
             elif a in ["b", "bang"]:
                 cast_objs.append(HeavyIrObject("__cast_b", {}))
             elif a in ["f", "float"]:
@@ -39,14 +40,14 @@ class HLangSequence(HeavyLangObject):
             elif a in ["s", "symbol"]:
                 cast_objs.append(HeavyIrObject("__cast_s", {}))
             else:
-                raise HeavyException("Unsupported cast type \"{0}\".".format(a))
+                raise HeavyException(f"Unsupported cast type '{a}'.")
 
         connections = []
 
         # establish connections from inlet objects to the cast objects
         for ci in self.inlet_connections[0]:
             c_list = []
-            for i in range(self.num_outlets-1, -1, -1):
+            for i in range(self.num_outlets - 1, -1, -1):
                 if cast_objs[i] is not None:
                     c_list.append(Connection.copy(ci, to_object=cast_objs[i], inlet_index=0))
                 else:
@@ -56,7 +57,7 @@ class HLangSequence(HeavyLangObject):
             connections.append((ci, c_list))
 
         # establish connections from the cast objects
-        for i in range(self.num_outlets-1,-1,-1):
+        for i in range(self.num_outlets - 1, -1, -1):
             if cast_objs[i] is not None:
                 for c in self.outlet_connections[i]:
                     connections.append((c, [c.copy(from_object=cast_objs[i], outlet_index=0)]))

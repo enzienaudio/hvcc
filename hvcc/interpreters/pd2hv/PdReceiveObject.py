@@ -16,6 +16,7 @@
 from .PdObject import PdObject
 from .pdowl import parse_pd_owl_args, PdOwlException
 
+
 class PdReceiveObject(PdObject):
 
     __INSTANCE_COUNTER = 0
@@ -27,7 +28,7 @@ class PdReceiveObject(PdObject):
         self.__receiver_name = ""
         self.__extern_type = None
         self.__attributes = {}
-        self.__priority = None # priority is not set
+        self.__priority = None  # priority is not set
 
         PdReceiveObject.__INSTANCE_COUNTER += 1
         self.__instance = PdReceiveObject.__INSTANCE_COUNTER
@@ -46,7 +47,7 @@ class PdReceiveObject(PdObject):
                     self.__extern_type = "event"
                 elif int(self.obj_args[1]):
                     self.__priority = int(self.obj_args[1])
-        except:
+        except Exception:
             pass
 
         if self.__extern_type == "param":
@@ -61,44 +62,44 @@ class PdReceiveObject(PdObject):
                 self.__attributes["default"] = float(self.obj_args[4])
             except ValueError:
                 self.add_warning(
-                    "Minimum, maximum, and default values for Parameter "
-                    + self.__receiver_name + " must be numbers.")
-            except:
+                    f"Minimum, maximum, and default values for Parameter {self.__receiver_name}  must be numbers.")
+            except Exception:
                 pass
 
             if not (self.__attributes["min"] <= self.__attributes["default"]):
-                self.add_error("Default parameter value is less than the minimum. Receiver will not be exported: {0:g} < {1:g}".format(
-                    self.__attributes["default"],
-                    self.__attributes["min"]))
+                self.add_error("Default parameter value is less than the minimum. "
+                               "Receiver will not be exported: {0:g} < {1:g}".format(
+                                   self.__attributes["default"],
+                                   self.__attributes["min"]))
                 self.__extern_type = None
             if not (self.__attributes["default"] <= self.__attributes["max"]):
-                self.add_error("Default parameter value is greater than the maximum. Receiver will not be exported: {0:g} > {1:g}".format(
-                    self.__attributes["default"],
-                    self.__attributes["max"]))
+                self.add_error("Default parameter value is greater than the maximum. "
+                               "Receiver will not be exported: {0:g} > {1:g}".format(
+                                   self.__attributes["default"],
+                                   self.__attributes["max"]))
                 self.__extern_type = None
 
         if '@owl' in self.obj_args or '@owl_param' in self.obj_args:
             try:
                 pd_owl_args = parse_pd_owl_args(self.obj_args)
                 self.__attributes.update(pd_owl_args)
-                self.__extern_type = "param" # make sure output code is generated
+                self.__extern_type = "param"  # make sure output code is generated
             except PdOwlException as e:
                 self.add_error(e)
 
-
     def validate_configuration(self):
         if self.obj_type in ["r~", "receive~"]:
-            if len(self._inlet_connections.get("0",[])) > 0:
+            if len(self._inlet_connections.get("0", [])) > 0:
                 self.add_error("[receive~] inlet connections are not supported.")
 
     def to_hv(self):
         # note: control rate send objects should not modify their name argument
         names = {
-            "r" : "",
-            "receive" : "",
-            "r~" : "sndrcv_sig_",
-            "receive~" : "sndrcv_sig_",
-            "catch~" : "thrwctch_sig_"
+            "r": "",
+            "receive": "",
+            "r~": "sndrcv_sig_",
+            "receive~": "sndrcv_sig_",
+            "catch~": "thrwctch_sig_"
         }
 
         # NOTE(mhroth): we follow Pd's execution rule: deeper receivers fire first.
@@ -118,7 +119,7 @@ class PdReceiveObject(PdObject):
                 "x": self.pos_x,
                 "y": self.pos_y
             },
-            "annotations" :  {
-                "scope" : "public"
+            "annotations": {
+                "scope": "public"
             }
         }

@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlSend(HeavyObject):
 
     c_struct = "ControlSend"
@@ -44,6 +45,6 @@ class ControlSend(HeavyObject):
         send_message_list.extend(
             HeavyObject._get_on_message_list(on_message_list[0], get_obj_class, objects))
 
-        send_message_list.append("}") # end function
+        send_message_list.append("}")  # end function
 
         return send_message_list

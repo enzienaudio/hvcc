@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlTabread(HeavyObject):
 
     c_struct = "ControlTabread"

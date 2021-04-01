@@ -15,6 +15,7 @@
 
 from .HeavyIrObject import HeavyIrObject
 
+
 class HIrTabwrite(HeavyIrObject):
     """ __tabwrite~f
     """

@@ -6,6 +6,7 @@ from .Connection import Connection
 from .PdGraph import PdGraph
 from .HeavyObject import HeavyObject
 
+
 class PdLibSignalGraph(PdGraph):
 
     def __init__(self, obj_args, pd_path, pos_x=0, pos_y=0):
@@ -26,13 +27,13 @@ class PdLibSignalGraph(PdGraph):
             sig_obj = HeavyObject(
                 obj_type="var",
                 obj_args=[0],
-                pos_x = int(self.pos_x),
-                pos_y = int(self.pos_y-5)) # shift upwards a few points
+                pos_x=int(self.pos_x),
+                pos_y=int(self.pos_y - 5))  # shift upwards a few points
             self.parent_graph.add_object(sig_obj)
 
             # add connection from sig~ to this abstraction
             c = Connection(sig_obj, 0, self, 0, "~f>")
-            self.parent_graph._PdGraph__connections.append(c) # update the local connections list
+            self.parent_graph._PdGraph__connections.append(c)  # update the local connections list
             sig_obj.add_connection(c)
             self.add_connection(c)
 

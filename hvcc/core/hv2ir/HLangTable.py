@@ -17,24 +17,25 @@ import re
 from .HeavyLangObject import HeavyLangObject
 from .HeavyIrObject import HeavyIrObject
 
+
 class HLangTable(HeavyLangObject):
     """ Handles the HeavyLang "table" object.
     """
 
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "table"
-        HeavyLangObject.__init__(self, obj_type, args, graph,
-            annotations=annotations)
+        HeavyLangObject.__init__(self, obj_type, args, graph, annotations=annotations)
 
         # the values argument overrides the size argument
-        if len(self.args.get("values",[])) > 0:
+        if len(self.args.get("values", [])) > 0:
             self.args["size"] = len(self.args["values"])
 
         if self.args["extern"]:
             # externed tables must contain only alphanumeric characters or underscores,
             # so that the names can be easily and transparently turned into code
             if re.search("\W", args["name"]):
-                self.add_error("Table names may only contain alphanumeric characters or underscore: '{0}'".format(args["name"]))
+                self.add_error("Table names may only contain alphanumeric characters"
+                               f"or underscore: '{args['name']}'")
 
     def reduce(self):
         x = HeavyIrObject("__table", self.args)

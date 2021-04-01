@@ -33,13 +33,11 @@ class Connection:
     def copy(self, from_object=None, outlet_index=None, to_object=None, inlet_index=None, type=None):
         """ Create a new connection based on the existing one, changing the given values.
         """
-        return Connection(
-            from_object = self.from_object if from_object is None else from_object,
-            outlet_index = self.outlet_index if outlet_index is None else outlet_index,
-            to_object = self.to_object if to_object is None else to_object,
-            inlet_index = self.inlet_index if inlet_index is None else inlet_index,
-            conn_type = self.type if type is None else type
-        )
+        return Connection(from_object=self.from_object if from_object is None else from_object,
+                          outlet_index=self.outlet_index if outlet_index is None else outlet_index,
+                          to_object=self.to_object if to_object is None else to_object,
+                          inlet_index=self.inlet_index if inlet_index is None else inlet_index,
+                          conn_type=self.type if type is None else type)
 
     @property
     def is_signal(self):

@@ -17,6 +17,7 @@ from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 from .pdowl import parse_pd_owl_args, PdOwlException
 
+
 class PdSendObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type in ["s", "send", "s~", "send~", "throw~"]
@@ -36,17 +37,16 @@ class PdSendObject(PdObject):
                     self.__extern_type = "param"
                 elif self.obj_args[1] == "@hv_event":
                     self.__extern_type = "event"
-        except:
+        except Exception:
             pass
 
         if '@owl' in self.obj_args or '@owl_param' in self.obj_args:
             try:
                 pd_owl_args = parse_pd_owl_args(self.obj_args)
                 self.__attributes.update(pd_owl_args)
-                self.__extern_type = "param" # make sure output code is generated
+                self.__extern_type = "param"  # make sure output code is generated
             except PdOwlException as e:
                 self.add_error(e)
-
 
     def validate_configuration(self):
         if len(self.obj_args) == 0:
@@ -54,12 +54,12 @@ class PdSendObject(PdObject):
                 "No name was given to this {0} object. "
                 "It should have a name to reduce the risk of errors.".format(self.obj_type),
                 NotificationEnum.WARNING_USELESS_OBJECT)
-        if len(self._inlet_connections.get("0",[])) == 0:
+        if len(self._inlet_connections.get("0", [])) == 0:
             self.add_warning(
                 "This object has no inlet connections. "
                 "It does nothing and will be removed.",
                 NotificationEnum.WARNING_USELESS_OBJECT)
-        if self.obj_type in ["s", "send"] and len(self._inlet_connections.get("1",[])) > 0:
+        if self.obj_type in ["s", "send"] and len(self._inlet_connections.get("1", [])) > 0:
             self.add_error(
                 "Connections to the right inlet of a send object "
                 "are not supported. A name should be given.",
@@ -68,11 +68,11 @@ class PdSendObject(PdObject):
     def to_hv(self):
         # note: control rate send/receive objects should not modify their name argument
         names = {
-            "s" : "",
-            "send" : "",
-            "s~" : "sndrcv_sig_",
-            "send~" : "sndrcv_sig_",
-            "throw~" : "thrwctch_sig_"
+            "s": "",
+            "send": "",
+            "s~": "sndrcv_sig_",
+            "send~": "sndrcv_sig_",
+            "throw~": "thrwctch_sig_"
         }
 
         return {
@@ -86,7 +86,7 @@ class PdSendObject(PdObject):
                 "x": self.pos_x,
                 "y": self.pos_y
             },
-            "annotations" :  {
-                "scope" : "public"
+            "annotations": {
+                "scope": "public"
             }
         }

@@ -46,6 +46,7 @@ class Colours:
     underline = "\033[4m"
     end = "\033[0m"
 
+
 def add_error(results, error):
     if "hvcc" in results:
         results["hvcc"]["notifs"]["errors"].append({"message": error})
@@ -61,6 +62,7 @@ def add_error(results, error):
         }
     return results
 
+
 def check_extern_name_conflicts(extern_type, extern_list, results):
     """ In most of the generator code extern names become capitalised when used
         as enums. This method makes sure that there are no cases where two unique
@@ -69,12 +71,12 @@ def check_extern_name_conflicts(extern_type, extern_list, results):
         have a list of all extern names.
     """
     for i, v in enumerate(extern_list):
-        for j, u in enumerate(extern_list[i+1:]):
+        for j, u in enumerate(extern_list[i + 1:]):
             if v[0].upper() == u[0].upper():
                 add_error(results,
-                        "Conflicting {0} names '{1}' and '{2}', make sure that "
-                        "capital letters are not the only difference.".format(
-                            extern_type, v[0], u[0]))
+                          "Conflicting {0} names '{1}' and '{2}', make sure that "
+                          "capital letters are not the only difference.".format(extern_type, v[0], u[0]))
+
 
 def generate_extern_info(hvir, results):
     """ Simplifies the receiver/send and table lists by only containing values
@@ -105,7 +107,7 @@ def generate_extern_info(hvir, results):
     check_extern_name_conflicts("output event", out_event_list, results)
 
     # Exposed tables
-    table_list = [(k, v) for k, v in hvir["tables"].items() if v.get("extern", None) == True]
+    table_list = [(k, v) for k, v in hvir["tables"].items() if v.get("extern", None)]
     table_list.sort(key=lambda x: x[0])
     check_extern_name_conflicts("table", table_list, results)
 
@@ -121,17 +123,18 @@ def generate_extern_info(hvir, results):
         "tables": table_list,
         # generate patch heuristics to ensure enough memory allocated for the patch
         "memoryPoolSizesKb": {
-            "internal": 10, # TODO(joe): should this increase if there are a lot of internal connections?
+            "internal": 10,  # TODO(joe): should this increase if there are a lot of internal connections?
             "inputQueue": max(2, int(len(in_parameter_list) + len(in_event_list) / 4)),
             "outputQueue": max(2, int(len(out_parameter_list) + len(out_event_list) / 4)),
         }
     }
 
-def compile_dataflow(in_path, out_dir, patch_name=None,
-        search_paths=None, generators=None, verbose=False,
-        copyright=None, hvir=None):
 
-    results = OrderedDict() # default value, empty dictionary
+def compile_dataflow(in_path, out_dir, patch_name=None,
+                     search_paths=None, generators=None, verbose=False,
+                     copyright=None, hvir=None):
+
+    results = OrderedDict()  # default value, empty dictionary
 
     # basic error checking on input
     if os.path.isfile(in_path):
@@ -169,7 +172,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
         results["hv2ir"] = hv2ir.hv2ir.compile(
             hv_file=os.path.join(list(results.values())[0]["out_dir"], list(results.values())[0]["out_file"]),
             # ensure that the ir filename has no funky characters in it
-            ir_file=os.path.join(out_dir, "ir", re.sub("\W", "_", patch_name)+".heavy.ir.json"),
+            ir_file=os.path.join(out_dir, "ir", re.sub("\W", "_", patch_name) + ".heavy.ir.json"),
             patch_name=patch_name,
             verbose=verbose)
 
@@ -287,7 +290,7 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
             c_src_dir=c_src_dir,
             out_dir=os.path.join(out_dir, "pdext"),
             patch_name=patch_name,
-            ext_name=patch_name+"~",
+            ext_name=patch_name + "~",
             num_input_channels=num_input_channels,
             num_output_channels=num_output_channels,
             externs=externs,
@@ -321,11 +324,13 @@ def compile_dataflow(in_path, out_dir, patch_name=None,
 
     return results
 
+
 def main():
     tick = time.time()
 
     parser = argparse.ArgumentParser(
-        description="This is the Enzien Audio Heavy compiler. It compiles supported dataflow languages into C, and other supported frameworks.")
+        description="This is the Enzien Audio Heavy compiler. It compiles supported dataflow languages into C,"
+                    " and other supported frameworks.")
     parser.add_argument(
         "in_path",
         help="The input dataflow file.")
@@ -351,7 +356,8 @@ def main():
         help="List of generator outputs: c, unity, wwise, js, vst2, dpf, fabric")
     parser.add_argument(
         "--results_path",
-        help="Write results dictionary to the given path as a JSON-formatted string. Target directory will be created if it does not exist.")
+        help="Write results dictionary to the given path as a JSON-formatted string."
+             " Target directory will be created if it does not exist.")
     parser.add_argument(
         "-v",
         "--verbose",
@@ -375,13 +381,12 @@ def main():
     for r in list(results.values()):
         # print any errors
         if r["notifs"].get("has_error", False):
-            for i,error in enumerate(r["notifs"].get("errors", [])):
+            for i, error in enumerate(r["notifs"].get("errors", [])):
                 print("{4:3d}) {2}Error{3} {0}: {1}".format(
-                    r["stage"], error["message"], Colours.red, Colours.end, i+1))
+                    r["stage"], error["message"], Colours.red, Colours.end, i + 1))
 
             # only print exception if no errors are indicated
-            if len(r["notifs"].get("errors", [])) == 0 and \
-            r["notifs"].get("exception",None) is not None:
+            if len(r["notifs"].get("errors", [])) == 0 and r["notifs"].get("exception", None) is not None:
                 print("{2}Error{3} {0} exception: {1}".format(
                     r["stage"], r["notifs"]["exception"], Colours.red, Colours.end))
 
@@ -389,9 +394,9 @@ def main():
             r["notifs"]["exception"] = []
 
         # print any warnings
-        for i,warning in enumerate(r["notifs"].get("warnings", [])):
+        for i, warning in enumerate(r["notifs"].get("warnings", [])):
             print("{4:3d}) {2}Warning{3} {0}: {1}".format(
-                r["stage"], warning["message"], Colours.yellow, Colours.end, i+1))
+                r["stage"], warning["message"], Colours.yellow, Colours.end, i + 1))
 
     if args.results_path:
         results_path = os.path.realpath(os.path.abspath(args.results_path))
@@ -404,7 +409,8 @@ def main():
             json.dump(results, f)
 
     if args.verbose:
-        print("Total compile time: {0:.2f}ms".format(1000*(time.time()-tick)))
+        print("Total compile time: {0:.2f}ms".format(1000 * (time.time() - tick)))
+
 
 if __name__ == "__main__":
     main()

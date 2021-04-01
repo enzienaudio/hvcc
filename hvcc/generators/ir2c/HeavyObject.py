@@ -13,7 +13,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from struct import *
+from struct import unpack, pack
+
 
 class HeavyObject:
 
@@ -54,11 +55,9 @@ class HeavyObject:
 
     @classmethod
     def get_C_decl(clazz, obj_type, obj_id, args):
-        return [
-            "{0}_{1}_sendMessage(HeavyContextInterface *, int, const HvMessage *);".format(
-            clazz.get_preamble(obj_type),
-            obj_id)
-        ]
+        return ["{0}_{1}_sendMessage(HeavyContextInterface *, int, const HvMessage *);".format(
+                clazz.get_preamble(obj_type),
+                obj_id)]
 
     @classmethod
     def get_C_impl(clazz, obj_type, obj_id, on_message_list, get_obj_class, objects):
@@ -77,10 +76,10 @@ class HeavyObject:
                 send_message_list.extend(
                     HeavyObject._get_on_message_list(on_message_list[i], get_obj_class, objects))
                 send_message_list.append("break;")
-                send_message_list.append("}") # end case
+                send_message_list.append("}")  # end case
             send_message_list.append("default: return;")
-            send_message_list.append("}") # end switch
-        send_message_list.append("}") # end function
+            send_message_list.append("}")  # end switch
+        send_message_list.append("}")  # end function
         return send_message_list
 
     @classmethod
@@ -125,8 +124,8 @@ class HeavyObject:
             r = 24
             h = len(x)
             i = 0
-            while i < len(x)&~0x3:
-                k = unpack("@I", bytes(x[i:i+4], encoding='utf-8'))[0]
+            while i < len(x) & ~0x3:
+                k = unpack("@I", bytes(x[i:i + 4], encoding='utf-8'))[0]
                 k = (k * m) & 0xFFFFFFFF
                 k ^= k >> r
                 k = (k * m) & 0xFFFFFFFF
@@ -135,7 +134,7 @@ class HeavyObject:
                 i += 4
 
             n = len(x) & 0x3
-            x = x[i:i+n]
+            x = x[i:i + n]
             if n >= 3:
                 h ^= (ord(x[2]) << 16) & 0xFFFFFFFF
             if n >= 2:
@@ -144,9 +143,9 @@ class HeavyObject:
                 h ^= ord(x[0])
                 h = (h * m) & 0xFFFFFFFF
 
-            h ^= h >> 13;
+            h ^= h >> 13
             h = (h * m) & 0xFFFFFFFF
-            h ^= h >> 15;
+            h ^= h >> 15
             return h
         else:
             raise Exception("Message element hashes can only be computed for float and string types.")

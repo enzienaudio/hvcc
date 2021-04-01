@@ -16,6 +16,7 @@
 class PdOwlException(Exception):
     pass
 
+
 def parse_pd_owl_args(args):
     """Parses a list of puredata send or receive objects looking for @owl*
     annotations, parsing everything and throwing errors when syntax is not
@@ -36,24 +37,24 @@ def parse_pd_owl_args(args):
 
         if owl_param in ['@owl', '@owl_param']:
             try:
-                attrdict["owl"] = args[i+1]
+                attrdict["owl"] = args[i + 1]
             except IndexError:
                 raise PdOwlException(f"{owl_param} annotation missing assigned parameter")
             if owl_param == '@owl':
                 try:
                     # expect the presence of up to 3 parameters which can be converted to float
-                    attrdict["min"] = float(args[i+2])
-                    attrdict["max"] = float(args[i+3])
-                    attrdict["default"] = float(args[i+4])
+                    attrdict["min"] = float(args[i + 2])
+                    attrdict["max"] = float(args[i + 3])
+                    attrdict["default"] = float(args[i + 4])
                 except (IndexError, ValueError):
                     # otherwise keep default
                     pass
         elif owl_param in ['@owl_min', '@owl_max', '@owl_default']:
             # make sure that it is a float value
             try:
-                attrdict[owl_param.split('@owl_')[1]] = float(args[i+1])
+                attrdict[owl_param.split('@owl_')[1]] = float(args[i + 1])
             except ValueError:
-                raise PdOwlException(f"{owl_param} annotation value '{args[i+1]}' is not numeric")
+                raise PdOwlException(f"{owl_param} annotation value '{args[i + 1]}' is not numeric")
             except IndexError:
                 raise PdOwlException(f"{owl_param} annotation is missing its value")
 
@@ -61,4 +62,3 @@ def parse_pd_owl_args(args):
         attrdict["default"] = (attrdict["max"] - attrdict["min"]) / 2.0
 
     return attrdict
-

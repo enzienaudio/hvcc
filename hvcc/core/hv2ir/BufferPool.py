@@ -17,6 +17,7 @@ from collections import defaultdict
 
 from .HeavyException import HeavyException
 
+
 class BufferPool:
 
     def __init__(self):
@@ -27,7 +28,6 @@ class BufferPool:
             "~f>": defaultdict(list),
             "~i>": defaultdict(list)
         }
-
 
     def num_buffers(self, connection_type=None):
         """ Returns the number of buffers with the given retain count. By default returns
@@ -54,7 +54,7 @@ class BufferPool:
             pool[0].remove(b)
         else:
             # if we get here, then no available buffer was found. Create a new one.
-            b = (connection_type, self.num_buffers(connection_type)) # new buffer index for the given type
+            b = (connection_type, self.num_buffers(connection_type))  # new buffer index for the given type
         pool[count].append(b)
         return b
 
@@ -69,8 +69,8 @@ class BufferPool:
             for k, v in pool.items():
                 if b in v:
                     v.remove(b)
-                    pool[k+count].append(b)
-                    return k+count # return the new retain count
+                    pool[k + count].append(b)
+                    return k + count  # return the new retain count
             raise HeavyException("{0} not found in BufferPool!".format(b))
 
     def release_buffer(self, b, count=1):
@@ -86,8 +86,8 @@ class BufferPool:
             for k, v in pool.items():
                 if b in v:
                     v.remove(b)
-                    pool[k-count].append(b)
-                    return k-count # return the new retain count
+                    pool[k - count].append(b)
+                    return k - count  # return the new retain count
             raise HeavyException("{0} not found in BufferPool!".format(b))
 
     def __repr__(self):

@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalDel1(HeavyObject):
     """Handles the __del1~f object.
     """

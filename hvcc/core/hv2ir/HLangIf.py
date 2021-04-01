@@ -13,31 +13,36 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .HeavyException import HeavyException
-from .HeavyIrObject import HeavyIrObject
-from .HeavyLangObject import HeavyLangObject
 
-class HLangIf(HeavyLangObject):
-    """ Translates HeavyLang object [if] to HeavyIR [if] or [if~].
-    """
+# moved to HeavyParser.py because of circular dependency
 
-    def __init__(self, obj_type, args, graph, annotations=None):
-        HeavyLangObject.__init__(self, "if", args, graph,
-            num_inlets=2,
-            num_outlets=2,
-            annotations=annotations)
 
-    def reduce(self):
-        if self.has_inlet_connection_format(["cc", "_c", "c_", "__"]):
-            x = HeavyIrObject("__if", self.args)
-        elif self.has_inlet_connection_format("ff"):
-            # TODO(mhroth): implement this
-            x = HeavyParser.graph_from_file("./hvlib/if~f.hv.json")
-        elif self.has_inlet_connection_format("ii"):
-            # TODO(mhroth): implement this
-            x = HeavyParser.graph_from_file("./hvlib/if~i.hv.json")
-        else:
-            raise HeavyException("Unhandled connection configuration to object [if]: {0}".format(
-                self._get_connection_format(self.inlet_connections)))
+# from .HeavyException import HeavyException
+# from .HeavyIrObject import HeavyIrObject
+# from .HeavyLangObject import HeavyLangObject
 
-        return ({x}, self.get_connection_move_list(x))
+
+# class HLangIf(HeavyLangObject):
+#     """ Translates HeavyLang object [if] to HeavyIR [if] or [if~].
+#     """
+
+#     def __init__(self, obj_type, args, graph, annotations=None):
+#         HeavyLangObject.__init__(self, "if", args, graph,
+#                                  num_inlets=2,
+#                                  num_outlets=2,
+#                                  annotations=annotations)
+
+#     def reduce(self):
+#         if self.has_inlet_connection_format(["cc", "_c", "c_", "__"]):
+#             x = HeavyIrObject("__if", self.args)
+#         elif self.has_inlet_connection_format("ff"):
+#             # TODO(mhroth): implement this
+#             x = HeavyParser.graph_from_file("./hvlib/if~f.hv.json")
+#         elif self.has_inlet_connection_format("ii"):
+#             # TODO(mhroth): implement this
+#             x = HeavyParser.graph_from_file("./hvlib/if~i.hv.json")
+#         else:
+#             raise HeavyException("Unhandled connection configuration to object [if]: {0}".format(
+#                 self._get_connection_format(self.inlet_connections)))
+
+#         return ({x}, self.get_connection_move_list(x))
