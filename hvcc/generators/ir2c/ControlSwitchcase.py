@@ -32,24 +32,20 @@ class ControlSwitchcase(HeavyObject):
     @classmethod
     def get_C_decl(clazz, obj_type, obj_id, args):
         return [
-            f"cSwitchcase_{obj_id}_onMessage(HeavyContextInterface *, void *, int letIn,"
-            " const HvMessage *const, void *);"
+            f"cSwitchcase_{obj_id}_onMessage(HeavyContextInterface *, void *, int letIn, "
+            "const HvMessage *const, void *);"
         ]
 
     @classmethod
     def get_C_onMessage(clazz, obj_type, obj_id, inlet_index, args):
-        return [
-            "cSwitchcase_{0}_onMessage(_c, NULL, {1}, m, NULL);".format(
-                obj_id,
-                inlet_index)
-        ]
+        return [f"cSwitchcase_{obj_id}_onMessage(_c, NULL, {inlet_index}, m, NULL);"]
 
     @classmethod
     def get_C_impl(clazz, obj_type, obj_id, on_message_list, obj_class_dict, objects):
         # generate the onMessage implementation
         out_list = [
-            f"cSwitchcase_{obj_id}_onMessage(HeavyContextInterface *_c, void *o, int letIn,"
-            " const HvMessage *const m, void *sendMessage) {{"
+            f"cSwitchcase_{obj_id}_onMessage(HeavyContextInterface *_c, void *o, int letIn, "
+            f"const HvMessage *const m, void *sendMessage) {{"
         ]
         out_list.append("switch (msg_getHash(m, 0)) {")
         cases = objects[obj_id]["args"]["cases"]
