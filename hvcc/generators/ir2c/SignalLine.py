@@ -32,7 +32,7 @@ class SignalLine(HeavyObject):
     @classmethod
     def get_C_init(clazz, obj_type, obj_id, args):
         return [
-            f"sLine_init(&sLine_{obj_id});"()
+            f"sLine_init(&sLine_{obj_id});"
         ]
 
     @classmethod

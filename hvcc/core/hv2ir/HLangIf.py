@@ -16,7 +16,6 @@
 from .HeavyException import HeavyException
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
-from .HeavyParser import HeavyParser
 
 
 class HLangIf(HeavyLangObject):
