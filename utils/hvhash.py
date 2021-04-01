@@ -16,7 +16,7 @@
 import argparse
 import json
 
-import core.hv2ir.HeavyLangObject as HeavyLangObject
+import hvcc.core.hv2ir.HeavyLangObject as HeavyLangObject
 
 def main():
     parser = argparse.ArgumentParser(

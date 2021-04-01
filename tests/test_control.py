@@ -474,9 +474,9 @@ def main():
     args = parser.parse_args()
     if os.path.exists(args.pd_path):
         result = TestPdControlPatches._test_control_patch(args.pd_path)
-        print result
+        print(result)
     else:
-        print "Pd file path '{0}' doesn't exist".format(args.pd_path)
+        print(f"Pd file path '{args.pd_path}' doesn't exist"
 
 if __name__ == "__main__":
     main()

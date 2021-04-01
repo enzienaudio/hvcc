@@ -20,7 +20,7 @@ import random
 from struct import *
 import string
 
-from core.hv2ir.HeavyException import HeavyException
+from hvcc.core.hv2ir.HeavyException import HeavyException
 
 class HeavyLangObject:
     """ This is the base Heavy object class.

@@ -20,18 +20,19 @@ import os
 import re
 import time
 
-import interpreters.pd2hv.pd2hv as pd2hv
-import interpreters.max2hv.max2hv as max2hv
-import core.hv2ir.hv2ir as hv2ir
-import generators.ir2c.ir2c as ir2c
-import generators.ir2c.ir2c_perf as ir2c_perf
-import generators.c2bela.c2bela as c2bela
-import generators.c2fabric.c2fabric as c2fabric
-import generators.c2js.c2js as c2js
-import generators.c2dpf.c2dpf as c2dpf
-import generators.c2pdext.c2pdext as c2pdext
-import generators.c2wwise.c2wwise as c2wwise
-import generators.c2unity.c2unity as c2unity
+from hvcc.interpreters.pd2hv import pd2hv
+from hvcc.interpreters.max2hv import max2hv
+from hvcc.core.hv2ir import hv2ir
+from hvcc.generators.ir2c import ir2c
+from hvcc.generators.ir2c import ir2c_perf
+from hvcc.generators.c2bela import c2bela
+from hvcc.generators.c2fabric import c2fabric
+from hvcc.generators.c2js import c2js
+from hvcc.generators.c2dpf import c2dpf
+from hvcc.generators.c2pdext import c2pdext
+from hvcc.generators.c2wwise import c2wwise
+from hvcc.generators.c2unity import c2unity
+
 
 class Colours:
     purple = "\033[95m"

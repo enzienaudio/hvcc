@@ -17,7 +17,7 @@ from collections import defaultdict
 import random
 import string
 
-from interpreters.pd2hv.NotificationEnum import NotificationEnum
+from hvcc.interpreters.pd2hv.NotificationEnum import NotificationEnum
 
 class PdObject:
 

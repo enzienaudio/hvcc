@@ -200,7 +200,7 @@ def main():
         flag=args.simd)
 
     if args.verbose:
-        print os.path.abspath(wav_path)
+        print(os.path.abspath(wav_path))
 
 if __name__ == "__main__":
     main()
