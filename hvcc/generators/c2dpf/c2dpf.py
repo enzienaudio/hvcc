@@ -80,7 +80,7 @@ class c2dpf:
             with open(dpf_h_path, "w") as f:
                 f.write(env.get_template("DistrhoPluginInfo.h").render(
                     name=patch_name,
-                    class_name="HeavyDPF_" + patch_name,
+                    class_name=f"HeavyDPF_{patch_name}",
                     num_input_channels=num_input_channels,
                     num_output_channels=num_output_channels,
                     receivers=receiver_list,
