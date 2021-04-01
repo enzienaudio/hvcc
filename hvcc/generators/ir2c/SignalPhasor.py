@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalPhasor(HeavyObject):
 
     c_struct = "SignalPhasor"

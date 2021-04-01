@@ -17,18 +17,19 @@ import re
 
 from .HeavyObject import HeavyObject
 
+
 class ControlMessage(HeavyObject):
 
     preamble = "cMsg"
 
     @classmethod
     def get_C_onMessage(clazz, obj_type, obj_id, inlet_index, args):
-        return ["cMsg_{0}_sendMessage(_c, 0, m);".format(obj_id)]
+        return [f"cMsg_{obj_id}_sendMessage(_c, 0, m);"]
 
     @classmethod
     def get_C_impl(clazz, obj_type, obj_id, on_message_list, get_obj_class, objects):
         send_message_list = [
-            "cMsg_{0}_sendMessage(HeavyContextInterface *_c, int letIn, const HvMessage *const n) {{".format(obj_id)
+            f"cMsg_{obj_id}_sendMessage(HeavyContextInterface *_c, int letIn, const HvMessage *const n) {{"
         ]
 
         if len(objects[obj_id]["args"]["local"]) > 0:
@@ -38,25 +39,25 @@ class ControlMessage(HeavyObject):
         # for each message
         for m in objects[obj_id]["args"]["local"]:
             # construct the message
-            send_message_list.append("m = HV_MESSAGE_ON_STACK({0});".format(len(m)))
-            send_message_list.append("msg_init(m, {0}, msg_getTimestamp(n));".format(len(m)))
+            send_message_list.append(f"m = HV_MESSAGE_ON_STACK({len(m)});")
+            send_message_list.append(f"msg_init(m, {len(m)}, msg_getTimestamp(n));")
             for i in range(len(m)):
-                e = m[i] # get the message element
+                e = m[i]  # get the message element
                 try:
                     # is the message a float?
-                    send_message_list.append("msg_setFloat(m, {0}, {1}f);".format(i, float(e)))
-                except:
+                    send_message_list.append(f"msg_setFloat(m, {i}, {float(e)}f);")
+                except Exception:
                     if e in ["bang"]:
                         # is the message a bang?
-                        send_message_list.append("msg_setBang(m, {0});".format(i))
+                        send_message_list.append(f"msg_setBang(m, {i});")
                     elif re.match("\$[\d]+", e):
-                        send_message_list.append("msg_setElementToFrom(m, {0}, n, {1});".format(i, int(e[1:])-1))
+                        send_message_list.append(f"msg_setElementToFrom(m, {i}, n, {int(e[1:]) - 1});")
                     elif e == "@HV_N_SIMD":
                         # NOTE(mhroth): messages can contain special arguments
                         # which are interpreted differently than other strings
-                        send_message_list.append("msg_setFloat(m, {0},  static_cast<float>(HV_N_SIMD));".format(i))
+                        send_message_list.append(f"msg_setFloat(m, {i},  static_cast<float>(HV_N_SIMD));")
                     else:
-                        send_message_list.append("msg_setSymbol(m, {0}, \"{1}\");".format(i, e))
+                        send_message_list.append(f"msg_setSymbol(m, {i}, \"{e}\");")
 
             # send the message to all receiving objects
             for om in on_message_list[0]:
@@ -67,5 +68,5 @@ class ControlMessage(HeavyObject):
                         om["inletIndex"],
                         objects[om["id"]]["args"]))
 
-        send_message_list.append("}") # end function
+        send_message_list.append("}")  # end function
         return send_message_list

@@ -16,6 +16,7 @@
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
 
+
 class HLangLine(HeavyLangObject):
     """ Translates HeavyLang object [line] to HeavyIR [__line] or [__line~f].
     """
@@ -23,9 +24,9 @@ class HLangLine(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "line"
         HeavyLangObject.__init__(self, "line", args, graph,
-            num_inlets=2,
-            num_outlets=1,
-            annotations=annotations)
+                                 num_inlets=2,
+                                 num_outlets=1,
+                                 annotations=annotations)
 
     def reduce(self):
         if self.has_outlet_connection_format("f"):

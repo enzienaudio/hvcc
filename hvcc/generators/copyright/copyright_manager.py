@@ -16,10 +16,12 @@
 import datetime
 import os
 
+
 def get_default_copyright_text():
     with open(os.path.join(os.path.dirname(__file__), "default_template.txt"), "r") as f:
         copyright = f.read().format(datetime.datetime.now().year)
     return copyright
+
 
 def get_copyright_for_c(copyright_text=None):
     """ Returns an input string as a C-formatted comment, otherwise a default
@@ -27,11 +29,13 @@ def get_copyright_for_c(copyright_text=None):
     """
     return comment_for_c(copyright_text or get_default_copyright_text())
 
+
 def get_copyright_for_xml(copyright_text=None):
     """ Returns an input string as an xml comment, otherwise a default
         copyright statement if the input is None.
     """
     return comment_for_xml(copyright_text or get_default_copyright_text())
+
 
 def comment_for_c(comment):
     """ Returns the input string as a C-formatted comment, suitable for copyright statements.
@@ -40,6 +44,7 @@ def comment_for_c(comment):
         return "/**\n * {0}\n */".format("\n * ".join(comment.split("\n")))
     else:
         return "/** {0} */".format(comment)
+
 
 def comment_for_xml(comment):
     """ Returns the input string as a XML comment, suitable for copyright statements.

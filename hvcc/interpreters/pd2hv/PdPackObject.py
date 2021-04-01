@@ -16,6 +16,7 @@
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 
+
 class PdPackObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type == "pack"
@@ -29,7 +30,7 @@ class PdPackObject(PdObject):
         for x in self.obj_args:
             try:
                 self.values.append(float(x))
-            except:
+            except Exception:
                 if (x in ["f", "float"]):
                     self.values.append(0.0)
                 else:

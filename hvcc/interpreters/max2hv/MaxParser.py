@@ -12,6 +12,7 @@ from .MaxInletObject import MaxInletObject
 from .MaxOutletObject import MaxOutletObject
 from .MaxUnopObject import MaxUnopObject
 
+
 class MaxParser:
 
     @classmethod
@@ -27,8 +28,8 @@ class MaxParser:
 
         # parse objects
         for o in obj["patcher"]["boxes"]:
-            o = o["box"] # the max object dictionary
-            x = None # a MaxObject
+            o = o["box"]  # the max object dictionary
+            x = None  # a MaxObject
 
             # read common parameters
             obj_id = o["id"]
@@ -40,9 +41,9 @@ class MaxParser:
                 obj_args = obj_text[1:] if len(obj_text) > 1 else []
 
                 # resolve object arguments against graph arguments
-                for i,a in enumerate(obj_args):
+                for i, a in enumerate(obj_args):
                     if a.startswith("$"):
-                        x = int(a[1:])-1
+                        x = int(a[1:]) - 1
                         if len(g.obj_args) > x:
                             obj_args[i] = g.obj_args[x]
                         else:
@@ -66,8 +67,8 @@ class MaxParser:
 
                 # do we have an abstraction for this max object? Is it in the maxlib?
                 # TODO(mhroth): are there any other search paths to look through?
-                elif os.path.isfile(os.path.join(os.path.dirname(__file__), "maxlib", obj_type+".maxpat")):
-                    max_path = os.path.join(os.path.dirname(__file__), "maxlib", obj_type+".maxpat")
+                elif os.path.isfile(os.path.join(os.path.dirname(__file__), "maxlib", obj_type + ".maxpat")):
+                    max_path = os.path.join(os.path.dirname(__file__), "maxlib", obj_type + ".maxpat")
                     x = MaxParser.graph_from_file(max_path, obj_id, obj_args)
 
                 # is this an object that must be programmatically parsed?
@@ -94,19 +95,19 @@ class MaxParser:
 
             else:
                 print("WARNING: Ignoring maxclass \"{0}\".".format(o["maxclass"]))
-                continue # ignore comments, etc.
+                continue  # ignore comments, etc.
 
             g.add_object(x)
 
         # parse connections
-        for l in obj["patcher"]["lines"]:
-            l = l["patchline"]
-            if not (bool(l["disabled"]) or bool(l["hidden"])):
+        for li in obj["patcher"]["lines"]:
+            li = li["patchline"]
+            if not (bool(li["disabled"]) or bool(li["hidden"])):
                 g.add_connection(
-                    from_id=l["source"][0],
-                    from_outlet=l["source"][1],
-                    to_id=l["destination"][0],
-                    to_inlet=l["destination"][1])
+                    from_id=li["source"][0],
+                    from_outlet=li["source"][1],
+                    to_id=li["destination"][0],
+                    to_inlet=li["destination"][1])
 
         return g
 

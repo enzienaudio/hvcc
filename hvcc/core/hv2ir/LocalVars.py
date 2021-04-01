@@ -18,6 +18,7 @@ import os
 
 from .HeavyException import HeavyException
 
+
 class LocalVars:
     """ A set of scoped objects.
     """
@@ -30,7 +31,7 @@ class LocalVars:
         self.__REGISTERED_OBJ_DICT = defaultdict(list)
 
         # the list of globally declared paths
-        self.declared_paths = [stdlib_dir] # initialise with the standard library directory
+        self.declared_paths = [stdlib_dir]  # initialise with the standard library directory
 
     def find_path_for_abstraction(self, name):
         # the file name based on the abstraction name
@@ -40,8 +41,8 @@ class LocalVars:
         for d in self.declared_paths:
             file_path = os.path.join(d, file_name)
             if os.path.exists(file_path):
-                return file_path # if a matching abstraction is found, return the path
-        return None # otherwise return None
+                return file_path  # if a matching abstraction is found, return the path
+        return None  # otherwise return None
 
     def add_import_paths(self, path_list):
         """ Add import paths. Paths are expanded and made as explicit as possible.
@@ -56,10 +57,10 @@ class LocalVars:
         if (unique and len(objs) > 0) or (static and len(objs) > 1):
             # if there is already a registered object of this type and the new
             # object is not declared as static, throw an error
-            raise HeavyException("Object {0} with name \"{1}\" already exists, "
-                "and the new object is static or unique.".format(obj, name))
+            raise HeavyException(f"Object {obj} with name \"{name}\" already exists, "
+                                 "and the new object is static or unique.")
         elif len(objs) == 1 and static:
-            pass # the static object has already been registered, move on
+            pass  # the static object has already been registered, move on
         else:
             self.__REGISTERED_OBJ_DICT[name].append(obj)
 
@@ -83,6 +84,6 @@ class LocalVars:
         d = defaultdict(list)
         for k, v in self.__REGISTERED_OBJ_DICT.items():
             x = [o for o in v if o.type == obj_type]
-            if len(x) > 0: # only return names that actually have associated objects
+            if len(x) > 0:  # only return names that actually have associated objects
                 d[k].extend(x)
         return d

@@ -17,6 +17,7 @@ from collections import Counter
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 
+
 class PdSelectObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type in ["select", "sel"]
@@ -33,14 +34,14 @@ class PdSelectObject(PdObject):
 
         # convert to obj_args to mixedarray, such that correct switchcase hash
         # is generated
-        for i,a in enumerate(self.obj_args):
+        for i, a in enumerate(self.obj_args):
             try:
                 self.obj_args[i] = float(a)
-            except:
+            except Exception:
                 pass
 
     def validate_configuration(self):
-        if len(self._inlet_connections.get("1",[])) > 0:
+        if len(self._inlet_connections.get("1", [])) > 0:
             self.add_warning(
                 "The right inlet of select is not supported. "
                 "It will not do anything.")
@@ -69,7 +70,7 @@ class PdSelectObject(PdObject):
                         "type": "-->",
                         "index": 0
                     },
-                    "properties": {"x":0, "y": 0}
+                    "properties": {"x": 0, "y": 0}
                 },
                 "inlet_right": {
                     "type": "inlet",
@@ -77,14 +78,14 @@ class PdSelectObject(PdObject):
                         "type": "-->",
                         "index": 1
                     },
-                    "properties": {"x":0, "y": 0}
+                    "properties": {"x": 0, "y": 0}
                 },
                 "switchcase": {
                     "type": "__switchcase",
                     "args": {
                         "cases": self.obj_args
                     },
-                    "properties": {"x":0, "y": 0}
+                    "properties": {"x": 0, "y": 0}
                 },
                 "outlet_right": {
                     "type": "outlet",
@@ -92,7 +93,7 @@ class PdSelectObject(PdObject):
                         "type": "-->",
                         "index": len(self.obj_args)
                     },
-                    "properties": {"x":0, "y": 0}
+                    "properties": {"x": 0, "y": 0}
                 },
             },
             "connections": [
@@ -115,7 +116,7 @@ class PdSelectObject(PdObject):
             route_graph["objects"]["__cast_b_{0}".format(i)] = {
                 "type": "__cast_b",
                 "args": {},
-                "properties": {"x":0, "y": 0}
+                "properties": {"x": 0, "y": 0}
             }
 
             # add outlets to graph
@@ -125,7 +126,7 @@ class PdSelectObject(PdObject):
                     "type": "-->",
                     "index": i
                 },
-                "properties": {"x":0, "y": 0}
+                "properties": {"x": 0, "y": 0}
             }
 
             # add connection from switchcase to slice

@@ -19,6 +19,7 @@ from .Connection import Connection
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 
+
 class PdGraph(PdObject):
 
     def __init__(self, obj_args, pd_path, pos_x=0, pos_y=0):
@@ -64,12 +65,12 @@ class PdGraph(PdObject):
             self.__inlet_objects.append(obj)
             # set correct let index by sorting on x position
             self.__inlet_objects.sort(key=lambda o: o.pos_x)
-            for i,o in enumerate(self.__inlet_objects):
+            for i, o in enumerate(self.__inlet_objects):
                 o.let_index = i
         elif obj.obj_type in ["outlet", "outlet~"]:
             self.__outlet_objects.append(obj)
             self.__outlet_objects.sort(key=lambda o: o.pos_x)
-            for i,o in enumerate(self.__outlet_objects):
+            for i, o in enumerate(self.__outlet_objects):
                 o.let_index = i
 
     def add_parsed_connection(self, from_index, from_outlet, to_index, to_inlet):
@@ -88,19 +89,17 @@ class PdGraph(PdObject):
                 self.__objs[from_index], from_outlet,
                 self.__objs[to_index], to_inlet,
                 connection_type)
-            self.__connections.append(c) # update the local connections list
+            self.__connections.append(c)  # update the local connections list
 
             # allow the connected objects to keep track of their own connections
             # (generally used for reporting and validation purposes)
             self.__objs[from_index].add_connection(c)
             self.__objs[to_index].add_connection(c)
-        except Exception as e:
-            self.add_error(
-                "There was an error while connecting two objects. " \
-                "Have all objects been correctly instantiated? " \
-                "Have all inlets and outlets been declared?",
-                NotificationEnum.ERROR_UNABLE_TO_CONNECT_OBJECTS
-            )
+        except Exception:
+            self.add_error("There was an error while connecting two objects. "
+                           "Have all objects been correctly instantiated? "
+                           "Have all inlets and outlets been declared?",
+                           NotificationEnum.ERROR_UNABLE_TO_CONNECT_OBJECTS)
 
     def add_hv_arg(self, arg_index, name, value_type, default_value, required):
         """ Add a Heavy argument to the graph. Indicies are from zero (not one, like Pd).
@@ -162,8 +161,7 @@ class PdGraph(PdObject):
         # remove ERROR_EXCEPTION if there are already other errors.
         # The exception is always a result of some other error
         if any((n["enum"] != NotificationEnum.ERROR_EXCEPTION) for n in notices["errors"]):
-            notices["errors"] = [n for n in notices["errors"] \
-                if n["enum"] != NotificationEnum.ERROR_EXCEPTION]
+            notices["errors"] = [n for n in notices["errors"] if n["enum"] != NotificationEnum.ERROR_EXCEPTION]
 
         return notices
 
@@ -188,7 +186,7 @@ class PdGraph(PdObject):
             "type": "graph",
             "imports": [],
             "args": self.hv_args if export_args else [],
-            "objects": {o.obj_id:o.to_hv() for o in self.__objs},
+            "objects": {o.obj_id: o.to_hv() for o in self.__objs},
             "connections": [c.to_hv() for c in self.__connections],
             "properties": {
                 "x": self.pos_x,

@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlPrint(HeavyObject):
     """Prints the first value in a message to the console"""
 

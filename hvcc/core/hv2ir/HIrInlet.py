@@ -16,6 +16,7 @@
 from .HeavyException import HeavyException
 from .HeavyIrObject import HeavyIrObject
 
+
 class HIrInlet(HeavyIrObject):
     """ A specific implementation of the inlet object.
     """
@@ -28,7 +29,7 @@ class HIrInlet(HeavyIrObject):
         connection_type_set = {c.type for c in connections}
         if len(connection_type_set) == 0:
             # object has no incident connections.
-            return "-->" # outlet type defaults to control (-->)
+            return "-->"  # outlet type defaults to control (-->)
         elif len(connection_type_set) == 1:
             return list(connection_type_set)[0]
         else:

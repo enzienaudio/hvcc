@@ -17,6 +17,7 @@ from .Connection import Connection
 from .HeavyLangObject import HeavyLangObject
 from .HeavyIrObject import HeavyIrObject
 
+
 class HLangBinop(HeavyLangObject):
 
     __HEAVY_DICT = {
@@ -32,17 +33,17 @@ class HLangBinop(HeavyLangObject):
         "!=": ["__neq", "__neq_k", "__neq~f", "__neq~i"],
         "<": ["__lt", "__lt_k", "__lt~f", "__lt~i"],
         "<=": ["__lte", "__lte_k", "__lte~f", "__lte~i"],
-        "&": ["__and", "__and_k", "__and~f", "__and~i"], # binary and
-        "&&": ["__logand", "__logand_k"], # logical or
+        "&": ["__and", "__and_k", "__and~f", "__and~i"],  # binary and
+        "&&": ["__logand", "__logand_k"],  # logical or
         "&!": ["__andnot", "__andnot~f", "__andnot~i"],
-        "|": ["__or", "__or_k", "__or~f", "__or~i"], # binary or
-        "||": ["__logor", "__logor_k"], # logical or
+        "|": ["__or", "__or_k", "__or~f", "__or~i"],  # binary or
+        "||": ["__logor", "__logor_k"],  # logical or
         "pow": ["__pow", "__pow_k", "__pow~f", "__pow~i"],
         "atan2": ["__atan2", "__atan2_k", "__atan2~f"],
         "mod": ["__unimod", "__unimod_k"],
         "%": ["__bimod", "__bimod_k"],
-        ">>": ["__shiftright", "__shiftright_k"], # binary right shift
-        "<<": ["__shiftleft", "__shiftleft_k"] # binary left shift
+        ">>": ["__shiftright", "__shiftright_k"],  # binary right shift
+        "<<": ["__shiftleft", "__shiftleft_k"]  # binary left shift
     }
 
     def __init__(self, obj_type, args, graph, annotations=None):
@@ -56,11 +57,11 @@ class HLangBinop(HeavyLangObject):
 
     def reduce(self):
         if self.has_inlet_connection_format("__") or \
-        self.has_inlet_connection_format("_c") or \
-        self.has_inlet_connection_format("_f") or \
-        self.has_outlet_connection_format("_"):
+                self.has_inlet_connection_format("_c") or \
+                self.has_inlet_connection_format("_f") or \
+                self.has_outlet_connection_format("_"):
             # binary operator objects must have a left inlet or outlet connection.
-            return (set(), []) # remove this object
+            return (set(), [])  # remove this object
 
         if self.has_inlet_connection_format("ff"):
             ir_type = [x for x in HLangBinop.__HEAVY_DICT[self.type] if x.endswith("~f")][0]
@@ -73,11 +74,11 @@ class HLangBinop(HeavyLangObject):
             y = HeavyIrObject("__var~f", {"k": self.args[self.name_for_arg()]})
             z = HeavyIrObject("__varread~f", {"var_id": y.id})
             connections = [(None, [Connection(z, 0, x, 1, "~f>")])]
-            for c in self.inlet_connections[0]: # left inlet to ir_type
+            for c in self.inlet_connections[0]:  # left inlet to ir_type
                 connections.append((c, [c.copy(to_object=x)]))
-            for c in self.inlet_connections[1]: # right inlet to __var~f
+            for c in self.inlet_connections[1]:  # right inlet to __var~f
                 connections.append((c, [c.copy(to_object=y, inlet_index=0)]))
-            for c in self.outlet_connections[0]: # ir_type outlet
+            for c in self.outlet_connections[0]:  # ir_type outlet
                 connections.append((c, [c.copy(from_object=x)]))
             return ({x, y, z}, connections)
 
@@ -86,18 +87,19 @@ class HLangBinop(HeavyLangObject):
 
             # handle identity-operations
             if (self.type == "+" and self.args["k"] == 0.0) or \
-            (self.type == "-" and self.args["k"] == 0.0) or \
-            (self.type == "*" and self.args["k"] == 1.0) or \
-            (self.type == "/" and self.args["k"] == 1.0):
+                    (self.type == "-" and self.args["k"] == 0.0) or \
+                    (self.type == "*" and self.args["k"] == 1.0) or \
+                    (self.type == "/" and self.args["k"] == 1.0):
                 if len(self.inlet_connections[0]) == 0:
-                    return (set(), []) # remove this object
+                    return (set(), [])  # remove this object
                 elif len(self.inlet_connections[0]) == 1:
                     # there is only one connection, pass through the connection
                     # and remove this object
                     c = self.inlet_connections[0][0]
-                    connections = [(c, [c.copy(to_object=v.to_object, inlet_index=v.inlet_index) for v in self.outlet_connections[0]])]
+                    connections = [(c, [c.copy(to_object=v.to_object, inlet_index=v.inlet_index) for
+                                        v in self.outlet_connections[0]])]
                     return (set(), connections)
-                else: # len(self.inlet_connections[0]) > 1
+                else:  # len(self.inlet_connections[0]) > 1
                     # there are multiple connections to the left inlet
                     # create a __add~f, move one connection to the left inlet
                     # and the remainder to the right inlet

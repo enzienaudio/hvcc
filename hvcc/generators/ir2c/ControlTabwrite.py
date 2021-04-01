@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlTabwrite(HeavyObject):
 
     c_struct = "ControlTabwrite"

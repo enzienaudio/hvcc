@@ -15,6 +15,7 @@
 
 from .HeavyIrObject import HeavyIrObject
 
+
 class HIrOutlet(HeavyIrObject):
     """ A specific implementation of the outlet object.
     """

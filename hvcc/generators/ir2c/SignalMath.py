@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalMath(HeavyObject):
     """Handles the math objects.
     """
@@ -70,9 +71,9 @@ class SignalMath(HeavyObject):
         "__ceil~f": "__hv_ceil_f",
         "__cast~fi": "__hv_cast_fi",
         "__cast~if": "__hv_cast_if",
-        "__and~f": "__hv_and_f", # binary and
+        "__and~f": "__hv_and_f",  # binary and
         "__andnot~f": "__hv_andnot_f",
-        "__or~f": "__hv_or_f", # binary or
+        "__or~f": "__hv_or_f",  # binary or
     }
 
     @classmethod

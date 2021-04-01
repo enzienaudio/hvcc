@@ -30,7 +30,7 @@ from .HLangAdc import HLangAdc
 from .HLangBinop import HLangBinop
 from .HLangBiquad import HLangBiquad
 from .HLangDelay import HLangDelay
-from .HLangIf import HLangIf
+# from .HLangIf import HLangIf
 from .HeavyException import HeavyException
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
@@ -51,6 +51,7 @@ from .HLangVario import HLangVario
 
 from .HeavyGraph import HeavyGraph
 from .Connection import Connection
+
 
 class HeavyParser:
 
@@ -106,11 +107,11 @@ class HeavyParser:
                     graph=graph)
 
         # create a new graph
-        subpatch_name = json_heavy.get("annotations",{}).get("name", xname)
+        subpatch_name = json_heavy.get("annotations", {}).get("name", xname)
         g = HeavyGraph(graph, graph_args, file=hv_file, xname=subpatch_name)
 
         # add the import paths to the global vars
-        g.local_vars.add_import_paths(json_heavy.get("imports",[]))
+        g.local_vars.add_import_paths(json_heavy.get("imports", []))
         # add the file's relative directory to global vars
         g.local_vars.add_import_paths([os.path.dirname(hv_file)])
 
@@ -118,7 +119,7 @@ class HeavyParser:
         try:
             for obj_id, o in json_heavy["objects"].items():
                 if o["type"] == "comment":
-                    continue # first and foremost, ignore comment objects
+                    continue  # first and foremost, ignore comment objects
 
                 elif o["type"] == "graph":
                     # inline HeavyGraph objects (i.e. subgraphs)
@@ -196,6 +197,33 @@ class HeavyParser:
             return LANG_CLASS_DICT[obj_type]
         else:
             return None
+
+
+class HLangIf(HeavyLangObject):
+    """ Translates HeavyLang object [if] to HeavyIR [if] or [if~].
+    """
+
+    def __init__(self, obj_type, args, graph, annotations=None):
+        HeavyLangObject.__init__(self, "if", args, graph,
+                                 num_inlets=2,
+                                 num_outlets=2,
+                                 annotations=annotations)
+
+    def reduce(self):
+        if self.has_inlet_connection_format(["cc", "_c", "c_", "__"]):
+            x = HeavyIrObject("__if", self.args)
+        elif self.has_inlet_connection_format("ff"):
+            # TODO(mhroth): implement this
+            x = HeavyParser.graph_from_file("./hvlib/if~f.hv.json")
+        elif self.has_inlet_connection_format("ii"):
+            # TODO(mhroth): implement this
+            x = HeavyParser.graph_from_file("./hvlib/if~i.hv.json")
+        else:
+            raise HeavyException("Unhandled connection configuration to object [if]: {0}".format(
+                self._get_connection_format(self.inlet_connections)))
+
+        return ({x}, self.get_connection_move_list(x))
+
 
 # NOTE(mhroth): these imports are at the end of the file in order to prevent
 # circular import errors

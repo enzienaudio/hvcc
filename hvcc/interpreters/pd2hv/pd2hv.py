@@ -20,6 +20,7 @@ import time
 
 from hvcc.interpreters.pd2hv.PdParser import PdParser
 
+
 class Colours:
     purple = "\033[95m"
     cyan = "\033[96m"
@@ -32,6 +33,7 @@ class Colours:
     underline = "\033[4m"
     end = "\033[0m"
 
+
 class pd2hv:
 
     @classmethod
@@ -42,7 +44,7 @@ class pd2hv:
     def compile(clazz, pd_path, hv_dir, search_paths=None, verbose=False, export_args=False):
         tick = time.time()
 
-        parser = PdParser() # create parser state
+        parser = PdParser()  # create parser state
         pd_graph = parser.graph_from_file(pd_path)
         notices = pd_graph.get_notices()
 
@@ -71,12 +73,11 @@ class pd2hv:
         hv_path = os.path.join(hv_dir, hv_file)
         with open(hv_path, "w") as f:
             if verbose:
-                json.dump(
-                pd_graph.to_hv(export_args=export_args),
-                f,
-                sort_keys=True,
-                indent=2,
-                separators=(",", ": "))
+                json.dump(pd_graph.to_hv(export_args=export_args),
+                          f,
+                          sort_keys=True,
+                          indent=2,
+                          separators=(",", ": "))
             else:
                 json.dump(pd_graph.to_hv(export_args=export_args), f)
 
@@ -95,6 +96,7 @@ class pd2hv:
             "out_file": hv_file,
             "compile_time": (time.time() - tick)
         }
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -126,16 +128,16 @@ def main():
         verbose=args.verbose,
         export_args=args.export)
 
-    for i,n in enumerate(result["notifs"]["errors"]):
+    for i, n in enumerate(result["notifs"]["errors"]):
         print("{0:3d}) {1}Error #{2:4d}:{3} {4}".format(
-            i+1,
+            i + 1,
             Colours.red,
             n["enum"],
             Colours.end,
             n["message"]))
-    for i,n in enumerate(result["notifs"]["warnings"]):
+    for i, n in enumerate(result["notifs"]["warnings"]):
         print("{0:3d}) {1}Warning #{2:4d}:{3} {4}".format(
-            i+1,
+            i + 1,
             Colours.yellow,
             n["enum"],
             Colours.end,
@@ -144,7 +146,8 @@ def main():
     if args.verbose:
         if len(result["notifs"]["errors"]) == 0:
             print("Heavy file written to", os.path.join(result["out_dir"], result["out_file"]))
-        print("Total pd2hv compile time: {0:.2f}ms".format(result["compile_time"]*1000))
+        print("Total pd2hv compile time: {0:.2f}ms".format(result["compile_time"] * 1000))
+
 
 if __name__ == "__main__":
     main()

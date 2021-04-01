@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class SignalConvolution(HeavyObject):
 
     c_struct = "SignalConvolution"

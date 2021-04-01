@@ -15,6 +15,7 @@
 
 from .PdObject import PdObject
 
+
 class PdUnpackObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type == "unpack"
@@ -46,7 +47,7 @@ class PdUnpackObject(PdObject):
                         "type": "-->",
                         "index": 0
                     },
-                    "properties": {"x":0, "y": 0}
+                    "properties": {"x": 0, "y": 0}
                 }
             },
             "connections": [],
@@ -63,7 +64,7 @@ class PdUnpackObject(PdObject):
                     "index": i,
                     "length": 1
                 },
-                "properties": {"x":0, "y": 0}
+                "properties": {"x": 0, "y": 0}
             }
 
             # add outlets to graph
@@ -73,7 +74,7 @@ class PdUnpackObject(PdObject):
                     "type": "-->",
                     "index": i
                 },
-                "properties": {"x":0, "y": 0}
+                "properties": {"x": 0, "y": 0}
             }
 
             # add connection from inlet to slice

@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlUnop(HeavyObject):
     # a dictionary translating from the operation argument to the C case
     __OPERATION_DICT = {

@@ -21,6 +21,7 @@ import time
 from ..buildjson import buildjson
 from ..copyright import copyright_manager
 
+
 class c2fabric:
     """Generates a DSP component for Fabric.
     """
@@ -29,19 +30,19 @@ class c2fabric:
     def filter_xcode_copy(clazz, s):
         """Return a copyref hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_copy").hexdigest().upper()[0:24]
+        return hashlib.md5(s + "_copy").hexdigest().upper()[0:24]
 
     @classmethod
     def filter_xcode_build(clazz, s):
         """Return a build hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_build").hexdigest().upper()[0:24]
+        return hashlib.md5(s + "_build").hexdigest().upper()[0:24]
 
     @classmethod
     def filter_xcode_fileref(clazz, s):
         """Return a fileref hash suitable for use in an Xcode project file.
         """
-        return hashlib.md5(s+"_fileref").hexdigest().upper()[0:24]
+        return hashlib.md5(s + "_fileref").hexdigest().upper()[0:24]
 
     @classmethod
     def filter_templates(clazz, template_name):
@@ -49,8 +50,8 @@ class c2fabric:
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,
-            patch_name=None, num_input_channels=0, num_output_channels=0,
-            copyright=None, verbose=False):
+                patch_name=None, num_input_channels=0, num_output_channels=0,
+                copyright=None, verbose=False):
 
         tick = time.time()
 
@@ -111,13 +112,16 @@ class c2fabric:
 
             buildjson.generate_json(
                 out_dir,
-                android_armv7a_args= ["APP_ABI=armeabi-v7a", "-j"],
+                android_armv7a_args=["APP_ABI=armeabi-v7a", "-j"],
                 linux_x64_args=["-j"],
-                macos_x64_args=["-project", "Hv_{0}_Fabric.xcodeproj".format(patch_name), "-arch", "x86_64", "-alltargets"],
-                win_x64_args=["/property:Configuration=Release", "/property:Platform=x64", "/t:Rebuild", "Hv_{0}_Fabric.sln".format(patch_name), "/m"],
-                win_x86_args=["/property:Configuration=Release", "/property:Platform=x86", "/t:Rebuild", "Hv_{0}_Fabric.sln".format(patch_name), "/m"])
+                macos_x64_args=["-project", "Hv_{0}_Fabric.xcodeproj".format(patch_name),
+                                "-arch", "x86_64", "-alltargets"],
+                win_x64_args=["/property:Configuration=Release", "/property:Platform=x64",
+                              "/t:Rebuild", "Hv_{0}_Fabric.sln".format(patch_name), "/m"],
+                win_x86_args=["/property:Configuration=Release", "/property:Platform=x86",
+                              "/t:Rebuild", "Hv_{0}_Fabric.sln".format(patch_name), "/m"])
 
-            return  {
+            return {
                 "stage": "c2fabric",
                 "notifs": {
                     "has_error": False,
@@ -129,11 +133,11 @@ class c2fabric:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }
 
         except Exception as e:
-            return  {
+            return {
                 "stage": "c2fabric",
                 "notifs": {
                     "has_error": True,
@@ -148,5 +152,5 @@ class c2fabric:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }

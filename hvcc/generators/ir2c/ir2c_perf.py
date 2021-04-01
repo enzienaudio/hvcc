@@ -19,6 +19,7 @@ from collections import defaultdict
 import json
 import os
 
+
 class ir2c_perf:
 
     @classmethod
@@ -45,21 +46,21 @@ class ir2c_perf:
                 print("ERROR: Unknown object type {0}".format(obj_type))
 
         if verbose:
-            print("AVX: {0} cycles / {1} cycles per frame".format(perf["avx"], perf["avx"]/8.0))
+            print("AVX: {0} cycles / {1} cycles per frame".format(perf["avx"], perf["avx"] / 8.0))
             print("     {0} frames @ {1}MHz >= {2:.2f}us".format(
                 blocksize,
                 mhz,
-                blocksize*perf["avx"]/8.0/mhz))
+                blocksize * perf["avx"] / 8.0 / mhz))
 
-            print # new line
+            print  # new line
 
-            print("SSE: {0} cycles / {1} cycles per frame".format(perf["sse"], perf["sse"]/4.0))
+            print("SSE: {0} cycles / {1} cycles per frame".format(perf["sse"], perf["sse"] / 4.0))
             print("     {0} frames @ {1}MHz >= {2:.2f}us".format(
                 blocksize,
                 mhz,
-                blocksize*perf["sse"]/4.0/mhz))
+                blocksize * perf["sse"] / 4.0 / mhz))
 
-            print # new line
+            print  # new line
 
             print("{0:<4} {1:<5} {2:<16} {3}".format("CPU%", "#Objs", "Object Type", "Performance"))
             print("==== ===== ================ ===========")
@@ -68,7 +69,7 @@ class ir2c_perf:
             items = per_object_perf.items()
             # items.sort(key=lambda o: o[1]["avx"], reverse=True)
             for k, v in items:
-                print("{2:>2.2g}%  {3:<5} {0:<16} {1}".format(k, v, int(100.0*v["avx"]/perf["avx"]), objects[k]))
+                print("{2:>2.2g}%  {3:<5} {0:<16} {1}".format(k, v, int(100.0 * v["avx"] / perf["avx"]), objects[k]))
 
         return per_object_perf
 
@@ -89,6 +90,7 @@ def main():
         ir = json.load(f)
 
     ir2c_perf.perf(ir, args.blocksize, args.mhz, args.verbose)
+
 
 if __name__ == "__main__":
     main()

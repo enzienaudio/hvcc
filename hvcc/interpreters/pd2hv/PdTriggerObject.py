@@ -16,13 +16,14 @@
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 
+
 class PdTriggerObject(PdObject):
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
         assert obj_type in ["trigger", "t"]
         PdObject.__init__(self, "trigger", obj_args, pos_x, pos_y)
 
         # convert all numeric casts to "f"
-        for i,a in enumerate(self.obj_args):
+        for i, a in enumerate(self.obj_args):
             self.obj_args[i] = "f" if PdTriggerObject.__is_float(a) else a
 
         if len(self.obj_args) == 0:
@@ -52,5 +53,5 @@ class PdTriggerObject(PdObject):
         try:
             float(x)
             return True
-        except:
+        except Exception:
             return False

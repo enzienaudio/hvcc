@@ -1,4 +1,4 @@
-import datetime
+# import datetime
 import hashlib
 import os
 import shutil
@@ -6,6 +6,7 @@ import time
 import jinja2
 from ..buildjson import buildjson
 from ..copyright import copyright_manager
+
 
 class c2dpf:
     """ Generates a DPF wrapper for a given patch.
@@ -22,8 +23,8 @@ class c2dpf:
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,
-        patch_name=None, num_input_channels=0, num_output_channels=0,
-        copyright=None, verbose=False):
+                patch_name=None, num_input_channels=0, num_output_channels=0,
+                copyright=None, verbose=False):
 
         tick = time.time()
 
@@ -32,7 +33,8 @@ class c2dpf:
         patch_name = patch_name or "heavy"
 
         copyright_c = copyright_manager.get_copyright_for_c(copyright)
-        copyright_plist = copyright or u"Copyright {0} Enzien Audio, Ltd. All Rights Reserved.".format(datetime.datetime.now().year)
+        # copyright_plist = copyright or u"Copyright {0} Enzien Audio, Ltd." \
+        #     " All Rights Reserved.".format(datetime.datetime.now().year)
 
         try:
             # ensure that the output directory does not exist
@@ -55,20 +57,20 @@ class c2dpf:
                 os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates"))
 
             # generate DPF wrapper from template
-            dpf_h_path = os.path.join(source_dir, "HeavyDPF_{0}.hpp".format(patch_name))
+            dpf_h_path = os.path.join(source_dir, f"HeavyDPF_{patch_name}.hpp")
             with open(dpf_h_path, "w") as f:
                 f.write(env.get_template("HeavyDPF.hpp").render(
                     name=patch_name,
-                    class_name="HeavyDPF_"+patch_name,
+                    class_name=f"HeavyDPF_{patch_name}",
                     num_input_channels=num_input_channels,
                     num_output_channels=num_output_channels,
                     receivers=receiver_list,
                     copyright=copyright_c))
-            dpf_cpp_path = os.path.join(source_dir, "HeavyDPF_{0}.cpp".format(patch_name))
+            dpf_cpp_path = os.path.join(source_dir, f"HeavyDPF_{patch_name}.cpp")
             with open(dpf_cpp_path, "w") as f:
                 f.write(env.get_template("HeavyDPF.cpp").render(
                     name=patch_name,
-                    class_name="HeavyDPF_"+patch_name,
+                    class_name=f"HeavyDPF_{patch_name}",
                     num_input_channels=num_input_channels,
                     num_output_channels=num_output_channels,
                     receivers=receiver_list,
@@ -78,7 +80,7 @@ class c2dpf:
             with open(dpf_h_path, "w") as f:
                 f.write(env.get_template("DistrhoPluginInfo.h").render(
                     name=patch_name,
-                    class_name="HeavyDPF_"+patch_name,
+                    class_name=f"HeavyDPF_{patch_name}",
                     num_input_channels=num_input_channels,
                     num_output_channels=num_output_channels,
                     receivers=receiver_list,
@@ -86,7 +88,7 @@ class c2dpf:
                     copyright=copyright_c))
 
             # generate list of Heavy source files
-            files = os.listdir(source_dir)
+            # files = os.listdir(source_dir)
 
             # ======================================================================================
             # Linux
@@ -97,14 +99,17 @@ class c2dpf:
             with open(os.path.join(source_dir, "Makefile"), "w") as f:
                 f.write(env.get_template("Makefile").render(
                     name=patch_name,
-                    class_name="HeavyDPF_"+patch_name))
+                    class_name="HeavyDPF_" + patch_name))
 
             buildjson.generate_json(
                 out_dir,
                 linux_x64_args=["-j"])
-                # macos_x64_args=["-project", "{0}.xcodeproj".format(patch_name), "-arch", "x86_64", "-alltargets"],
-                # win_x64_args=["/property:Configuration=Release", "/property:Platform=x64", "/t:Rebuild", "{0}.sln".format(patch_name), "/m"],
-                # win_x86_args=["/property:Configuration=Release", "/property:Platform=x86", "/t:Rebuild", "{0}.sln".format(patch_name), "/m"])
+            # macos_x64_args=["-project", "{0}.xcodeproj".format(patch_name), "-arch",
+            #                 "x86_64", "-alltargets"],
+            # win_x64_args=["/property:Configuration=Release", "/property:Platform=x64",
+            #               "/t:Rebuild", "{0}.sln".format(patch_name), "/m"],
+            # win_x86_args=["/property:Configuration=Release", "/property:Platform=x86",
+            #               "/t:Rebuild", "{0}.sln".format(patch_name), "/m"])
 
             return {
                 "stage": "c2dpf",
@@ -118,11 +123,11 @@ class c2dpf:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": os.path.basename(dpf_h_path),
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }
 
         except Exception as e:
-            return  {
+            return {
                 "stage": "c2dpf",
                 "notifs": {
                     "has_error": True,
@@ -137,5 +142,5 @@ class c2dpf:
                 "in_file": "",
                 "out_dir": out_dir,
                 "out_file": "",
-                "compile_time": time.time()-tick
+                "compile_time": time.time() - tick
             }

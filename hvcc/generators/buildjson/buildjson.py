@@ -21,11 +21,13 @@ import os
 # Example arguments:
 #   macos_x64_args=["-project", "Hv_test_WwiseSourcePlugin.xcodeproj", "-arch", "x86_64", "-alltargets"]
 #   android_armv7a_args=["APP_ABI=armeabi-v7a", "-j"]
-#   win_x64_args=["/property:Configuration=Release", "/property:Platform=x64", "/t:Rebuild", "Hv_{0}_Unity.sln".format(patch_name), "/m"]
+#   win_x64_args=["/property:Configuration=Release", "/property:Platform=x64",
+#                 "/t:Rebuild", "Hv_{0}_Unity.sln".format(patch_name), "/m"]
+
 
 def generate_json(out_dir, android_armv7a_args=None, ios_armv7a_args=None,
-        linux_armv7a_args=None, linux_x64_args=None, macos_x64_args=None,
-        win_x64_args=None, win_x86_args=None):
+                  linux_armv7a_args=None, linux_x64_args=None, macos_x64_args=None,
+                  win_x64_args=None, win_x86_args=None):
     build_json = defaultdict(dict)
 
     if android_armv7a_args:

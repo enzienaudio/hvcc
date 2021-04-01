@@ -16,6 +16,7 @@
 from .HeavyLangObject import HeavyLangObject
 from .HeavyIrObject import HeavyIrObject
 
+
 class HLangUnop(HeavyLangObject):
 
     __HEAVY_DICT = {
@@ -46,9 +47,9 @@ class HLangUnop(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert HLangUnop.handles_type(obj_type)
         HeavyLangObject.__init__(self, obj_type, args, graph,
-            num_inlets=1,
-            num_outlets=1,
-            annotations=annotations)
+                                 num_inlets=1,
+                                 num_outlets=1,
+                                 annotations=annotations)
 
     @classmethod
     def handles_type(clazz, obj_type):
@@ -65,8 +66,10 @@ class HLangUnop(HeavyLangObject):
         # definitions.
 
         if self.type == "cast_fi":
+            x = HeavyIrObject(self.type)  # is this correct? no idea what x is otherwise
             return ({HeavyIrObject("__cast~fi", {})}, self.get_connection_move_list(x))
         elif self.type == "cast_if":
+            x = HeavyIrObject(self.type)  # is this correct? no idea what x is otherwise
             return ({HeavyIrObject("__cast~if", {})}, self.get_connection_move_list(x))
         elif self.has_inlet_connection_format("f"):
             ir_type = "__{0}~f".format(self.type)

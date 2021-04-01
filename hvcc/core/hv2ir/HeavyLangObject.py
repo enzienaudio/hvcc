@@ -17,10 +17,11 @@ import decimal
 import json
 import os
 import random
-from struct import *
+from struct import unpack, pack
 import string
 
 from hvcc.core.hv2ir.HeavyException import HeavyException
+
 
 class HeavyLangObject:
     """ This is the base Heavy object class.
@@ -133,8 +134,8 @@ class HeavyLangObject:
         if value_type == "float":
             try:
                 return float(value)
-            except Exception as e:
-                raise Exception("Cannot convert argument \"{0}\" into float.".format(value))
+            except Exception:
+                raise Exception(f"Cannot convert argument \"{value}\" into float.")
         elif value_type == "int":
             return int(decimal.Decimal(value))
         elif value_type == "string":
@@ -150,21 +151,21 @@ class HeavyLangObject:
             if isinstance(value, str):
                 return [float(v) for v in value.split()]
             else:
-                raise HeavyException("Cannot convert value to type floatarray: {0}".format(value))
+                raise HeavyException(f"Cannot convert value to type floatarray: {value}")
         elif value_type == "intarray":
             if isinstance(value, list):
                 return [int(v) for v in value]
             if isinstance(value, str):
                 return [int(v) for v in value.split()]
             else:
-                raise HeavyException("Cannot convert value to type intarray: {0}".format(value))
+                raise HeavyException(f"Cannot convert value to type intarray: {value}")
         elif value_type == "stringarray":
-             if isinstance(value, list):
-                 return [str(v) for v in value]
-             if isinstance(value, str):
-                 return [str(v) for v in value.split()]
-             else:
-                 raise HeavyException("Cannot convert value to type stringarray: {0}".format(value))
+            if isinstance(value, list):
+                return [str(v) for v in value]
+            if isinstance(value, str):
+                return [str(v) for v in value.split()]
+            else:
+                raise HeavyException(f"Cannot convert value to type stringarray: {value}")
         else:
             # NOTE(mhroth): if value_type is not a known type or None, that is
             # not necessarily an error. It may simply be that the value should
@@ -214,7 +215,7 @@ class HeavyLangObject:
                 self.outlet_connections[c.outlet_index].append(c)
             else:
                 raise HeavyException("Connection {0} does not connect to this object {1}.".format(c, self))
-        except:
+        except Exception:
             raise HeavyException("Connection {0} connects to out-of-range let.".format(c))
 
     def remove_connection(self, c):
@@ -236,7 +237,7 @@ class HeavyLangObject:
             # if a heavy object connects to itself, such as through a [t a]
             # or directly, there may be an error here,
             i = cc.index(c)
-            self.outlet_connections[c.outlet_index] = cc[0:i] + n_list + cc[i+1:]
+            self.outlet_connections[c.outlet_index] = cc[0:i] + n_list + cc[i + 1:]
         elif c.to_object is self:
             # connection order doesn't matter at the inlet
             self.inlet_connections[c.inlet_index].remove(c)
@@ -321,8 +322,8 @@ class HeavyLangObject:
                 elif {"-->", "~i>"} == connection_type_set:
                     return "~i>"
             # if the connection type cannot be resolved to a well-defined type
-            self.graph.add_error("Connection type cannot be resolved. Unknown inlet connection type configuration: {0}".format(
-                connection_type_set))
+            self.graph.add_error("Connection type cannot be resolved."
+                                 f"Unknown inlet connection type configuration: {connection_type_set}")
         else:
             return connection_type
 
@@ -346,7 +347,7 @@ class HeavyLangObject:
                 else:
                     self.graph.update_connection(c, [c.copy(type=connection_type)])
 
-            c.to_object._resolve_connection_types(obj_stack) # turtle all the way down
+            c.to_object._resolve_connection_types(obj_stack)  # turtle all the way down
 
     @classmethod
     def get_hash(clazz, x):
@@ -366,8 +367,8 @@ class HeavyLangObject:
             r = 24
             h = len(x)
             i = 0
-            while i < len(x)&~0x3:
-                k = unpack("@I", bytes(x[i:i+4], "utf-8"))[0]
+            while i < len(x) & ~0x3:
+                k = unpack("@I", bytes(x[i:i + 4], "utf-8"))[0]
                 k = (k * m) & 0xFFFFFFFF
                 k ^= k >> r
                 k = (k * m) & 0xFFFFFFFF
@@ -376,7 +377,7 @@ class HeavyLangObject:
                 i += 4
 
             n = len(x) & 0x3
-            x = x[i:i+n]
+            x = x[i:i + n]
             if n >= 3:
                 h ^= (ord(x[2]) << 16) & 0xFFFFFFFF
             if n >= 2:
@@ -385,13 +386,13 @@ class HeavyLangObject:
                 h ^= ord(x[0])
                 h = (h * m) & 0xFFFFFFFF
 
-            h ^= h >> 13;
+            h ^= h >> 13
             h = (h * m) & 0xFFFFFFFF
-            h ^= h >> 15;
+            h ^= h >> 15
             return h
         else:
             raise Exception("Message element hashes can only be computed for float and string types.")
 
     def __repr__(self):
-        arg_str = " ".join(["{0}:{1}".format(k, o) for (k,o) in self.args.iteritems()])
+        arg_str = " ".join(["{0}:{1}".format(k, o) for (k, o) in self.args.iteritems()])
         return "{0} {{{1}}}".format(self.type, arg_str) if len(arg_str) > 0 else self.type

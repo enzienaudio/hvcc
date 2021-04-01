@@ -19,6 +19,7 @@ import random
 from .HeavyLangObject import HeavyLangObject
 from .HeavyParser import HeavyParser
 
+
 class HLangNoise(HeavyLangObject):
     """ Handles the HeavyLang "noise" object.
     """
@@ -26,15 +27,14 @@ class HLangNoise(HeavyLangObject):
     def __init__(self, obj_type, args, graph, annotations=None):
         assert obj_type == "noise"
         HeavyLangObject.__init__(self, "noise", args, graph,
-            num_inlets=1,
-            num_outlets=1,
-            annotations=annotations)
+                                 num_inlets=1,
+                                 num_outlets=1,
+                                 annotations=annotations)
 
     def reduce(self):
-        seed = int(random.uniform(1,2147483647)) # assign a random 32-bit seed
-        noise_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-            "./hvlib/noise.hv.json")
-        x = HeavyParser.graph_from_file(noise_path, graph_args={"seed":seed})
+        seed = int(random.uniform(1, 2147483647))  # assign a random 32-bit seed
+        noise_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./hvlib/noise.hv.json")
+        x = HeavyParser.graph_from_file(noise_path, graph_args={"seed": seed})
         x.reduce()
         # TODO(mhroth): deal with control input
         return ({x}, self.get_connection_move_list(x))

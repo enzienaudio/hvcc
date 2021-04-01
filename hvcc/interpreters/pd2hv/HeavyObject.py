@@ -20,6 +20,7 @@ import os
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 
+
 class HeavyObject(PdObject):
 
     with open(os.path.join(os.path.dirname(__file__), "../../core/json/heavy.lang.json"), "r") as f:
@@ -42,7 +43,7 @@ class HeavyObject(PdObject):
         # resolve arguments
         obj_args = obj_args or []
         self.obj_args = {}
-        for i,a in enumerate(self.__obj_dict["args"]):
+        for i, a in enumerate(self.__obj_dict["args"]):
             # if the argument exists (and has been correctly resolved)
             if i < len(obj_args) and obj_args[i] is not None:
                 # force the Heavy argument type
@@ -52,7 +53,8 @@ class HeavyObject(PdObject):
                         obj_args[i],
                         a["value_type"])
                 except Exception as e:
-                    self.add_error("Heavy {0} cannot convert argument \"{1}\" with value \"{2}\" to type {3}: {4}".format(
+                    self.add_error(
+                        "Heavy {0} cannot convert argument \"{1}\" with value \"{2}\" to type {3}: {4}".format(
                             obj_type,
                             a["name"],
                             obj_args[i],
@@ -86,7 +88,7 @@ class HeavyObject(PdObject):
         if value_type == "auto":
             try:
                 return float(value)
-            except:
+            except Exception:
                 return str(value)
         elif value_type == "float":
             return float(value)
@@ -95,31 +97,31 @@ class HeavyObject(PdObject):
         elif value_type == "string":
             return str(value)
         elif value_type == "boolean":
-            if isinstance(value, str) or isinstance(value, unicode):
+            if isinstance(value, str):
                 return value.strip().lower() not in ["false", "f", "0"]
             else:
                 return bool(value)
         elif value_type == "floatarray":
             if isinstance(value, list):
                 return [float(v) for v in value]
-            if isinstance(value, str) or isinstance(value, unicode):
+            if isinstance(value, str):
                 return [float(v) for v in value.split()]
             else:
-                raise Exception("Cannot convert value to type floatarray: {0}".format(value))
+                raise Exception(f"Cannot convert value to type floatarray: {value}")
         elif value_type == "intarray":
             if isinstance(value, list):
                 return [int(v) for v in value]
-            if isinstance(value, str) or isinstance(value, unicode):
+            if isinstance(value, str):
                 return [int(v) for v in value.split()]
             else:
-                raise Exception("Cannot convert value to type intarray: {0}".format(value))
+                raise Exception(f"Cannot convert value to type intarray: {value}")
         elif value_type == "stringarray":
-             if isinstance(value, list):
-                 return [str(v) for v in value]
-             if isinstance(value, str) or isinstance(value, unicode):
-                 return [str(v) for v in value.split()]
-             else:
-                 raise Exception("Cannot convert value to type stringarray: {0}".format(value))
+            if isinstance(value, list):
+                return [str(v) for v in value]
+            if isinstance(value, str):
+                return [str(v) for v in value.split()]
+            else:
+                raise Exception(f"Cannot convert value to type stringarray: {value}")
         else:
             # NOTE(mhroth): if value_type is not a known type or None, that is
             # not necessarily an error. It may simply be that the value should
@@ -140,9 +142,15 @@ class HeavyObject(PdObject):
         """
         # TODO(mhroth): it's stupid that hvlang and hvir json have different data formats here
         if self.is_hvlang:
-            return self.__obj_dict["inlets"][inlet_index]["connectionType"] if len(self.__obj_dict["inlets"]) > inlet_index else None
+            if len(self.__obj_dict["inlets"]) > inlet_index:
+                return self.__obj_dict["inlets"][inlet_index]["connectionType"]
+            else:
+                return None
         elif self.is_hvir:
-            return self.__obj_dict["inlets"][inlet_index] if len(self.__obj_dict["inlets"]) > inlet_index else None
+            if len(self.__obj_dict["inlets"]) > inlet_index:
+                return self.__obj_dict["inlets"][inlet_index]
+            else:
+                return None
         else:
             return None
 
@@ -151,9 +159,15 @@ class HeavyObject(PdObject):
         """
         # TODO(mhroth): it's stupid that hvlang and hvir json have different data formats here
         if self.is_hvlang:
-            return self.__obj_dict["outlets"][outlet_index]["connectionType"] if len(self.__obj_dict["outlets"]) > outlet_index else None
+            if len(self.__obj_dict["outlets"]) > outlet_index:
+                return self.__obj_dict["outlets"][outlet_index]["connectionType"]
+            else:
+                return None
         elif self.is_hvir:
-            return self.__obj_dict["outlets"][outlet_index] if len(self.__obj_dict["outlets"]) > outlet_index else None
+            if len(self.__obj_dict["outlets"]) > outlet_index:
+                return self.__obj_dict["outlets"][outlet_index]
+            else:
+                return None
         else:
             return None
 
@@ -165,14 +179,14 @@ class HeavyObject(PdObject):
                 self._outlet_connections[str(c.outlet_index)].append(c)
             else:
                 self.add_error(
-                    "Connection made from non-existent outlet at {0}:{1}.".format(self.obj_type, c.outlet_index),
+                    f"Connection made from non-existent outlet at {self.obj_type}:{c.outlet_index}.",
                     enum=NotificationEnum.ERROR_UNABLE_TO_CONNECT_OBJECTS)
         elif c.to_id == self.obj_id:
             if self.get_inlet_connection_type(c.inlet_index) is not None:
                 self._inlet_connections[str(c.inlet_index)].append(c)
             else:
                 self.add_error(
-                    "Connection made to non-existent inlet at [{0} {1}]:{2}.".format(self.obj_type, self.obj_args, c.inlet_index),
+                    f"Connection made to non-existent inlet at [{self.obj_type} {self.obj_args}]:{c.inlet_index}.",
                     enum=NotificationEnum.ERROR_UNABLE_TO_CONNECT_OBJECTS)
         else:
             raise Exception("Adding a connection to the wrong object!")

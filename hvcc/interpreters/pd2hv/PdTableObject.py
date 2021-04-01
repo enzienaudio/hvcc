@@ -16,6 +16,7 @@
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
 
+
 class PdTableObject(PdObject):
 
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
@@ -28,7 +29,7 @@ class PdTableObject(PdObject):
 
         try:
             self.__table_name = self.obj_args[0]
-        except:
+        except Exception:
             self.add_error(
                 "Missing \"name\" argument for table",
                 NotificationEnum.ERROR_MISSING_REQUIRED_ARGUMENT)
@@ -38,9 +39,9 @@ class PdTableObject(PdObject):
             try:
                 self.__size = int(self.obj_args[1])
                 self.__extern = (self.obj_args[2] == "@hv_table")
-            except:
+            except Exception:
                 pass
-        except:
+        except Exception:
             pass
 
     def to_hv(self):
@@ -56,7 +57,7 @@ class PdTableObject(PdObject):
                 "x": self.pos_x,
                 "y": self.pos_y
             },
-            "annotations" :  {
-                "scope" : "public"
+            "annotations": {
+                "scope": "public"
             }
         }

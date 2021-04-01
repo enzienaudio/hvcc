@@ -15,6 +15,7 @@
 
 from .HeavyObject import HeavyObject
 
+
 class ControlDelay(HeavyObject):
 
     c_struct = "ControlDelay"
@@ -39,7 +40,7 @@ class ControlDelay(HeavyObject):
 
     @classmethod
     def get_C_free(clazz, obj_type, obj_id, args):
-        return [] # no need to free any control binop objects
+        return []  # no need to free any control binop objects
 
     @classmethod
     def get_C_onMessage(clazz, obj_type, obj_id, inlet_index, args):
@@ -53,12 +54,13 @@ class ControlDelay(HeavyObject):
 
     @classmethod
     def get_C_impl(clazz, obj_type, obj_id, on_message_list, get_obj_class, objects):
-        send_message_list = ["cDelay_{0}_sendMessage(HeavyContextInterface *_c, int letIn, const HvMessage *const m) {{".format(
-                obj_id)]
+        send_message_list = [
+            f"cDelay_{obj_id}_sendMessage(HeavyContextInterface *_c, int letIn, const HvMessage *const m) {{"
+        ]
         send_message_list.append("cDelay_clearExecutingMessage(&Context(_c)->cDelay_{0}, m);".format(
             obj_id
         ))
         send_message_list.extend(
             HeavyObject._get_on_message_list(on_message_list[0], get_obj_class, objects))
-        send_message_list.append("}") # end function
+        send_message_list.append("}")  # end function
         return send_message_list

@@ -16,6 +16,7 @@
 import re
 from .HeavyIrObject import HeavyIrObject
 
+
 class HIrReceive(HeavyIrObject):
     """ A specific implementation of the __receive object.
     """
@@ -26,4 +27,5 @@ class HIrReceive(HeavyIrObject):
             # externed receivers must contain only alphanumeric characters or underscores,
             # so that the names can be easily and transparently turned into code
             if re.search("\W", args["name"]):
-                self.add_error("Parameter and Event names may only contain alphanumeric characters or underscore: '{0}'".format(args["name"]))
+                self.add_error("Parameter and Event names may only contain"
+                               f"alphanumeric characters or underscore: '{args['name']}'")

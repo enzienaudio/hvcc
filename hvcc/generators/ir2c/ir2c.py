@@ -62,6 +62,7 @@ from hvcc.generators.ir2c.SignalTabread import SignalTabread
 from hvcc.generators.ir2c.SignalTabwrite import SignalTabwrite
 from hvcc.generators.ir2c.SignalVar import SignalVar
 
+
 class ir2c:
 
     __OBJECT_CLASS_DICT = {
@@ -128,7 +129,7 @@ class ir2c:
     def filter_extern(clazz, d):
         """ Return a dictionary of objects that are externed.
         """
-        return {k:v for k,v in d.items() if v["extern"]}
+        return {k: v for k, v in d.items() if v["extern"]}
 
     @classmethod
     def get_class(clazz, obj_type):
@@ -168,7 +169,6 @@ class ir2c:
 
         # generate the copyright
         copyright = copyright_manager.get_copyright_for_c(copyright)
-
 
         #
         # Parse the hv.ir data structure and generate C-language strings.
@@ -227,8 +227,6 @@ class ir2c:
                 x,
                 ir["objects"][obj_id]["args"]))
 
-
-
         #
         # Load the C-language template files and use the parsed strings to fill them in.
         #
@@ -241,7 +239,7 @@ class ir2c:
         name = ir["name"]["escaped"]
 
         # ensure that send_receive dictionary is alphabetised by the receiver key
-        send_receive = OrderedDict(sorted([(k,v) for k,v in ir["control"]["receivers"].items()], key=lambda x: x[0]))
+        send_receive = OrderedDict(sorted([(k, v) for k, v in ir["control"]["receivers"].items()], key=lambda x: x[0]))
 
         # write HeavyContext.h
         with open(os.path.join(output_dir, "Heavy_{0}.hpp".format(name)), "w") as f:
@@ -299,6 +297,7 @@ class ir2c:
             "obj_counter": ir_counter
         }
 
+
 def main():
     parser = argparse.ArgumentParser(
         description="A Heavy.IR to C-language translator.")
@@ -336,7 +335,8 @@ def main():
         args.copyright)
 
     if args.verbose:
-        print("Total ir2c time: {0:.2f}ms".format(results["compile_time"]*1000))
+        print("Total ir2c time: {0:.2f}ms".format(results["compile_time"] * 1000))
+
 
 if __name__ == "__main__":
     main()

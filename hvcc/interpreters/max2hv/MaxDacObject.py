@@ -2,6 +2,7 @@
 
 from .MaxObject import MaxObject
 
+
 class MaxDacObject(MaxObject):
     def __init__(self, obj_type, obj_args=None, obj_id=None, pos_x=0, pos_y=0):
         assert obj_type == "dac~"
