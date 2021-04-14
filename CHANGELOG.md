@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next
+Next Release
 -----
 
 * python3 package

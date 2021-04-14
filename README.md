@@ -1,3 +1,4 @@
+![Build Status](https://github.com/Wasted-Audio/hvcc/actions/workflows/python.yml/badge.svg)
 
 :warning: This is an attempt to modernize `hvcc` to work with `python3` and add some additional targets. :warning:
 
