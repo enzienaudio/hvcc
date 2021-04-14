@@ -1,6 +1,11 @@
 CHANGELOG
 =====
 
+0.1.2
+-----
+
+* bump versions for pypi
+
 0.1.0
 -----
 
