@@ -7,7 +7,7 @@ if sys.version_info < (3, 0):
 
 
 setup(name='hvcc',
-      version='0.0.1',
+      version='0.1.0',
       license='GPLv3',
       author='Enzien Audio, Wasted Audio',
       url='https://github.com/Wasted-Audio/hvcc',
