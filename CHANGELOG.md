@@ -1,6 +1,11 @@
 CHANGELOG
 =====
 
+0.1.1
+-----
+
+* missing metadata
+
 0.1.0
 -----
 
