@@ -15,7 +15,6 @@
 
 import decimal
 import json
-import os
 import importlib_resources
 
 from .NotificationEnum import NotificationEnum
