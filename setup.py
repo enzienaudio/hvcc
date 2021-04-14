@@ -7,9 +7,12 @@ if sys.version_info < (3, 0):
 
 
 setup(name='hvcc',
-      version='0.1.0',
+      version='0.1.1',
       license='GPLv3',
       author='Enzien Audio, Wasted Audio',
+      description='`hvcc` is a python-based dataflow audio programming language compiler that generates C/C++ code and a variety of specific framework wrappers.',
+      long_description='file:README.md',
+      long_description_content_type='text/markdown',
       url='https://github.com/Wasted-Audio/hvcc',
       download_url='',
       packages=['hvcc'],
