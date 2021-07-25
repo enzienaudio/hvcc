@@ -3,9 +3,8 @@ url: "https://wasted-audio.github.io/hvcc/"
 theme: jekyll-theme-hacker
 markdown: GFM
 plugins:
+  - jekyll-sitemap
   - jekyll-relative-links
 relative_links:
   enabled: true
   collections: true
-include:
-  - 01.introduction.md
