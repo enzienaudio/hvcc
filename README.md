@@ -29,7 +29,7 @@ hvcc is available from pypi.org and can be installed using python3 pip:
 
 If you want to develop hvcc you can install it from the source directory:
 
-`$ git clone https://github.com/dromer/hvcc.git`
+`$ git clone https://github.com/Wasted-Audio/hvcc.git`
 
 `$ cd hvcc/`
 
