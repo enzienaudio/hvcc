@@ -1,10 +1,9 @@
-name: Heavy Compiler Collection
-url: "https://wasted-audio.github.io/hvcc/"
-theme: jekyll-theme-hacker
+theme: jekyll-theme-midnight
 markdown: GFM
 plugins:
   - jekyll-sitemap
   - jekyll-relative-links
+  - jekyll-github-metadata
 relative_links:
   enabled: true
   collections: true
