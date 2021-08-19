@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next Release
+0.2.0
 -----
 
 * metadata json for generator config
