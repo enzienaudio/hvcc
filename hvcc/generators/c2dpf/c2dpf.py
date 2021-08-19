@@ -14,7 +14,7 @@ class c2dpf:
 
     @classmethod
     def filter_uniqueid(clazz, s):
-        """ Return a unique id (in hexadecemial) for the Plugin interface.
+        """ Return a unique id (in hexadecimal) for the Plugin interface.
         """
         s = hashlib.md5(s.encode('utf-8'))
         s = s.hexdigest().upper()[0:8]
