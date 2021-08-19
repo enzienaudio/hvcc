@@ -1,8 +1,8 @@
 ![Build Status](https://github.com/Wasted-Audio/hvcc/actions/workflows/python.yml/badge.svg)
 
-:warning: This is an attempt to modernize `hvcc` to work with `python3` and add some additional targets. :warning:
+This is an attempt to modernize `hvcc` to work with `python3` and add some additional targets.
 
-:warning: Not all functionality is being tested. Feedback is appreciated. :warning:
+Not all functionality is being tested. Bugreports and feedback are appreciated.
 
 # Heavy Compiler Collection (hvcc)
 
@@ -85,26 +85,21 @@ Available generator options:
 
 * `c`
 * `bela`
+* `daisy`
+* `dpf`
 * `fabric`
 * `js`
 * `pdext`
 * `unity`
-* `daisy`
-* `dpf`
-  * `vst2`
-  * `lv2`
-  * `jack`
 * `wwise`
-
 
 ### `-p` Search Paths
 
 `hvcc` will iterate through various directories when resolving patch objects and abstractions. The `-p` or `--search_paths` argument can be used to add additional folders for `hvcc` to look in.
 
-This can be handy when using a third-party patch library for example https://github.com/enzienaudio/heavylib.
+This can be handy when using a third-party patch library for example https://github.com/Wasted-Audio/heavylib.
 
 `$ hvcc ~/myProject/_main.pd -o ~/Desktop/somewhere/else/ -n mySynth -p "[~/Workspace/Projects/Enzien/heavylib/, ~/Desktop/myLib/]"`
-
 
 ### `-m` Meta Data
 `hvcc` can take extra meta-data via a supplied json file. It depends on the generator which fields are supported.
@@ -132,15 +127,14 @@ Displays all the available parameters and options for hvcc.
   - [Supported frameworks](/docs/01.introduction.md#supported-frameworks)
   - [Licensing](/docs/01.introduction.md#licensing)
 * [Getting Started](/docs/02.getting_started.md)
-* [Unity](/docs/05.unity.md)
-* [Wwise](/docs/06.wwise.md)
-* [Javascript](/docs/07.javascript.md)
-* [DPF](/docs/08.dpf.md)
-* [MIDI](/docs/09.midi.md)
-* [C API](/docs/10.c.md)
-* [C++ API](/docs/11.cpp.md)
-* [Heavy Lang Info](/docs/12.heavy_lang.md)
-* [Heavy IR Info](/docs/13.heavy_ir_lang.md)
+* [Generators](/docs/03.generators.md)
+* [MIDI](/docs/04.midi.md)
+* [C API](/docs/05.c.md)
+* [C++ API](/docs/06.cpp.md)
+* [Heavy Lang Info](/docs/07.heavy_lang.md)
+* [Heavy IR Info](/docs/08.heavy_ir_lang.md)
+* [Supported vanilla objects](/docs/09.supported_vanilla_objects)
+* [Supported vanilla objects](/docs/10.unsupported_vanilla_objects)
 
 ## Contact
 There are several places where heavy/hvcc conversation is happening:
