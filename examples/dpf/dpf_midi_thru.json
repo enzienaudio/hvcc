@@ -1,10 +1,8 @@
 {
     "dpf": {
         "project": true,
-        "description": "super simple test patch",
-        "maker": "nobody",
-        "homepage": "https://wasted.audio/plugin/dpf_example",
-        "plugin_uri": "lv2://wasted.audio/lv2/dpf_example",
+        "description": "super simple midi thru patch",
+        "maker": "dreamer",
         "version": "6, 6, 6",
         "license": "WTFPL",
         "midi_input": 1,

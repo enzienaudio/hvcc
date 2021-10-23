@@ -1,4 +1,4 @@
-#N canvas 327 394 417 108 12;
+#N canvas 472 394 409 184 12;
 #X obj 22 19 notein;
 #X obj 22 59 noteout;
 #X obj 98 19 ctlin;
@@ -8,7 +8,8 @@
 #X obj 236 19 touchin;
 #X obj 236 59 touchout;
 #X obj 318 19 bendin;
-#X obj 318 59 bendout;
+#X obj 318 69 bendout;
+#X obj 318 44 - 8192;
 #X connect 0 0 1 0;
 #X connect 0 1 1 1;
 #X connect 0 2 1 2;
@@ -19,5 +20,6 @@
 #X connect 4 1 5 1;
 #X connect 6 0 7 0;
 #X connect 6 1 7 1;
-#X connect 8 0 9 0;
+#X connect 8 0 10 0;
 #X connect 8 1 9 1;
+#X connect 10 0 9 0;
