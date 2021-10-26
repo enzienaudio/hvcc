@@ -10,12 +10,15 @@
 #define HV_HASH_PGMIN     0x2e1ea03d
 #define HV_HASH_TOUCHIN   0x553925bd
 #define HV_HASH_BENDIN    0x3083f0f7
+#define HV_HASH_MIDIIN    0x149631be
 
 #define HV_HASH_NOTEOUT   0xd1d4ac2
 #define HV_HASH_CTLOUT    0xe5e2a040
 #define HV_HASH_PGMOUT    0x8753e39e
 #define HV_HASH_TOUCHOUT  0x476d4387
 #define HV_HASH_BENDOUT   0xe8458013
+#define HV_HASH_MIDIOUT   0x6511de55
+
 
 START_NAMESPACE_DISTRHO
 
@@ -145,6 +148,16 @@ void {{class_name}}::handleMidiInput(uint32_t curEventIndex, const MidiEvent* mi
   int data1   = midiEvents[curEventIndex].data[1];
   int data2   = midiEvents[curEventIndex].data[2];
 
+  // raw [midiin] messages
+    int dataSize = *(&midiEvents[curEventIndex].data + 1) - midiEvents[curEventIndex].data;
+
+    for (int i = 0; i < dataSize; ++i) {
+      _context->sendMessageToReceiverV(HV_HASH_MIDIIN, 0, "ff",
+        (float) midiEvents[curEventIndex].data[i],
+        (float) channel);
+    }
+
+  // typical midi messages
   switch (command) {
     case 0x80: {  // note off
       _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 0, "fff",
@@ -214,7 +227,6 @@ void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
       }
       midiSendEvent.data[1] = note;
       midiSendEvent.data[2] = velocity;
-      midiSendEvent.data[3] = 0;
 
       writeMidiEvent(midiSendEvent);
       break;
@@ -229,7 +241,6 @@ void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
       midiSendEvent.data[0] = 0xB0 | ch; // send CC
       midiSendEvent.data[1] = cc;
       midiSendEvent.data[2] = value;
-      midiSendEvent.data[3] = 0;
 
       writeMidiEvent(midiSendEvent);
       break;
@@ -242,8 +253,6 @@ void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
       midiSendEvent.size = 2;
       midiSendEvent.data[0] = 0xC0 | ch; // send Program Change
       midiSendEvent.data[1] = pgm;
-      midiSendEvent.data[2] = 0;
-      midiSendEvent.data[3] = 0;
 
       writeMidiEvent(midiSendEvent);
       break;
@@ -256,8 +265,6 @@ void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
       midiSendEvent.size = 2;
       midiSendEvent.data[0] = 0xD0 | ch; // send Touch
       midiSendEvent.data[1] = value;
-      midiSendEvent.data[2] = 0;
-      midiSendEvent.data[3] = 0;
 
       writeMidiEvent(midiSendEvent);
       break;
@@ -273,7 +280,34 @@ void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
       midiSendEvent.data[0] = 0xE0 | ch; // send Bend
       midiSendEvent.data[1] = lsb;
       midiSendEvent.data[2] = msb;
-      midiSendEvent.data[3] = 0;
+
+      writeMidiEvent(midiSendEvent);
+      break;
+    }
+    case HV_HASH_MIDIOUT: // __hv_midiout
+    {
+      const uint8_t numElements = m->numElements;
+      if (numElements <=4 )
+      {
+        for (int i = 0; i < numElements; ++i)
+        {
+          midiSendEvent.data[i] = hv_msg_getFloat(m, i);
+        }
+      }
+      else
+      {
+        printf("> we do not support sysex yet \n");
+        break;
+      }
+
+      // unsigned char* rawData = new unsigned char;
+      // for (int i = 0; i < numElements; ++i) {
+      //   rawData[i] = (uint8_t) hv_msg_getFloat(m, i);
+      //   printf("> data: %d \n", rawData[i]);
+      // }
+
+      midiSendEvent.size = numElements;
+      // midiSendEvent.dataExt = (const uint8_t *) rawData;
 
       writeMidiEvent(midiSendEvent);
       break;

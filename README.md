@@ -134,7 +134,7 @@ Displays all the available parameters and options for hvcc.
 * [Heavy Lang Info](/docs/07.heavy_lang.md)
 * [Heavy IR Info](/docs/08.heavy_ir_lang.md)
 * [Supported vanilla objects](/docs/09.supported_vanilla_objects.md)
-* [Supported vanilla objects](/docs/10.unsupported_vanilla_objects.md)
+* [Unsupported vanilla objects](/docs/10.unsupported_vanilla_objects.md)
 
 ## Contact
 There are several places where heavy/hvcc conversation is happening:
