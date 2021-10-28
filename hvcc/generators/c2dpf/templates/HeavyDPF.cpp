@@ -1,25 +1,26 @@
 {{copyright}}
 
 #include "{{class_name}}.hpp"
+#include <set>
 
 
 #define HV_LV2_NUM_PARAMETERS {{receivers|length}}
 
-#define HV_HASH_NOTEIN      0x67E37CA3
-#define HV_HASH_CTLIN       0x41BE0f9C
-#define HV_HASH_PGMIN       0x2E1EA03D
-#define HV_HASH_TOUCHIN     0x553925BD
-#define HV_HASH_BENDIN      0x3083F0F7
-#define HV_HASH_MIDIIN      0x149631bE
+#define HV_HASH_NOTEIN          0x67E37CA3
+#define HV_HASH_CTLIN           0x41BE0f9C
+#define HV_HASH_PGMIN           0x2E1EA03D
+#define HV_HASH_TOUCHIN         0x553925BD
+#define HV_HASH_BENDIN          0x3083F0F7
+#define HV_HASH_MIDIIN          0x149631bE
+#define HV_HASH_MIDIREALTIMEIN  0x6FFF0BCF
 
-#define HV_HASH_NOTEOUT     0xD1D4AC2
-#define HV_HASH_CTLOUT      0xE5e2A040
-#define HV_HASH_PGMOUT      0x8753E39E
-#define HV_HASH_TOUCHOUT    0x476D4387
-#define HV_HASH_BENDOUT     0xE8458013
-#define HV_HASH_MIDIOUT     0x6511DE55
-#define HV_HASH_MIDIOUTPORT 0x165707E4
-
+#define HV_HASH_NOTEOUT         0xD1D4AC2
+#define HV_HASH_CTLOUT          0xE5e2A040
+#define HV_HASH_PGMOUT          0x8753E39E
+#define HV_HASH_TOUCHOUT        0x476D4387
+#define HV_HASH_BENDOUT         0xE8458013
+#define HV_HASH_MIDIOUT         0x6511DE55
+#define HV_HASH_MIDIOUTPORT     0x165707E4
 
 START_NAMESPACE_DISTRHO
 
@@ -202,6 +203,15 @@ void {{class_name}}::handleMidiInput(uint32_t curEventIndex, const MidiEvent* mi
       break;
     }
     default: break;
+  }
+
+  // midi realtime messages
+  std::set<int> mySet {0xF8, 0xFA, 0xFB, 0xFC, 0xFE, 0xFF};
+  if(mySet.find(status) != mySet.end())
+  {
+    _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, 0, "ff",
+    (float) status,
+    (float) floor(channel/16));
   }
 }
 #endif
