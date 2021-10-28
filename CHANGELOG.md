@@ -1,6 +1,15 @@
 CHANGELOG
 =====
 
+0.3.0
+-----
+
+* Midi I/O extensions for DPF
+* Midi bugfixes for [notein], [pgmin], [touchin], [bendin], [midiin]
+* Midi bugfixes for [noteout], [pgmout], [touchout], [bendout], [midiout]
+* Midi docs update
+* DPF minimal Midi examples
+
 0.2.0
 -----
 
