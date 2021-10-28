@@ -5,7 +5,8 @@ Next Release
 -----
 
 * Midi I/O extensions for DPF
-* Midi bugfixes for [notein], [noteout], [pgmin], [touchin], [bendin]
+* Midi bugfixes for [notein], [pgmin], [touchin], [bendin], [midiin]
+* Midi bugfixes for [noteout], [pgmout], [touchout], [bendout], [midiout]
 * Midi docs update
 * DPF minimal Midi examples
 
