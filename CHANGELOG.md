@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next Release
+0.3.0
 -----
 
 * Midi I/O extensions for DPF
