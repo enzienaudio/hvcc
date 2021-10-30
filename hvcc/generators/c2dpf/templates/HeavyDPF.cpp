@@ -22,7 +22,28 @@
 #define HV_HASH_MIDIOUT         0x6511DE55
 #define HV_HASH_MIDIOUTPORT     0x165707E4
 
+#define MIDI_RT_CLOCK           0xF8
+#define MIDI_RT_START           0xFA
+#define MIDI_RT_CONTINUE        0xFB
+#define MIDI_RT_STOP            0xFC
+#define MIDI_RT_ACTIVESENSE     0xFE
+#define MIDI_RT_RESET           0xFF
+
+// midi realtime messages
+std::set<int> mrtSet {
+  MIDI_RT_CLOCK,
+  MIDI_RT_START,
+  MIDI_RT_CONTINUE,
+  MIDI_RT_STOP,
+  MIDI_RT_RESET
+};
+
+
 START_NAMESPACE_DISTRHO
+
+
+// -------------------------------------------------------------------
+// Heavy Send and Print hooks
 
 static void hvSendHookFunc(HeavyContextInterface *c, const char *sendName, uint32_t sendHash, const HvMessage *m)
 {
@@ -45,6 +66,9 @@ static void hvPrintHookFunc(HeavyContextInterface *c, const char *printLabel, co
   dst = stpncpy(dst, msgString, 63-len);
   printf("> %s \n", buf);
 }
+
+// -------------------------------------------------------------------
+// Main DPF plugin class
 
 {{class_name}}::{{class_name}}()
  : Plugin(HV_LV2_NUM_PARAMETERS, 0, 0)
@@ -142,81 +166,121 @@ void {{class_name}}::setParameterValue(uint32_t index, float value)
 // }
 
 #if DISTRHO_PLUGIN_WANT_MIDI_INPUT
-void {{class_name}}::handleMidiInput(uint32_t curEventIndex, const MidiEvent* midiEvents)
+// -------------------------------------------------------------------
+// Midi Input handler
+
+void {{class_name}}::handleMidiInput(uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
 {
-  int status = midiEvents[curEventIndex].data[0];
-  int command = status & 0xF0;
-  int channel = status & 0x0F;
-  int data1   = midiEvents[curEventIndex].data[1];
-  int data2   = midiEvents[curEventIndex].data[2];
-
-  // raw [midiin] messages
-    int dataSize = *(&midiEvents[curEventIndex].data + 1) - midiEvents[curEventIndex].data;
-
-    for (int i = 0; i < dataSize; ++i) {
-      _context->sendMessageToReceiverV(HV_HASH_MIDIIN, 0, "ff",
-        (float) midiEvents[curEventIndex].data[i],
-        (float) channel);
+  // Realtime events
+  const TimePosition& timePos(getTimePosition());
+  const bool playing = timePos.playing;
+  if (playing != wasPlaying)
+  {
+    if (playing)
+    {
+      _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, 0,
+        "ff", (float) MIDI_RT_START);
+    } else {
+      _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, 0,
+        "ff", (float) MIDI_RT_STOP);
     }
-
-  // typical midi messages
-  switch (command) {
-    case 0x80: {  // note off
-      _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 0, "fff",
-        (float) data1, // pitch
-        (float) 0, // velocity
-        (float) channel);
-      break;
-    }
-    case 0x90: { // note on
-      _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 0, "fff",
-        (float) data1, // pitch
-        (float) data2, // velocity
-        (float) channel);
-      break;
-    }
-    case 0xB0: { // control change
-      _context->sendMessageToReceiverV(HV_HASH_CTLIN, 0, "fff",
-        (float) data2, // value
-        (float) data1, // cc number
-        (float) channel);
-      break;
-    }
-    case 0xC0: { // program change
-      _context->sendMessageToReceiverV(HV_HASH_PGMIN, 0, "ff",
-        (float) data1,
-        (float) channel);
-      break;
-    }
-    case 0xD0: { // aftertouch
-      _context->sendMessageToReceiverV(HV_HASH_TOUCHIN, 0, "ff",
-        (float) data1,
-        (float) channel);
-      break;
-    }
-    case 0xE0: { // pitch bend
-      // combine 7bit lsb and msb into 32bit int
-      hv_uint32_t value = (((hv_uint32_t) data2) << 7) | ((hv_uint32_t) data1);
-      _context->sendMessageToReceiverV(HV_HASH_BENDIN, 0, "ff",
-        (float) value,
-        (float) channel);
-      break;
-    }
-    default: break;
+    wasPlaying = playing;
   }
 
-  // midi realtime messages
-  std::set<int> mySet {0xF8, 0xFA, 0xFB, 0xFC, 0xFE, 0xFF};
-  if(mySet.find(status) != mySet.end())
+  if (playing && timePos.bbt.valid)
   {
-    _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, 0, "ff",
-    (float) status,
-    (float) floor(channel/16));
+    float samplesPerBeat = 60 * getSampleRate() / timePos.bbt.beatsPerMinute;
+    float samplesPerTick = samplesPerBeat / 24.0;
+
+    int i = 1;
+    while (samplesProcessed > samplesPerTick)
+    {
+      _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, i * 1000.0*samplesPerTick/getSampleRate(),
+        "ff", (float) MIDI_RT_CLOCK);
+      samplesProcessed -= samplesPerTick;
+      i++;
+    }
+    samplesProcessed += frames;
+    // printf("> ticks: %f - samples: %f \n", samplesPerTick, samplesProcessed);
+  }
+
+  // Midi events
+  for (uint32_t i=0; i < midiEventCount; ++i)
+  {
+    int status = midiEvents[i].data[0];
+    int command = status & 0xF0;
+    int channel = status & 0x0F;
+    int data1   = midiEvents[i].data[1];
+    int data2   = midiEvents[i].data[2];
+
+    // raw [midiin] messages
+    int dataSize = *(&midiEvents[i].data + 1) - midiEvents[i].data;
+
+    for (int i = 0; i < dataSize; ++i) {
+      _context->sendMessageToReceiverV(HV_HASH_MIDIIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+        (float) midiEvents[i].data[i],
+        (float) channel);
+    }
+
+    if(mrtSet.find(status) != mrtSet.end())
+    {
+      _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, 1000.0*timePos.frame/getSampleRate(),
+        "ff", (float) status);
+    }
+
+    // typical midi messages
+    switch (command) {
+      case 0x80: {  // note off
+        _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 1000.0*timePos.frame/getSampleRate(), "fff",
+          (float) data1, // pitch
+          (float) 0, // velocity
+          (float) channel);
+        break;
+      }
+      case 0x90: { // note on
+        _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 1000.0*timePos.frame/getSampleRate(), "fff",
+          (float) data1, // pitch
+          (float) data2, // velocity
+          (float) channel);
+        break;
+      }
+      case 0xB0: { // control change
+        _context->sendMessageToReceiverV(HV_HASH_CTLIN, 1000.0*timePos.frame/getSampleRate(), "fff",
+          (float) data2, // value
+          (float) data1, // cc number
+          (float) channel);
+        break;
+      }
+      case 0xC0: { // program change
+        _context->sendMessageToReceiverV(HV_HASH_PGMIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+          (float) data1,
+          (float) channel);
+        break;
+      }
+      case 0xD0: { // aftertouch
+        _context->sendMessageToReceiverV(HV_HASH_TOUCHIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+          (float) data1,
+          (float) channel);
+        break;
+      }
+      case 0xE0: { // pitch bend
+        // combine 7bit lsb and msb into 32bit int
+        hv_uint32_t value = (((hv_uint32_t) data2) << 7) | ((hv_uint32_t) data1);
+        _context->sendMessageToReceiverV(HV_HASH_BENDIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+          (float) value,
+          (float) channel);
+        break;
+      }
+      default: break;
+    }
   }
 }
 #endif
 
 #if DISTRHO_PLUGIN_WANT_MIDI_OUTPUT
+// -------------------------------------------------------------------
+// Midi Send handler
+
 void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
 {
   MidiEvent midiSendEvent;
@@ -334,13 +398,13 @@ void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
 }
 #endif
 
+// -------------------------------------------------------------------
+// DPF Plugin run() loop
+
 #if DISTRHO_PLUGIN_WANT_MIDI_INPUT
 void {{class_name}}::run(const float** inputs, float** outputs, uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
 {
-  for (uint32_t i=0; i < midiEventCount; ++i)
-  {
-    handleMidiInput(i, midiEvents);
-  }
+  handleMidiInput(frames, midiEvents, midiEventCount);
 #else
 void {{class_name}}::run(const float** inputs, float** outputs, uint32_t frames)
 {

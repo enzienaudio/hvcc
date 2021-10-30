@@ -1,6 +1,13 @@
 CHANGELOG
 =====
 
+Next Release
+-----
+
+* Midi realtime messages
+* Host transport to midi-rt (TODO: Continue and Reset)
+* Midi message scheduling improvements
+
 0.3.0
 -----
 
