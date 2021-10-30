@@ -172,6 +172,8 @@ void {{class_name}}::setParameterValue(uint32_t index, float value)
 void {{class_name}}::handleMidiInput(uint32_t frames, const MidiEvent* midiEvents, uint32_t midiEventCount)
 {
   // Realtime events
+  // TODO: Continue and Reset
+
   const TimePosition& timePos(getTimePosition());
   const bool playing = timePos.playing;
   if (playing != wasPlaying)
@@ -409,7 +411,6 @@ void {{class_name}}::run(const float** inputs, float** outputs, uint32_t frames,
 void {{class_name}}::run(const float** inputs, float** outputs, uint32_t frames)
 {
 #endif
-
   _context->process((float**)inputs, outputs, frames);
 }
 
