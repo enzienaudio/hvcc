@@ -1,4 +1,4 @@
-#N canvas 588 335 231 322 10;
+#N canvas 860 405 231 322 10;
 #X obj 52 215 pack f f;
 #X obj 97 74 inlet channel;
 #X obj 97 146 f \$1;
@@ -6,7 +6,7 @@
 #X obj 52 40 inlet touch;
 #X obj 52 247 s __hv_touchout @hv_param;
 #X obj 97 168 - 1;
-#X obj 97 191 min 0;
+#X obj 97 191 max;
 #X connect 0 0 5 0;
 #X connect 1 0 2 0;
 #X connect 2 0 6 0;

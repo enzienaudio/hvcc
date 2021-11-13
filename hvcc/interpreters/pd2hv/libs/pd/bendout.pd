@@ -1,4 +1,4 @@
-#N canvas 1 434 248 326 10;
+#N canvas 735 166 248 326 10;
 #X obj 46 232 pack f f;
 #X obj 91 104 inlet channel;
 #X obj 91 155 f \$1;
@@ -7,7 +7,7 @@
 #X obj 46 40 inlet bend;
 #X obj 46 72 + 8192;
 #X obj 91 181 - 1;
-#X obj 91 204 min 0;
+#X obj 91 204 max;
 #X connect 0 0 4 0;
 #X connect 1 0 2 0;
 #X connect 2 0 7 0;

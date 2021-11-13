@@ -7,6 +7,7 @@ Next Release
 * Midi realtime messages
 * Host transport to midi-rt (TODO: Continue and Reset)
 * Midi message scheduling improvements
+# Bugfix: minimum midi channel
 
 0.3.0
 -----

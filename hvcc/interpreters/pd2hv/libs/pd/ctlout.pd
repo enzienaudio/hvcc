@@ -1,4 +1,4 @@
-#N canvas 251 409 309 367 10;
+#N canvas 21 409 309 367 10;
 #X obj 59 278 pack f f f;
 #X obj 155 76 loadbang;
 #X obj 116 156 inlet channel;
@@ -9,7 +9,7 @@
 #X obj 87 118 f \$1;
 #X obj 155 98 t b b;
 #X obj 116 225 - 1;
-#X obj 116 248 min 0;
+#X obj 116 248 max;
 #X connect 0 0 3 0;
 #X connect 1 0 8 0;
 #X connect 2 0 5 0;
