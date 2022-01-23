@@ -5,7 +5,7 @@ Next Release
 -----
 
 * Midi realtime messages
-* Host transport to midi-rt (TODO: Continue and Reset)
+* Host transport to midi-rt
 * Midi message scheduling improvements
 * Bugfix: minimum midi channel
 * Bugfix: windows console_script
