@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next Release
+0.4.0
 -----
 
 * Midi realtime messages
