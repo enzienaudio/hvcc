@@ -15,7 +15,7 @@
 
 import decimal
 import json
-import os
+import importlib_resources
 
 from .NotificationEnum import NotificationEnum
 from .PdObject import PdObject
@@ -23,10 +23,12 @@ from .PdObject import PdObject
 
 class HeavyObject(PdObject):
 
-    with open(os.path.join(os.path.dirname(__file__), "../../core/json/heavy.lang.json"), "r") as f:
+    heavy_lang_json = importlib_resources.files('hvcc') / 'core/json/heavy.lang.json'
+    with open(heavy_lang_json, "r") as f:
         __HEAVY_LANG_OBJS = json.load(f)
 
-    with open(os.path.join(os.path.dirname(__file__), "../../core/json/heavy.ir.json"), "r") as f:
+    heavy_ir_json = importlib_resources.files('hvcc') / 'core/json/heavy.ir.json'
+    with open(heavy_ir_json, "r") as f:
         __HEAVY_IR_OBJS = json.load(f)
 
     def __init__(self, obj_type, obj_args=None, pos_x=0, pos_y=0):
