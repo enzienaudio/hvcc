@@ -85,10 +85,10 @@ class PdParser:
             for li in f:
                 if li.startswith("#N canvas"):
                     hv_arg_list = []
-                    hv_arg_dict[li.rstrip(r";\r\n")] = hv_arg_list
+                    hv_arg_dict[li.rstrip(";\r\n")] = hv_arg_list
                     num_canvas += 1
                 elif "@hv_arg" in li:
-                    hv_arg_list.append(li.rstrip(r";\r\n"))
+                    hv_arg_list.append(li.rstrip(";\r\n"))
                 elif li.startswith("#X restore"):
                     num_canvas -= 1
                     hv_arg_list = list(hv_arg_dict.values())[num_canvas]
@@ -100,7 +100,7 @@ class PdParser:
         with open(pd_path, "r") as f:
             for li in f:
                 # concatenate split lines in the Pd file here
-                li = li.rstrip(r"\r\n")  # account for windows CRLF
+                li = li.rstrip("\r\n")  # account for windows CRLF
                 if li.endswith(";") and not li.endswith(r"\;"):
                     out = li[:-1]  # remove single ";"
                     if len(concat) > 0:
@@ -108,7 +108,7 @@ class PdParser:
                         concat = ""  # reset concatenation state
                     yield out
                 else:
-                    concat = f'{concat} {li}' if len(concat) > 0 else f'{li}'
+                    concat = (f'{concat} {li}') if len(concat) > 0 else f'{li}'
 
     def add_absolute_search_directory(self, search_dir):
         if os.path.isdir(search_dir):
@@ -475,8 +475,8 @@ class PdParser:
                             did_add = self.add_relative_search_directory(line[3])
                             if not did_add:
                                 g.add_warning(
-                                    "\"{0}\" is not a valid relative abstraction "
-                                    "search path. It will be ignored.".format(line[3]))
+                                    f"\"{line[3]}\" is not a valid relative abstraction "
+                                    "search path. It will be ignored.")
 
                         else:
                             g.add_warning(
@@ -488,8 +488,7 @@ class PdParser:
                         pass  # don't do anything with this command
 
                     else:
-                        g.add_error("Don't know how to parse line: {0}".format(
-                            " ".join(line)))
+                        g.add_error("Don't know how to parse line: {0}".format(" ".join(line)))
 
                 elif line[0] == "#A":
                     obj_array.obj_args["values"].extend([float(f) for f in line[2:]])

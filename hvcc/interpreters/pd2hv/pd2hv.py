@@ -73,7 +73,7 @@ class pd2hv:
         if not os.path.exists(hv_dir):
             os.makedirs(hv_dir)
 
-        hv_file = os.path.splitext(os.path.basename(pd_path))[0] + ".hv.json"
+        hv_file = f"{os.path.splitext(os.path.basename(pd_path))[0]}.hv.json"
         hv_path = os.path.join(hv_dir, hv_file)
         with open(hv_path, "w") as f:
             if verbose:

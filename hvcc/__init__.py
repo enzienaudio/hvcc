@@ -75,8 +75,8 @@ def check_extern_name_conflicts(extern_type, extern_list, results):
         for j, u in enumerate(extern_list[i + 1:]):
             if v[0].upper() == u[0].upper():
                 add_error(results,
-                          "Conflicting {0} names '{1}' and '{2}', make sure that "
-                          "capital letters are not the only difference.".format(extern_type, v[0], u[0]))
+                          f"Conflicting {extern_type} names '{v[0]}' and '{u[0]}', make sure that "
+                          "capital letters are not the only difference.")
 
 
 def generate_extern_info(hvir, results):
