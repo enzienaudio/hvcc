@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next Release
+0.5.0
 -----
 
 * c2owl generator
