@@ -37,11 +37,7 @@ extern "C" {
     // call destructor
     Context(instance)->~Heavy_{{name}}();
     // free memory
-#ifdef _WIN32
-    _aligned_free(instance);
-#else
-    free(instance);
-#endif
+    hv_free(instance);
   }
 } // extern "C"
 
