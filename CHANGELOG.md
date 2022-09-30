@@ -5,8 +5,12 @@ Next Release
 -----
 
 * aligned memory and freed patch instance
-* WASM AudioWorklet
-* deprecate asm.js
+* js: WASM AudioWorklet
+* js: deprecate asm.js
+* dpf: configurable subpath
+* deprecate max2hv
+* documentation updates
+* code cleanup
 
 0.5.0
 -----
