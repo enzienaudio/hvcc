@@ -8,6 +8,7 @@ Next Release
 * js: WASM AudioWorklet
 * js: deprecate asm.js
 * dpf: configurable subpath
+* midi: add stripnote
 * deprecate max2hv
 * documentation updates
 * code cleanup
