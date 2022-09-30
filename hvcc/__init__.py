@@ -22,7 +22,6 @@ import time
 import sys
 
 from hvcc.interpreters.pd2hv import pd2hv
-from hvcc.interpreters.max2hv import max2hv
 from hvcc.core.hv2ir import hv2ir
 from hvcc.generators.ir2c import ir2c
 from hvcc.generators.ir2c import ir2c_perf
@@ -169,12 +168,6 @@ def compile_dataflow(in_path, out_dir, patch_name=None, patch_meta_file=None,
         if in_path.endswith(".pd"):
             results["pd2hv"] = pd2hv.pd2hv.compile(
                 pd_path=in_path,
-                hv_dir=os.path.join(out_dir, "hv"),
-                search_paths=search_paths,
-                verbose=verbose)
-        elif in_path.endswith(".maxpat"):
-            results["max2hv"] = max2hv.max2hv.compile(
-                max_path=in_path,
                 hv_dir=os.path.join(out_dir, "hv"),
                 search_paths=search_paths,
                 verbose=verbose)
