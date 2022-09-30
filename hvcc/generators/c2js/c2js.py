@@ -146,6 +146,7 @@ class c2js:
         parameter_list = externs["parameters"]["in"]
         event_list = externs["events"]["in"]
 
+        out_dir = os.path.join(out_dir, "js")
         patch_name = patch_name or "heavy"
 
         copyright_js = copyright_manager.get_copyright_for_c(copyright)

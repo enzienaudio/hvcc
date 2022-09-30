@@ -29,6 +29,7 @@ class c2dpf:
 
         tick = time.time()
 
+        out_dir = os.path.join(out_dir, "plugin")
         receiver_list = externs['parameters']['in']
 
         if patch_meta:
@@ -36,6 +37,7 @@ class c2dpf:
             dpf_meta = patch_meta.get("dpf", {})
         else:
             dpf_meta = {}
+
         dpf_project = dpf_meta.get('project')
         dpf_path = dpf_meta.get('dpf_path', '')
 

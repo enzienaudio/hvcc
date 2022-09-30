@@ -63,6 +63,7 @@ class c2fabric:
         in_event_list = externs["events"]["in"]
         out_event_list = externs["events"]["out"]
 
+        out_dir = os.path.join(out_dir, "fabric")
         patch_name = patch_name or "heavy"
 
         copyright = copyright_manager.get_copyright_for_c(copyright)
