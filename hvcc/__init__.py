@@ -162,15 +162,14 @@ def compile_dataflow(in_path, out_dir, patch_name=None, patch_meta_file=None,
     patch_name = patch_name or "heavy"
     generators = generators or {"c"}
 
-    if in_path.endswith((".pd", ".maxpat")):
+    if in_path.endswith((".pd")):
         if verbose:
             print("--> Generating C")
-        if in_path.endswith(".pd"):
-            results["pd2hv"] = pd2hv.pd2hv.compile(
-                pd_path=in_path,
-                hv_dir=os.path.join(out_dir, "hv"),
-                search_paths=search_paths,
-                verbose=verbose)
+        results["pd2hv"] = pd2hv.pd2hv.compile(
+            pd_path=in_path,
+            hv_dir=os.path.join(out_dir, "hv"),
+            search_paths=search_paths,
+            verbose=verbose)
 
         # check for errors
         if list(results.values())[0]["notifs"].get("has_error", False):
