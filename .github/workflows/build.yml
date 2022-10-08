@@ -41,5 +41,5 @@ jobs:
           token: ${{ secrets.HVCC_REPOSITORY_DISPATCH_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: nightly
-          client-payload: '{"branch": "develop"}'
+          client-payload: '{"nightly": true; "branch": "develop"}'
         if: ${{ github.ref == 'refs/heads/develop' }}
