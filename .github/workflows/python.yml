@@ -36,7 +36,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Repository Dispatch
-        if: ${{ github.ref == 'develop' }}
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.HVCC_REPOSITORY_DISPATCH_TOKEN }}
