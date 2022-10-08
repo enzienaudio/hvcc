@@ -42,3 +42,4 @@ jobs:
           repository: ${{ matrix.repo }}
           event-type: nightly
           client-payload: '{"branch": "develop"}'
+        if: ${{ github.ref == 'refs/heads/develop' }}
