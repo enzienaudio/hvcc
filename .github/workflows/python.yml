@@ -35,7 +35,7 @@ jobs:
         repo: ['Wasted-Audio/hvcc-examples-dpf']
     runs-on: ubuntu-latest
     steps:
-    if: ${{ github.ref == 'develop' }}
+      if: ${{ github.ref == 'develop' }}
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
