@@ -56,7 +56,8 @@ class c2unity:
 
     @classmethod
     def compile(clazz, c_src_dir, out_dir, externs,
-                patch_name=None, num_input_channels=0, num_output_channels=0,
+                patch_name=None, patch_meta: dict = None,
+                num_input_channels=0, num_output_channels=0,
                 copyright=None, verbose=False):
 
         tick = time.time()

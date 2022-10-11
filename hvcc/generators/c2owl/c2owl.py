@@ -64,7 +64,7 @@ class c2owl:
             return jdata
 
     @classmethod
-    def compile(clazz, c_src_dir, out_dir, patch_name=None, copyright=None, verbose=False):
+    def compile(clazz, c_src_dir, out_dir, patch_name=None, patch_meta: dict = None, copyright=None, verbose=False):
 
         tick = time.time()
 
