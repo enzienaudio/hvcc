@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next Release
+0.6.0
 -----
 
 * aligned memory and freed patch instance
