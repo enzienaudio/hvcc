@@ -1,6 +1,19 @@
 CHANGELOG
 =====
 
+0.6.0
+-----
+
+* aligned memory and freed patch instance
+* js: WASM AudioWorklet
+* js: deprecate asm.js
+* dpf: configurable subpath
+* midi: add stripnote
+* deprecate max2hv
+* documentation updates
+* code cleanup
+* tests: refactor and deprecate test_uploader
+
 0.5.0
 -----
 
