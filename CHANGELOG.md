@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next Release
+0.6.1
 -----
 
 * bugfix: missing parameter in named arguments
