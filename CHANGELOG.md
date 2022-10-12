@@ -1,6 +1,12 @@
 CHANGELOG
 =====
 
+0.6.1
+-----
+
+* bugfix: missing parameter in named arguments
+* update: json2daisy
+
 0.6.0
 -----
 

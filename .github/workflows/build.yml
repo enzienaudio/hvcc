@@ -34,7 +34,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        repo: ['Wasted-Audio/hvcc-examples-dpf']
+        repo: ['Wasted-Audio/hvcc-examples-dpf', 'Wasted-Audio/hvcc-examples-js']
     runs-on: ubuntu-latest
     steps:
       - name: Repository Dispatch
