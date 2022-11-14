@@ -35,7 +35,13 @@ def main():
     command = args.pop("command")
     if command == "pdobjects":
         obj_list = PdParser.PdParser.get_supported_objects()
-        print(json.dumps(obj_list, indent=4))
+        obj_list.sort()
+
+        obj_dict = {
+            "Message Objects": [k for k in obj_list if '~' not in k],
+            "Signal Objects": [k for k in obj_list if '~' in k]
+        }
+        print(json.dumps(obj_dict, indent=4))
     elif command == "hvhash":
         print("0x{0:X}".format(HeavyLangObject.HeavyLangObject.get_hash(args.get('string'))))
     else:
