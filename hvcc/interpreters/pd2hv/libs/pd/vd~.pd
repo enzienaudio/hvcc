@@ -1,4 +1,4 @@
-#N canvas 581 197 566 153 12;
+#N canvas 556 194 566 153 12;
 #X obj 37 37 inlet~;
 #X obj 37 87 outlet~;
 #X text 150 45 dreamer: old vd~ is renamed to delread4~ now this simply
