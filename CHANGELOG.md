@@ -6,7 +6,9 @@ Next
 
 * dpf: add CLAP to docs; cleanup templates
 * dpf: bugfix -> wrong frame count used for sendMessageToReceiverV()
-* general: style fixes; py311 tests; docs
+* general: style fixes
+* general: py311 support
+* general: un/supported objects
 
 0.6.1
 -----
