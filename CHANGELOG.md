@@ -1,6 +1,15 @@
 CHANGELOG
 =====
 
+0.6.2
+-----
+
+* dpf: add CLAP to docs; cleanup templates
+* dpf: bugfix -> wrong frame count used for sendMessageToReceiverV()
+* general: style fixes
+* general: py311 support
+* general: un/supported objects
+
 0.6.1
 -----
 

@@ -74,7 +74,7 @@ static void hvPrintHookFunc(HeavyContextInterface *c, const char *printLabel, co
 {{class_name}}::{{class_name}}()
  : Plugin(HV_LV2_NUM_PARAMETERS, 0, 0)
 {
-  {% for k, v in receivers %}
+  {% for k, v in receivers -%}
   _parameters[{{loop.index-1}}] = {{v.attributes.default}}f;
   {% endfor %}
 
@@ -88,7 +88,7 @@ static void hvPrintHookFunc(HeavyContextInterface *c, const char *printLabel, co
   for (int i = 0; i < HV_LV2_NUM_PARAMETERS; ++i) {
     setParameterValue(i, _parameters[i]);
   }
-  {% endif %}
+  {%- endif %}
 }
 
 {{class_name}}::~{{class_name}}() {
@@ -97,20 +97,22 @@ static void hvPrintHookFunc(HeavyContextInterface *c, const char *printLabel, co
 
 void {{class_name}}::initParameter(uint32_t index, Parameter& parameter)
 {
-  {% if receivers|length > 0 %}
+  {%- if receivers|length > 0 -%}
   // initialise parameters with defaults
   switch (index)
   {
-    {% for k, v in receivers %}
+    {% for k, v in receivers -%}
       case param{{v.display}}:
         parameter.name = "{{v.display.replace('_', ' ')}}";
         parameter.symbol = "{{v.display|lower}}";
         parameter.hints = kParameterIsAutomatable
-      {% if v.attributes.type == 'bool': %}
+      {%- if v.attributes.type == 'bool': %}
         | kParameterIsBoolean
-      {% elif v.attributes.type == 'trig': %}
+      {%- elif v.attributes.type == 'trig': -%}
         | kParameterIsTrigger
-      {% endif %};
+      {%- elif v.attributes.type == 'log': -%}
+        | kParameterIsLogarithmic
+      {%- endif %};
         parameter.ranges.min = {{v.attributes.min}}f;
         parameter.ranges.max = {{v.attributes.max}}f;
         parameter.ranges.def = {{v.attributes.default}}f;
@@ -125,18 +127,18 @@ void {{class_name}}::initParameter(uint32_t index, Parameter& parameter)
 
 float {{class_name}}::getParameterValue(uint32_t index) const
 {
-  {% if receivers|length > 0 %}
+  {%- if receivers|length > 0 %}
   return _parameters[index];
   {% else %}
   return 0.0f;
-  {% endif %}
+  {%- endif %}
 }
 
 void {{class_name}}::setParameterValue(uint32_t index, float value)
 {
-  {% if receivers|length > 0 %}
+  {%- if receivers|length > 0 %}
   switch (index) {
-    {% for k, v  in receivers %}
+    {% for k, v  in receivers -%}
     case {{loop.index-1}}: {
       _context->sendFloatToReceiver(
           Heavy_{{name}}::Parameter::In::{{k|upper}},
@@ -149,7 +151,7 @@ void {{class_name}}::setParameterValue(uint32_t index, float value)
   _parameters[index] = value;
   {% else %}
   // nothing to do
-  {% endif %}
+  {%- endif %}
 }
 
 
@@ -241,48 +243,48 @@ void {{class_name}}::handleMidiInput(uint32_t frames, const MidiEvent* midiEvent
     int dataSize = *(&midiEvents[i].data + 1) - midiEvents[i].data;
 
     for (int i = 0; i < dataSize; ++i) {
-      _context->sendMessageToReceiverV(HV_HASH_MIDIIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+      _context->sendMessageToReceiverV(HV_HASH_MIDIIN, 1000.0*midiEvents->frame/getSampleRate(), "ff",
         (float) midiEvents[i].data[i],
         (float) channel);
     }
 
     if(mrtSet.find(status) != mrtSet.end())
     {
-      _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, 1000.0*timePos.frame/getSampleRate(),
+      _context->sendMessageToReceiverV(HV_HASH_MIDIREALTIMEIN, 1000.0*midiEvents->frame/getSampleRate(),
         "ff", (float) status);
     }
 
     // typical midi messages
     switch (command) {
       case 0x80: {  // note off
-        _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 1000.0*timePos.frame/getSampleRate(), "fff",
+        _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 1000.0*midiEvents->frame/getSampleRate(), "fff",
           (float) data1, // pitch
           (float) 0, // velocity
           (float) channel);
         break;
       }
       case 0x90: { // note on
-        _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 1000.0*timePos.frame/getSampleRate(), "fff",
+        _context->sendMessageToReceiverV(HV_HASH_NOTEIN, 1000.0*midiEvents->frame/getSampleRate(), "fff",
           (float) data1, // pitch
           (float) data2, // velocity
           (float) channel);
         break;
       }
       case 0xB0: { // control change
-        _context->sendMessageToReceiverV(HV_HASH_CTLIN, 1000.0*timePos.frame/getSampleRate(), "fff",
+        _context->sendMessageToReceiverV(HV_HASH_CTLIN, 1000.0*midiEvents->frame/getSampleRate(), "fff",
           (float) data2, // value
           (float) data1, // cc number
           (float) channel);
         break;
       }
       case 0xC0: { // program change
-        _context->sendMessageToReceiverV(HV_HASH_PGMIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+        _context->sendMessageToReceiverV(HV_HASH_PGMIN, 1000.0*midiEvents->frame/getSampleRate(), "ff",
           (float) data1,
           (float) channel);
         break;
       }
       case 0xD0: { // aftertouch
-        _context->sendMessageToReceiverV(HV_HASH_TOUCHIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+        _context->sendMessageToReceiverV(HV_HASH_TOUCHIN, 1000.0*midiEvents->frame/getSampleRate(), "ff",
           (float) data1,
           (float) channel);
         break;
@@ -290,7 +292,7 @@ void {{class_name}}::handleMidiInput(uint32_t frames, const MidiEvent* midiEvent
       case 0xE0: { // pitch bend
         // combine 7bit lsb and msb into 32bit int
         hv_uint32_t value = (((hv_uint32_t) data2) << 7) | ((hv_uint32_t) data1);
-        _context->sendMessageToReceiverV(HV_HASH_BENDIN, 1000.0*timePos.frame/getSampleRate(), "ff",
+        _context->sendMessageToReceiverV(HV_HASH_BENDIN, 1000.0*midiEvents->frame/getSampleRate(), "ff",
           (float) value,
           (float) channel);
         break;
@@ -448,12 +450,12 @@ void {{class_name}}::sampleRateChanged(double newSampleRate)
   _context->setSendHook(&hvSendHookFunc);
   _context->setPrintHook(&hvPrintHookFunc);
 
-  {% if receivers|length > 0 %}
+  {% if receivers|length > 0 -%}
   // ensure that the new context has the current parameters
   for (int i = 0; i < HV_LV2_NUM_PARAMETERS; ++i) {
     setParameterValue(i, _parameters[i]);
   }
-  {% endif %}
+  {%- endif %}
 }
 
 
