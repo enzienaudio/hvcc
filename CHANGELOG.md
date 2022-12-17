@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next
+Next Release
 -----
 
 * dpf: add CLAP to docs; cleanup templates
