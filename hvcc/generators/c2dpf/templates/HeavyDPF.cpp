@@ -273,7 +273,7 @@ void {{class_name}}::handleMidiInput(uint32_t frames, const MidiEvent* midiEvent
         break;
       }
       case 0xA0: { // polyphonic aftertouch
-        _context->sendMessageToReceiverV(HV_HASH_POLYTOUCHIN, 1000.0*midiEvents->frame/getSampleRate(), , "fff",
+        _context->sendMessageToReceiverV(HV_HASH_POLYTOUCHIN, 1000.0*midiEvents->frame/getSampleRate(), "fff",
           (float) data2, // pressure
           (float) data1, // note
           (float) channel);
