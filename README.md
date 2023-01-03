@@ -20,7 +20,10 @@ It has since then been expanded to provide further support for many different pl
 
 * python 3.7 or higher
     - `jinja2` (for generator templating)
+    - `importlib_resources` (for reading static resources)
+    - `json2daisy` (for daisy integration)
     - `tox` (for tests, optional)
+    - `clang/clang++` (for building tests, optional)
 
 ## Installation
 hvcc is available from pypi.org and can be installed using python3 pip:
