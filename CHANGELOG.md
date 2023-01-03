@@ -1,6 +1,13 @@
 CHANGELOG
 =====
 
+Next Release
+-----
+
+* add polytouchin and polytouchout
+* add tests for midi input objects
+* bugfixes for midi objects bendin, ctlin, notein, pgmin, pgmout, touchin
+
 0.6.2
 -----
 

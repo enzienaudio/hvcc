@@ -9,6 +9,7 @@
 
 #define HV_HASH_NOTEIN          0x67E37CA3
 #define HV_HASH_CTLIN           0x41BE0f9C
+#define HV_HASH_POLYTOUCHIN     0xBC530F59
 #define HV_HASH_PGMIN           0x2E1EA03D
 #define HV_HASH_TOUCHIN         0x553925BD
 #define HV_HASH_BENDIN          0x3083F0F7
@@ -17,6 +18,7 @@
 
 #define HV_HASH_NOTEOUT         0xD1D4AC2
 #define HV_HASH_CTLOUT          0xE5e2A040
+#define HV_HASH_POLYTOUCHOUT    0xD5ACA9D1
 #define HV_HASH_PGMOUT          0x8753E39E
 #define HV_HASH_TOUCHOUT        0x476D4387
 #define HV_HASH_BENDOUT         0xE8458013
@@ -270,6 +272,13 @@ void {{class_name}}::handleMidiInput(uint32_t frames, const MidiEvent* midiEvent
           (float) channel);
         break;
       }
+      case 0xA0: { // polyphonic aftertouch
+        context->sendMessageToReceiverV(HV_HASH_POLYTOUCHIN, 1000.0*midiEvents->frame/getSampleRate(), , "fff",
+          (float) data2, // pressure
+          (float) data1, // note
+          (float) channel);
+        break;
+      }
       case 0xB0: { // control change
         _context->sendMessageToReceiverV(HV_HASH_CTLIN, 1000.0*midiEvents->frame/getSampleRate(), "fff",
           (float) data2, // value
@@ -343,6 +352,20 @@ void {{class_name}}::handleMidiSend(uint32_t sendHash, const HvMessage *m)
       midiSendEvent.size = 3;
       midiSendEvent.data[0] = 0xB0 | ch; // send CC
       midiSendEvent.data[1] = cc;
+      midiSendEvent.data[2] = value;
+
+      writeMidiEvent(midiSendEvent);
+      break;
+    }
+    case HV_HASH_POLYTOUCHOUT:
+    {
+      uint8_t value = hv_msg_getFloat(m, 0);
+      uint8_t note = hv_msg_getFloat(m, 1);
+      uint8_t ch = hv_msg_getFloat(m, 2);
+
+      midiSendEvent.size = 3;
+      midiSendEvent.data[0] = 0xA0 | ch; // send Poly Aftertouch
+      midiSendEvent.data[1] = note;
       midiSendEvent.data[2] = value;
 
       writeMidiEvent(midiSendEvent);
