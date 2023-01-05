@@ -14,6 +14,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
+import random
 import os
 
 from .HIrConvolution import HIrConvolution
@@ -29,13 +30,15 @@ from .HIrTabwrite import HIrTabwrite
 from .HLangAdc import HLangAdc
 from .HLangBinop import HLangBinop
 from .HLangBiquad import HLangBiquad
+from .HLangDac import HLangDac
 from .HLangDelay import HLangDelay
-# from .HLangIf import HLangIf
+# from .HLangIf import HLangIf  # circular import. moved here
 from .HeavyException import HeavyException
 from .HeavyIrObject import HeavyIrObject
 from .HeavyLangObject import HeavyLangObject
 from .HLangLine import HLangLine
 from .HLangMessage import HLangMessage
+# from .HLangNoise import HLangNoise  # circular import. moved here
 from .HLangPhasor import HLangPhasor
 from .HLangPrint import HLangPrint
 from .HLangReceive import HLangReceive
@@ -223,10 +226,25 @@ class HLangIf(HeavyLangObject):
         return ({x}, self.get_connection_move_list(x))
 
 
-# NOTE(mhroth): these imports are at the end of the file in order to prevent
-# circular import errors
-from .HLangDac import HLangDac
-from .HLangNoise import HLangNoise
+class HLangNoise(HeavyLangObject):
+    """ Handles the HeavyLang "noise" object.
+    """
+
+    def __init__(self, obj_type, args, graph, annotations=None):
+        assert obj_type == "noise"
+        HeavyLangObject.__init__(self, "noise", args, graph,
+                                 num_inlets=1,
+                                 num_outlets=1,
+                                 annotations=annotations)
+
+    def reduce(self):
+        seed = int(random.uniform(1, 2147483647))  # assign a random 32-bit seed
+        noise_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./hvlib/noise.hv.json")
+        x = HeavyParser.graph_from_file(noise_path, graph_args={"seed": seed})
+        x.reduce()
+        # TODO(mhroth): deal with control input
+        return ({x}, self.get_connection_move_list(x))
+
 
 # A list of all of the HeavyLang objects and the classes
 # that will translate them into HeavyIR objects.
