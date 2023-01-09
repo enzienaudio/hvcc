@@ -1,7 +1,7 @@
 CHANGELOG
 =====
 
-Next Release
+0.6.3
 -----
 
 * add polytouchin and polytouchout
