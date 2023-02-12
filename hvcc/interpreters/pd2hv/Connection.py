@@ -14,11 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from typing import Dict, TYPE_CHECKING
+from typing import Dict, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .HeavyObject import HeavyObject
     from .PdBinopObject import PdBinopObject
+    from .PdLibSignalGraph import PdLibSignalGraph
 
 
 class Connection:
@@ -26,7 +27,7 @@ class Connection:
         self,
         from_obj: 'HeavyObject',
         outlet_index: int,
-        to_obj: 'PdBinopObject',
+        to_obj: Union['PdBinopObject', 'PdLibSignalGraph', 'HeavyObject'],
         inlet_index: int,
         conn_type: str
     ) -> None:
@@ -61,7 +62,7 @@ class Connection:
         return self.__hv_json["from"]["outlet"]
 
     @property
-    def to_obj(self) -> 'PdBinopObject':
+    def to_obj(self) -> Union['PdBinopObject', 'PdLibSignalGraph', 'HeavyObject']:
         return self.__to_obj
 
     @property

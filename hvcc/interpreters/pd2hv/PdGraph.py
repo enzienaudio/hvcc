@@ -53,6 +53,10 @@ class PdGraph(PdObject):
         # only used is this graph is actually a subpatch
         self.subpatch_name: Optional[str] = None
 
+        # TODO(dromer) these are virtual attributes that are only instantiated with internal representation
+        self._PdGraph__connections: List = []
+        self._PdGraph__pd_path: str = ""
+
     @property
     def dollar_zero(self) -> str:
         return self.obj_args[0]
