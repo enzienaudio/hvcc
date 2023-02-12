@@ -54,7 +54,7 @@ class PdGraph(PdObject):
         self.subpatch_name: Optional[str] = None
 
         # TODO(dromer) these are virtual attributes that are only instantiated with internal representation
-        self._PdGraph__connections: List = []
+        self._PdGraph__connections: List[Connection] = []
         self._PdGraph__pd_path: str = ""
 
     @property
@@ -67,7 +67,7 @@ class PdGraph(PdObject):
 
     @property
     def is_subpatch(self) -> bool:
-        if not self.parent_graph:
+        if self.parent_graph is None:
             return False
         else:
             return self.parent_graph.__pd_path == self.__pd_path if not self.is_root else False
