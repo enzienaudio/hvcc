@@ -519,7 +519,6 @@ class PdParser:
         except Exception as e:
             # bubble the Exception back to the root graph where the graph
             # will be returned
-            raise e
             if not g.is_root:
                 raise e
             else:
