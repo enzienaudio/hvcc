@@ -3,7 +3,7 @@
 `hvcc` is a python-based dataflow audio programming language compiler that generates C/C++ code and a variety of specific framework wrappers.
 
 #### IMPORTANT!
-This repo is currently **unsupported** and looking for a maintainer. The original authors will not respond to messages or issues. Bugs will not be fixed. Features will not be added. You are on your own. Good luck.
+This repo is no longer maintained. Please see [Wasted-Audio's hvcc fork](https://github.com/Wasted-Audio/hvcc) for future development and support.
 
 ## Background
 
